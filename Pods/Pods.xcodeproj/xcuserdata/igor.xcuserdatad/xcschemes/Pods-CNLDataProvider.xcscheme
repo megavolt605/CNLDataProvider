@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0820"
+   LastUpgradeVersion = "0700"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "789E68BC1E0BF318003F3F83"
-               BuildableName = "CNLDataProvider.framework"
-               BlueprintName = "CNLDataProvider"
-               ReferencedContainer = "container:CNLDataProvider.xcodeproj">
+               BlueprintIdentifier = "F99BF45DAE31B599093A41A75E1F6A43"
+               BuildableName = "Pods_CNLDataProvider.framework"
+               BlueprintName = "Pods-CNLDataProvider"
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,10 +45,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "789E68BC1E0BF318003F3F83"
-            BuildableName = "CNLDataProvider.framework"
-            BlueprintName = "CNLDataProvider"
-            ReferencedContainer = "container:CNLDataProvider.xcodeproj">
+            BlueprintIdentifier = "F99BF45DAE31B599093A41A75E1F6A43"
+            BuildableName = "Pods_CNLDataProvider.framework"
+            BlueprintName = "Pods-CNLDataProvider"
+            ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -60,15 +60,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "789E68BC1E0BF318003F3F83"
-            BuildableName = "CNLDataProvider.framework"
-            BlueprintName = "CNLDataProvider"
-            ReferencedContainer = "container:CNLDataProvider.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
