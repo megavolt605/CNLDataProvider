@@ -47,13 +47,6 @@ extension CNLModelObject where Self: CNLModelDictionaryArray {
         return captureList.map() { data in data.value.storeToDictionary() }
     }
     
-    //    public class func loadFromDictionaryDictionary(_ array: CNLArray?) -> Self? {
-    //        guard let array = array else { return nil }
-    //        let result = Self()
-    //        result.loadFromDictionaryDictionary(array)
-    //        return result
-    //    }
-    
 }
 
 public protocol CNLModelDictionaryDictionary: class {
@@ -64,7 +57,6 @@ public protocol CNLModelDictionaryDictionary: class {
     func reset()
     init()
     init?(array: CNLArray?)
-    //static func loadFromDictionaryArray(_ array: CNLDictionary?) -> Self?
 }
 
 extension CNLModelObject where Self: CNLModelDictionaryDictionary {
@@ -93,13 +85,6 @@ extension CNLModelObject where Self: CNLModelDictionaryDictionary {
         }
         return result
     }
-    
-    //    public static func loadFromDictionaryArray(array: CNLDictionary?) -> Self? {
-    //        guard let array = array else { return nil }
-    //        let result = Self()
-    //        result.loadFromDictionaryArray(array)
-    //        return result
-    //    }
     
     public init?(array: CNLDictionary?) {
         self.init()

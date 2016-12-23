@@ -10,8 +10,6 @@ import Foundation
 
 import CNLFoundationTools
 
-//public protocol CNLModelMetaArray<ArrayElement: CNLModelDictionary, MetaArrayItem: CNLModelMetaArrayItem>: CNLModelObject, CNLModelArray
-//    where MetaArrayItem.ArrayElement == ArrayElement
 public protocol CNLModelMetaArray: class, CNLModelObject, CNLModelArray {
     associatedtype MetaArrayItem = CNLModelMetaArrayItem
     
@@ -21,12 +19,8 @@ public protocol CNLModelMetaArray: class, CNLModelObject, CNLModelArray {
 
 public extension CNLModelMetaArray where MetaArrayItem: CNLModelMetaArrayItem, MetaArrayItem.ArrayElement == ArrayElement {
 
-    //public var list: [ArrayElement] = []
-    
-    //var metaItems: [MetaArrayItem] = []
-    
     public func updateArray(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed) {
-        updateArray(success: success, failed: failed)
+        updateMetaArray(success: success, failed: failed)
     }
     
     public func updateMetaArray(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed) {

@@ -12,8 +12,6 @@
 		789E68D11E0BFABE003F3F83 /* CNLModelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E68D01E0BFABE003F3F83 /* CNLModelError.swift */; };
 		789E68D31E0BFAD6003F3F83 /* CNLModelAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E68D21E0BFAD6003F3F83 /* CNLModelAPI.swift */; };
 		789E68D51E0BFB2E003F3F83 /* CNLModelNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E68D41E0BFB2E003F3F83 /* CNLModelNetwork.swift */; };
-		789E68D71E0D3A33003F3F83 /* CNLModelObjectPrimaryKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E68D61E0D3A33003F3F83 /* CNLModelObjectPrimaryKey.swift */; };
-		789E68D91E0D3A4E003F3F83 /* CNLModelObjectEditable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E68D81E0D3A4E003F3F83 /* CNLModelObjectEditable.swift */; };
 		789E68DB1E0D3DA1003F3F83 /* CNLModelArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E68DA1E0D3DA1003F3F83 /* CNLModelArray.swift */; };
 		789E68DD1E0D3DE3003F3F83 /* CNLModelDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E68DC1E0D3DE3003F3F83 /* CNLModelDictionary.swift */; };
 		789E68DF1E0D5F2E003F3F83 /* CNLModelDictionaryArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E68DE1E0D5F2E003F3F83 /* CNLModelDictionaryArray.swift */; };
@@ -47,8 +45,6 @@
 		789E68D01E0BFABE003F3F83 /* CNLModelError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLModelError.swift; sourceTree = "<group>"; };
 		789E68D21E0BFAD6003F3F83 /* CNLModelAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLModelAPI.swift; sourceTree = "<group>"; };
 		789E68D41E0BFB2E003F3F83 /* CNLModelNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLModelNetwork.swift; sourceTree = "<group>"; };
-		789E68D61E0D3A33003F3F83 /* CNLModelObjectPrimaryKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLModelObjectPrimaryKey.swift; sourceTree = "<group>"; };
-		789E68D81E0D3A4E003F3F83 /* CNLModelObjectEditable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLModelObjectEditable.swift; sourceTree = "<group>"; };
 		789E68DA1E0D3DA1003F3F83 /* CNLModelArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLModelArray.swift; sourceTree = "<group>"; };
 		789E68DC1E0D3DE3003F3F83 /* CNLModelDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLModelDictionary.swift; sourceTree = "<group>"; };
 		789E68DE1E0D5F2E003F3F83 /* CNLModelDictionaryArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLModelDictionaryArray.swift; sourceTree = "<group>"; };
@@ -132,8 +128,6 @@
 			isa = PBXGroup;
 			children = (
 				789E68CE1E0BFA64003F3F83 /* CNLModelObject.swift */,
-				789E68D61E0D3A33003F3F83 /* CNLModelObjectPrimaryKey.swift */,
-				789E68D81E0D3A4E003F3F83 /* CNLModelObjectEditable.swift */,
 				789E68DA1E0D3DA1003F3F83 /* CNLModelArray.swift */,
 				789E68DC1E0D3DE3003F3F83 /* CNLModelDictionary.swift */,
 				789E68DE1E0D5F2E003F3F83 /* CNLModelDictionaryArray.swift */,
@@ -306,12 +300,10 @@
 			files = (
 				789E68D51E0BFB2E003F3F83 /* CNLModelNetwork.swift in Sources */,
 				789E68DB1E0D3DA1003F3F83 /* CNLModelArray.swift in Sources */,
-				789E68D71E0D3A33003F3F83 /* CNLModelObjectPrimaryKey.swift in Sources */,
 				789E68D31E0BFAD6003F3F83 /* CNLModelAPI.swift in Sources */,
 				789E68E11E0D60BC003F3F83 /* CNLModelMetaArray.swift in Sources */,
 				789E68FC1E0DC206003F3F83 /* CNLDataProviderEditable.swift in Sources */,
 				789E68D11E0BFABE003F3F83 /* CNLModelError.swift in Sources */,
-				789E68D91E0D3A4E003F3F83 /* CNLModelObjectEditable.swift in Sources */,
 				789E68CF1E0BFA64003F3F83 /* CNLModelObject.swift in Sources */,
 				789E68E71E0D7579003F3F83 /* CNLDataProviderVariables.swift in Sources */,
 				789E68DD1E0D3DE3003F3F83 /* CNLModelDictionary.swift in Sources */,

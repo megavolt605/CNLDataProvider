@@ -43,3 +43,20 @@ public extension CNLModelObject {
     }
     
 }
+
+
+public protocol CNLModelObjectPrimaryKey: class {
+    associatedtype KeyType: Hashable
+    var primaryKey: KeyType { get }
+    init?(keyValue: String)
+    var encodedPrimaryKey: String? { get }
+}
+
+public extension CNLModelObjectPrimaryKey {
+    public var encodedPrimaryKey: String? { return "\(primaryKey)" }
+}
+
+public protocol CNLModelObjectEditable {
+    var editing: Bool { get set }
+    func updateList()
+}
