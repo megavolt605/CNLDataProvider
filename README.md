@@ -10,7 +10,7 @@ Model basic and data providers for UITableView and UICollectionView
 
 [CocoaPods](https://cocoapods.org/) is a dependency manager for Cocoa projects.
 
-Specify CNLFoundationTools into your project's Podfile:
+Specify CNLDataProvider into your project's Podfile:
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
