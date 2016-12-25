@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '835C29D6E59BAAE40D2581E857169B2D'
+               BlueprintIdentifier = '2B4EA4E68D9BCC199009F82B39C0C404'
                BlueprintName = 'CNLFoundationTools'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'CNLFoundationTools.framework'>
