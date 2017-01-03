@@ -1,5 +1,5 @@
 //
-//  CNLModelImageLoadable.swift
+//  CNLModelLoadable.swift
 //  CNLDataProvider
 //
 //  Created by Igor Smirnov on 28/12/2016.
@@ -14,27 +14,13 @@ import CNLFoundationTools
 fileprivate var cancelLoadingTaskCallbacksFunc = "cancelLoadingTaskCallbacksFunc"
 
 public protocol CNLModelDataLoadable: class {
-    
-    func loadData(
-        _ fileName: String,
-        priority: Float?,
-        userData: Any?,
-        success: @escaping (_ fileName: String, _ data: Data?, _ userData: Any?) -> Void,
-        fail: @escaping (_ fileName: String, _ userData: Any?) -> Void
-    )
+    func loadData(_ fileName: String, priority: Float?, userData: Any?, success: @escaping CNLModelNetworkDownloadFileSuccess, fail: @escaping CNLModelNetworkDownloadFileFail)
     func cancelLoading()
 }
 
-
 extension CNLModelDataLoadable {
     
-    public func loadData(
-        _ fileName: String,
-        priority: Float?,
-        userData: Any?,
-        success: @escaping CNLModelNetworkDownloadFileSuccess,
-        fail: @escaping CNLModelNetworkDownloadFileFail
-    ) {
+    public func loadData(_ fileName: String, priority: Float?, userData: Any?, success: @escaping CNLModelNetworkDownloadFileSuccess, fail: @escaping CNLModelNetworkDownloadFileFail) {
         let cancelTask = CNLModelNetworkProvider?.downloadFileFromURL(
             fileName,
             priority: priority ?? 1.0,
@@ -48,25 +34,29 @@ extension CNLModelDataLoadable {
                 self.cancelLoadingTaskCallbacks[fileName] = nil
             }
         )
-        cancelLoadingTaskCallbacks[fileName] = cancelTask
+        if let cancelTask = cancelTask {
+            cancelLoadingTaskCallbacks[fileName] = { [fileName, userData] in cancelTask(fileName, userData) }
+        }
     }
     
-    fileprivate var cancelLoadingTaskCallbacks: [String: CNLModelNetworkDownloadFileCancel] {
+    fileprivate typealias CNLCancelLoadingCallbacks = [String: () -> Void]
+    
+    fileprivate var cancelLoadingTaskCallbacks: CNLCancelLoadingCallbacks {
         get {
-            if let value = (objc_getAssociatedObject(self, &cancelLoadingTaskCallbacksFunc) as? CNLAssociated<[String: CNLModelNetworkDownloadFileCancel]>)?.closure {
+            if let value = (objc_getAssociatedObject(self, &cancelLoadingTaskCallbacksFunc) as? CNLAssociated<CNLCancelLoadingCallbacks>)?.closure {
                 return value
             } else {
                 return [:]
             }
         }
         set {
-            objc_setAssociatedObject(self, &cancelLoadingTaskCallbacksFunc, CNLAssociated<[String: CNLModelNetworkDownloadFileCancel]>(closure: newValue), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+            objc_setAssociatedObject(self, &cancelLoadingTaskCallbacksFunc, CNLAssociated<CNLCancelLoadingCallbacks>(closure: newValue), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
         }
     }
     
-    public func cancelLoading(fileName: String, userData: Any?) {
+    public func cancelLoading() {
         for task in cancelLoadingTaskCallbacks {
-            task.value(fileName, userData)
+            task.value()
         }
         cancelLoadingTaskCallbacks = [:]
     }
@@ -74,24 +64,12 @@ extension CNLModelDataLoadable {
 }
 
 public protocol CNLModelImageLoadable: CNLModelDataLoadable {
-    func loadImage(
-        _ fileName: String,
-        priority: Float?,
-        userData: Any?,
-        success: @escaping (_ fileName: String, _ image: UIImage, _ imageData: Data, _ userData: Any?) -> Void,
-        fail: @escaping (_ fileName: String, _ userData: Any?) -> Void
-    )
+    func loadImage(_ fileName: String, priority: Float?, userData: Any?, success: @escaping CNLModelNetworkDownloadImageSuccess, fail: @escaping CNLModelNetworkDownloadFileFail)
 }
 
 extension CNLModelImageLoadable {
     
-    public func loadImage(
-        _ fileName: String,
-        priority: Float?,
-        userData: Any?,
-        success: @escaping (_ fileName: String, _ image: UIImage, _ imageData: Data, _ userData: Any?) -> Void,
-        fail: @escaping (_ fileName: String, _ userData: Any?) -> Void
-        ) {
+    public func loadImage(_ fileName: String, priority: Float?, userData: Any?, success: @escaping CNLModelNetworkDownloadImageSuccess, fail: @escaping CNLModelNetworkDownloadFileFail) {
         let start = Date()
         
         loadData(
@@ -117,9 +95,9 @@ extension CNLModelImageLoadable {
                             CNLLog("Received data:\n\(dataString)", level: .error)
                         }
                     #endif
-                    fail(fileName, userData)
+                    fail(fileName, nil, userData)
                 }
-        },
+            },
             fail: fail
         )
     }
@@ -127,40 +105,18 @@ extension CNLModelImageLoadable {
 }
 
 public protocol CNLModelResizableImageLoadable: CNLModelImageLoadable {
-    func loadImage(
-        _ fileName: String,
-        priority: Float?,
-        userData: Any?,
-        size: CGSize,
-        scale: CGFloat?,
-        success: @escaping (_ fileName: String, _ image: UIImage, _ imageData: Data, _ userData: Any?) -> Void,
-        fail: @escaping (_ fileName: String, _ userData: Any?) -> Void
-    )
+    func loadImage(_ fileName: String, priority: Float?, userData: Any?, size: CGSize, scale: CGFloat?, success: CNLModelNetworkDownloadImageSuccess, fail: CNLModelNetworkDownloadFileFail)
 }
 
 extension CNLModelResizableImageLoadable {
     
-    public func loadImage(
-        _ fileName: String,
-        priority: Float?,
-        userData: Any?,
-        size: CGSize = CGSize.zero,
-        scale: CGFloat? = nil,
-        success: @escaping (_ fileName: String, _ image: UIImage, _ imageData: Data, _ userData: Any?) -> Void,
-        fail: @escaping (_ fileName: String, _ userData: Any?) -> Void
-        ) {
+    public func loadImage(_ fileName: String, priority: Float?, userData: Any?, size: CGSize, scale: CGFloat?, success: @escaping CNLModelNetworkDownloadImageSuccess, fail: @escaping CNLModelNetworkDownloadFileFail) {
         let scale = scale ?? 1.0 // imageScale()
         var newFileName = fileName
         if size.width != 0 && size.height != 0 && !fileName.contains(".gif") {
             newFileName = newFileName.appendSuffixBeforeExtension("@\(Int(scale * size.width))x\(Int(scale * size.height))")
         }
-        loadImage(
-            newFileName,
-            priority: priority,
-            userData: userData,
-            success: success,
-            fail: fail
-        )
+        loadImage(newFileName, priority: priority, userData: userData, success: success, fail: fail)
     }
     
     /*
