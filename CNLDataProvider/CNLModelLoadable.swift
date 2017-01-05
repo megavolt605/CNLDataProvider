@@ -105,7 +105,7 @@ public extension CNLModelImageLoadable {
 }
 
 public protocol CNLModelResizableImageLoadable: CNLModelImageLoadable {
-    func loadImage(_ fileName: String, priority: Float?, userData: Any?, size: CGSize, scale: CGFloat?, success: CNLModelNetworkDownloadImageSuccess, fail: CNLModelNetworkDownloadFileFail)
+    func loadImage(_ fileName: String, priority: Float?, userData: Any?, size: CGSize, scale: CGFloat?, success: @escaping CNLModelNetworkDownloadImageSuccess, fail: @escaping CNLModelNetworkDownloadFileFail)
 }
 
 public extension CNLModelResizableImageLoadable {
