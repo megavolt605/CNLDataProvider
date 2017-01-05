@@ -18,7 +18,7 @@ public protocol CNLModelDataLoadable: class {
     func cancelLoading()
 }
 
-extension CNLModelDataLoadable {
+public extension CNLModelDataLoadable {
     
     public func loadData(_ fileName: String, priority: Float?, userData: Any?, success: @escaping CNLModelNetworkDownloadFileSuccess, fail: @escaping CNLModelNetworkDownloadFileFail) {
         let cancelTask = CNLModelNetworkProvider?.downloadFileFromURL(
@@ -67,7 +67,7 @@ public protocol CNLModelImageLoadable: CNLModelDataLoadable {
     func loadImage(_ fileName: String, priority: Float?, userData: Any?, success: @escaping CNLModelNetworkDownloadImageSuccess, fail: @escaping CNLModelNetworkDownloadFileFail)
 }
 
-extension CNLModelImageLoadable {
+public extension CNLModelImageLoadable {
     
     public func loadImage(_ fileName: String, priority: Float?, userData: Any?, success: @escaping CNLModelNetworkDownloadImageSuccess, fail: @escaping CNLModelNetworkDownloadFileFail) {
         let start = Date()
@@ -108,7 +108,7 @@ public protocol CNLModelResizableImageLoadable: CNLModelImageLoadable {
     func loadImage(_ fileName: String, priority: Float?, userData: Any?, size: CGSize, scale: CGFloat?, success: CNLModelNetworkDownloadImageSuccess, fail: CNLModelNetworkDownloadFileFail)
 }
 
-extension CNLModelResizableImageLoadable {
+public extension CNLModelResizableImageLoadable {
     
     public func loadImage(_ fileName: String, priority: Float?, userData: Any?, size: CGSize, scale: CGFloat?, success: @escaping CNLModelNetworkDownloadImageSuccess, fail: @escaping CNLModelNetworkDownloadFileFail) {
         let scale = scale ?? 1.0 // imageScale()
