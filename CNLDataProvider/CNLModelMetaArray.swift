@@ -15,9 +15,25 @@ public protocol CNLModelMetaArray: class, CNLModelObject, CNLModelArray {
     
     var list: [ArrayElement] { get set }
     var metaItems: [MetaArrayItem] { get set }
+    var ignoreFails: Bool { get }
 }
 
+fileprivate var ignoreFailsKey = "ignoreFails"
+
 public extension CNLModelMetaArray where MetaArrayItem: CNLModelMetaArrayItem, MetaArrayItem.ArrayElement == ArrayElement {
+
+    public final var ignoreFails: Bool {
+        get {
+            if let value = (objc_getAssociatedObject(self, &ignoreFailsKey) as? CNLAssociated<Bool>)?.closure {
+                return value
+            } else {
+                return false
+            }
+        }
+        set {
+            objc_setAssociatedObject(self, &ignoreFailsKey, CNLAssociated<Bool>(closure: newValue), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+        }
+    }
 
     public func updateArray(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed) {
         updateMetaArray(success: success, failed: failed)
@@ -53,7 +69,7 @@ public extension CNLModelMetaArray where MetaArrayItem: CNLModelMetaArrayItem, M
             sem.wait()
             syncMain {
                 if wasFailed {
-                    if let wasFailedError = wasFailedError {
+                    if !self.ignoreFails, let wasFailedError = wasFailedError {
                         failed(self, wasFailedError)
                     }
                 } else {
