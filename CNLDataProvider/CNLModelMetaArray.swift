@@ -68,10 +68,8 @@ public extension CNLModelMetaArray where MetaArrayItem: CNLModelMetaArrayItem, M
         asyncGlobal {
             sem.wait()
             syncMain {
-                if wasFailed {
-                    if !self.ignoreFails, let wasFailedError = wasFailedError {
-                        failed(self, wasFailedError)
-                    }
+                if !self.ignoreFails && wasFailed {
+                    failed(self, wasFailedError)
                 } else {
                     self.list = self.metaItems.flatMap { return $0.list }
                     self.totalRecords = self.list.count

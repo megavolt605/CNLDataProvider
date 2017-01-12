@@ -17,7 +17,7 @@ public typealias CNLDictionary = [String: Any]
 public typealias CNLArray = [CNLDictionary]
 
 public typealias CNLModelCompletion = (_ model: CNLModelObject, _ status: CNLModelError) -> Void
-public typealias CNLModelFailed = (_ model: CNLModelObject, _ error: CNLModelError) -> Void
+public typealias CNLModelFailed = (_ model: CNLModelObject, _ error: CNLModelError?) -> Void
 
 public protocol CNLModelObject: class {
     func createAPI() -> CNLModelAPI?
