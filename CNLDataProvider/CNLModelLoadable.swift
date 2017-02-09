@@ -116,7 +116,17 @@ public extension CNLModelResizableImageLoadable {
         if size.width != 0 && size.height != 0 && !fileName.contains(".gif") {
             newFileName = newFileName.appendSuffixBeforeExtension("@\(Int(scale * size.width))x\(Int(scale * size.height))")
         }
-        loadImage(newFileName, priority: priority, userData: userData, success: success, fail: fail)
+        loadImage(
+            newFileName,
+            priority: priority,
+            userData: userData,
+            success: { newFileName, image, imageData, userData in
+                success(fileName, image, imageData, userData)
+            },
+            fail: { newFileName, error, userData in
+                fail(fileName, error, userData)
+            }
+        )
     }
     
     /*
