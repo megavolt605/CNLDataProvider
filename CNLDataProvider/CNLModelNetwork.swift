@@ -20,7 +20,6 @@ public typealias CNLModelNetworkDownloadImageSuccess = (_ fileName: String, _ im
 
 public protocol CNLModelNetwork {
     func performRequest(api: CNLModelAPI, success: @escaping CNLModelNetworkSuccess, fail: @escaping CNLModelNetworkFail, networkError: @escaping CNLModelNetworkNetworkError)
-    func performRequest(api: CNLModelAPI, maxTries: Int, success: @escaping CNLModelNetworkSuccess, fail: @escaping CNLModelNetworkFail, networkError: @escaping CNLModelNetworkNetworkError)
     func performRequest(api: CNLModelAPI, maxTries: Int, retryDelay: TimeInterval, success: @escaping CNLModelNetworkSuccess, fail: @escaping CNLModelNetworkFail, networkError: @escaping CNLModelNetworkNetworkError)
     func downloadFileFromURL(
         _ urlString: String,
@@ -28,4 +27,11 @@ public protocol CNLModelNetwork {
         userData: Any?,
         success: @escaping CNLModelNetworkDownloadFileSuccess,
         fail: @escaping CNLModelNetworkDownloadFileFail) -> CNLModelNetworkDownloadFileCancel?
+}
+
+public extension CNLModelNetwork {
+
+    public func performRequest(api: CNLModelAPI, maxTries: Int, retryDelay: TimeInterval = 5.0, success: @escaping CNLModelNetworkSuccess, fail: @escaping CNLModelNetworkFail, networkError: @escaping CNLModelNetworkNetworkError) {
+        performRequest(api: api, maxTries: maxTries, retryDelay: retryDelay, success: success, fail: fail, networkError: networkError)
+    }
 }
