@@ -23,7 +23,7 @@ public struct CNLDataProviderVariables<T: CNLModelArray> {
     }
     
     public func dataSourceIndexForIndexPath(_ indexPath: IndexPath) -> Int? {
-        if let index = sectionIndexes[(indexPath as IndexPath).section]?[(indexPath as IndexPath).row] , !isLoadMoreIndexPath(indexPath) {
+        if let index = sectionIndexes[(indexPath as IndexPath).section]?[(indexPath as IndexPath).row], !isLoadMoreIndexPath(indexPath) {
             return index
         }
         return nil

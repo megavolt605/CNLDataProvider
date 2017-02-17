@@ -25,7 +25,7 @@ public protocol CNLModelObject: class {
     init()
 }
 
-public var CNLModelNetworkProvider: CNLModelNetwork? = nil
+public var CNLModelNetworkProvider: CNLModelNetwork?
 
 public extension CNLModelObject {
     
@@ -43,7 +43,6 @@ public extension CNLModelObject {
     }
     
 }
-
 
 public protocol CNLModelObjectPrimaryKey: class {
     associatedtype KeyType: Hashable

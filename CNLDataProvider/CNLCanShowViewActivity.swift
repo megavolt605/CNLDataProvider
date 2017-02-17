@@ -12,4 +12,3 @@ public protocol CNLCanShowViewAcvtitity {
     func startViewActivity(_ closure: (() -> Void)?, completion: (() -> Void)?)
     func finishViewActivity()
 }
-

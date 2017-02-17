@@ -117,7 +117,7 @@ public extension CNLModelObject where Self: CNLModelArray {
     
     public func storeToArray() -> CNLArray {
         let captureList = list
-        return captureList.map() { $0.storeToDictionary() }
+        return captureList.map { $0.storeToDictionary() }
     }
     
     public static func loadFromArray(_ array: CNLArray?) -> Self? {
@@ -128,7 +128,7 @@ public extension CNLModelObject where Self: CNLModelArray {
     }
     
     public func updateArray() {
-        updateArray(success: { model, status in }, failed: { model, error in } )
+        updateArray(success: { _, _ in }, failed: { _, _ in })
     }
     
     public func updateArray(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed) {

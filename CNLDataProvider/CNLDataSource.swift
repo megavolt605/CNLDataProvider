@@ -39,6 +39,10 @@ open class CNLDataSource<ModelType: CNLModelArray> {
         return list.enumerated()
     }
     
+    open func forEach(_ iterator: (ArrayElement) -> Void) {
+        list.forEach(iterator)
+    }
+    
     open func itemAtIndex(_ index: Int) -> ArrayElement {
         return list[index]
     }

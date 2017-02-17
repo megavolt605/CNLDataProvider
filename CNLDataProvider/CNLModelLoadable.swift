@@ -105,12 +105,29 @@ public extension CNLModelImageLoadable {
 }
 
 public protocol CNLModelResizableImageLoadable: CNLModelImageLoadable {
-    func loadImage(_ fileName: String, priority: Float?, userData: Any?, size: CGSize, scale: CGFloat?, success: @escaping CNLModelNetworkDownloadImageSuccess, fail: @escaping CNLModelNetworkDownloadFileFail)
+    func loadImage(
+        _ fileName: String,
+        priority: Float?,
+        userData: Any?,
+        size: CGSize,
+        scale: CGFloat?,
+        success: @escaping CNLModelNetworkDownloadImageSuccess,
+        fail: @escaping CNLModelNetworkDownloadFileFail
+    )
 }
 
 public extension CNLModelResizableImageLoadable {
     
-    public func loadImage(_ fileName: String, priority: Float?, userData: Any?, size: CGSize, scale: CGFloat?, success: @escaping CNLModelNetworkDownloadImageSuccess, fail: @escaping CNLModelNetworkDownloadFileFail) {
+    public func loadImage(
+        _ fileName: String,
+        priority: Float?,
+        userData: Any?,
+        size: CGSize,
+        scale: CGFloat?,
+        success: @escaping CNLModelNetworkDownloadImageSuccess,
+        fail: @escaping CNLModelNetworkDownloadFileFail
+        ) {
+        
         let scale = scale ?? 1.0 // imageScale()
         var newFileName = fileName
         if size.width != 0 && size.height != 0 && !fileName.contains(".gif") {

@@ -20,16 +20,16 @@ extension UICollectionView: CNLDataViewer {
     
     public subscript (indexPath: IndexPath) -> CNLDataViewerCell {
         let identifier = cellType?(indexPath)?.cellIdentifier ?? "Cell"
-        return dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! CNLDataViewerCell
+        return dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! CNLDataViewerCell // swiftlint:disable:this force_cast
     }
     
     public subscript (cellIdentifier: String?, indexPath: IndexPath) -> CNLDataViewerCell {
         let identifier = cellIdentifier ?? cellType?(indexPath)?.cellIdentifier ?? "Cell"
-        return dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! CNLDataViewerCell
+        return dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! CNLDataViewerCell // swiftlint:disable:this force_cast
     }
     
     public func loadMoreCell(_ indexPath: IndexPath) -> CNLDataViewerLoadMoreCell {
-        return dequeueReusableCell(withReuseIdentifier: "Load More Cell", for: indexPath) as! CNLDataViewerLoadMoreCell
+        return dequeueReusableCell(withReuseIdentifier: "Load More Cell", for: indexPath) as! CNLDataViewerLoadMoreCell // swiftlint:disable:this force_cast
     }
     
     public func batchUpdates(_ updates: @escaping () -> Void) {
@@ -113,7 +113,13 @@ extension UICollectionView: CNLDataViewer {
     }
     
     // Cells
-    public func cellForItemAtIndexPath<T : CNLDataProvider>(_ dataProvider: T, cellIdentifier: String?, indexPath: IndexPath, context: CNLModelObject?) -> AnyObject where T.ModelType : CNLModelArray, T.ModelType.ArrayElement : CNLModelObject {
+    public func cellForItemAtIndexPath<T: CNLDataProvider>(
+        _ dataProvider: T,
+        cellIdentifier: String?,
+        indexPath: IndexPath,
+        context: CNLModelObject?
+        ) -> AnyObject where T.ModelType : CNLModelArray, T.ModelType.ArrayElement : CNLModelObject {
+        
         if dataProvider.dataProviderVariables.isLoadMoreIndexPath(indexPath) {
             let cell = loadMoreCell(indexPath)
             cell.setupCell(self, indexPath: indexPath)
@@ -121,13 +127,13 @@ extension UICollectionView: CNLDataViewer {
             if  model.isPagingEnabled {
                 dataProvider.fetchNext(completed: nil)
             }
-            return cell as! UICollectionViewCell
+            return cell as! UICollectionViewCell // swiftlint:disable:this force_cast
         } else {
             let cell = self[cellIdentifier, indexPath]
             if let item = dataProvider.itemAtIndexPath(indexPath: indexPath) {
                 cell.setupCell(self, indexPath: indexPath, cellInfo: item, context: context)
             }
-            return cell as! UICollectionViewCell
+            return cell as! UICollectionViewCell // swiftlint:disable:this force_cast
         }
     }
     
@@ -170,7 +176,7 @@ open class CNLCollectionViewLoadMoreCell: UICollectionViewCell, CNLDataViewerLoa
     open var activity: CNLDataViewerActivity?
     open var createActivity: () -> CNLDataViewerActivity? = { _ in return nil }
     
-    open func setupCell<T : CNLDataViewer>(_ dataViewer: T, indexPath: IndexPath) where T : UIView {
+    open func setupCell<T: CNLDataViewer>(_ dataViewer: T, indexPath: IndexPath) where T : UIView {
         contentView.backgroundColor = UIColor.clear
         activity = createActivity()
         if let activity = activity as? UIView {

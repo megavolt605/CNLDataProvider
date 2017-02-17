@@ -44,7 +44,7 @@ extension CNLModelObject where Self: CNLModelDictionaryArray {
     
     public func storeToDictionaryDictionary() -> CNLArray {
         let captureList = list
-        return captureList.map() { data in data.value.storeToDictionary() }
+        return captureList.map { data in data.value.storeToDictionary() }
     }
     
 }

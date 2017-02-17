@@ -14,7 +14,7 @@ public typealias CNLDataViewerCellTypeFunc = ((_ indexPath: IndexPath) -> CNLDat
 public typealias CNLDataViewerHeaderTypeFunc = ((_ section: Int) -> CNLDataViewerHeader.Type?)
 
 public enum CNLDataViewerScrollPosition {
-    case none, top, centeredVertically, bottom,  left, centeredHorizontally, right
+    case none, top, centeredVertically, bottom, left, centeredHorizontally, right
     public var tableViewScrollPosition: UITableViewScrollPosition {
         switch self {
         case .none: return .none
@@ -97,7 +97,12 @@ public protocol CNLDataViewer: class {
     func createIndexPath(item: Int, section: Int) -> IndexPath
     
     // Cells
-    func cellForItemAtIndexPath<T: CNLDataProvider>(_ dataProvider: T, cellIdentifier: String?, indexPath: IndexPath, context: CNLModelObject?) -> AnyObject where T.ModelType: CNLModelArray, T.ModelType.ArrayElement: CNLModelObject
+    func cellForItemAtIndexPath<T: CNLDataProvider>(
+        _ dataProvider: T,
+        cellIdentifier: String?,
+        indexPath: IndexPath,
+        context: CNLModelObject?
+        ) -> AnyObject where T.ModelType: CNLModelArray, T.ModelType.ArrayElement: CNLModelObject
     
     // delegate
     func notifyDelegateDidSelectItemAtIndexPath(_ indexPath: IndexPath)
@@ -135,4 +140,3 @@ extension CNLDataViewer {
     }
     
 }
-

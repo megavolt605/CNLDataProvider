@@ -22,9 +22,10 @@ public protocol CNLDataProviderEditable: CNLDataProvider {
     func saveAction()
 }
 
-public extension CNLDataProviderEditable where Self: CNLCanShowViewAcvtitity, Self.ModelType: CNLModelArray, Self.ModelType.ArrayElement: CNLModelDictionaryKeyStored, Self.ModelType: CNLModelObjectEditable {
+public extension CNLDataProviderEditable where Self: CNLCanShowViewAcvtitity, Self.ModelType: CNLModelArray,
+Self.ModelType.ArrayElement: CNLModelDictionaryKeyStored, Self.ModelType: CNLModelObjectEditable {
     
-    fileprivate typealias Lists = (old: Array<ModelType.ArrayElement>, new: Array<ModelType.ArrayElement>)
+    fileprivate typealias Lists = (old: [ModelType.ArrayElement], new: [ModelType.ArrayElement])
     
     fileprivate func switchEditing() -> Lists {
         var result = Lists(old: self.dataSource.allItems, new: [])
@@ -50,7 +51,7 @@ public extension CNLDataProviderEditable where Self: CNLCanShowViewAcvtitity, Se
             withDuration: 0.3,
             animations: {
                 self.dataViewer.setContentOffset(CGPoint(x: 0.0, y: -64.0), animated: false)
-                self.dataViewer.contentInset = UIEdgeInsetsMake(64.0, 0.0, 0.0, 0.0)
+                self.dataViewer.contentInset = UIEdgeInsets(top: 64.0, left: 0.0, bottom: 0.0, right: 0.0)
                 self.instructionsLabel.frame.size.height = 64.0
                 self.visualEffectView?.frame.size.height = 64.0
                 self.editBarButtonItem.title = self.doneButtonTitle
@@ -80,7 +81,7 @@ public extension CNLDataProviderEditable where Self: CNLCanShowViewAcvtitity, Se
                 }
                 )
         },
-            completion: { completed in
+            completion: { _ in
                 UIView.setAnimationsEnabled(true)
         }
         )
@@ -94,7 +95,7 @@ public extension CNLDataProviderEditable where Self: CNLCanShowViewAcvtitity, Se
         UIView.animate(
             withDuration: 0.3,
             animations: {
-                self.dataViewer.contentInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
+                self.dataViewer.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
                 self.instructionsLabel.frame.size.height = 0.0
                 self.visualEffectView?.frame.size.height = 0.0
                 self.editBarButtonItem.title = self.editButtonTitle
@@ -115,13 +116,13 @@ public extension CNLDataProviderEditable where Self: CNLCanShowViewAcvtitity, Se
                         let items = removed.map { return self.dataViewer.createIndexPath(item: $0, section: 0) } // !!! section
                         self.dataViewer.deleteItemsAtIndexPaths(items)
                         self.updateCounts()
-                }, completion: { completed in
+                }, completion: { _ in
                     self.dataViewer.allowsMultipleSelection = false
                     self.saveAction()
                 }
                 )
         },
-            completion: { completed in
+            completion: { _ in
                 self.instructionsLabel.isHidden = true
                 self.visualEffectView?.isHidden = true
                 UIView.setAnimationsEnabled(true)

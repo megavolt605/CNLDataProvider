@@ -54,7 +54,6 @@ extension CNLDataProvider where Self.ModelType: CNLModelArray {
         return res
     }
     
-    
     public func sectionTextForItem(item: ModelType.ArrayElement) -> String {
         return ""
     }
@@ -110,13 +109,13 @@ extension CNLDataProvider where Self.ModelType: CNLModelArray {
     
     fileprivate func sectionIndexes() -> IndexSet {
         var res = IndexSet()
-        dataProviderVariables.sectionIndexes.forEach { section, items in res.insert(section) }
+        dataProviderVariables.sectionIndexes.forEach { section, _ in res.insert(section) }
         return res
     }
     
     fileprivate func updateSetcions() {
         dataProviderVariables.sectionTitles = []
-        dataSource.enumerated().forEach { index, item in
+        dataSource.forEach { item in
             let text = sectionTextForItem(item: item)
             if !self.dataProviderVariables.sectionTitles.contains(text) {
                 self.dataProviderVariables.sectionTitles.append(text)
@@ -132,19 +131,19 @@ extension CNLDataProvider where Self.ModelType: CNLModelArray {
         
     }
     
-    public func fetchFromStart(completed: ((_ success: Bool) -> Void)?) {
+    public func fetchFromStart(completed: ((_ success: Bool) -> Void)? = nil) {
         beforeFetch()
         dataSource.model.pagingReset()
         dataSource.model.updateArray(
-            success: { model, status in
-                self.updateDataViewer() { isCompleted in
+            success: { _, _ in
+                self.updateDataViewer { isCompleted in
                     DispatchQueue.main.async {
                         self.updateContentState()
                         completed?(isCompleted)
                     }
                 }
         },
-            failed: { model, error in
+            failed: { _, _ in
                 completed?(false)
         }
         )
@@ -156,14 +155,14 @@ extension CNLDataProvider where Self.ModelType: CNLModelArray {
             dataProviderVariables.isFetching = true
             beforeFetch()
             dataSource.model.updateArray(
-                success: { model, status in
-                    self.updateDataViewerPage() { isCompleted in
+                success: { _, _ in
+                    self.updateDataViewerPage { isCompleted in
                         self.updateContentState()
                         completed?(isCompleted)
                         self.dataProviderVariables.isFetching = false
                     }
             },
-                failed: { model, error in
+                failed: { _, _ in
                     completed?(false)
                     self.dataProviderVariables.isFetching = false
             }
@@ -175,7 +174,7 @@ extension CNLDataProvider where Self.ModelType: CNLModelArray {
         if let canShowViewActivity = self as? CNLCanShowViewAcvtitity {
             canShowViewActivity.startViewActivity(nil, completion: nil)
         }
-        self.fetchFromStart() { success in
+        self.fetchFromStart { _ in
             DispatchQueue.main.async {
                 if let canShowViewActivity = self as? CNLCanShowViewAcvtitity {
                     canShowViewActivity.finishViewActivity()
@@ -184,7 +183,7 @@ extension CNLDataProvider where Self.ModelType: CNLModelArray {
         }
     }
     
-    public func updateDataViewer(completed: ((_ success: Bool) -> Void)?) {
+    public func updateDataViewer(completed: ((_ success: Bool) -> Void)? = nil) {
         self.dataViewer.batchUpdates(
             updates: {
                 let savedSectionIndexes = self.sectionIndexes()
@@ -261,7 +260,7 @@ extension CNLDataProvider where Self.ModelType: CNLModelArray {
                 print("Insert Rows\n", newRowIndexes.map { return "\($0.section) - \($0.row), " })
                 self.dataViewer.insertItemsAtIndexPaths(newRowIndexes)
         },
-            completion: { isCompleted in
+            completion: { _ in
                 UIView.setAnimationsEnabled(true)
                 self.afterFetch()
                 completed?(true)
@@ -274,7 +273,6 @@ extension CNLDataProvider where Self.ModelType: CNLModelArray {
         self.dataSource = dataSource
         fullRefresh()
     }
-    
     
     fileprivate func updateCountsCollectItems() -> [Int:[Int]] {
         var res: [Int:[Int]] = [:]

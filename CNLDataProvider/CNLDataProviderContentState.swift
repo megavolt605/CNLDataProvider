@@ -25,14 +25,14 @@ public enum CNLDataProviderContentStateKind {
 }
 
 public protocol CNLDataProviderContentState {
-    
+
     var isEnabled: Bool { get set }
-    
+
     var kind: CNLDataProviderContentStateKind { get set }
-    
+
     var noDataText: String { get set }
     var noNetworkText: String { get set }
-    
+
     init(view: UIView)
 
 }

@@ -67,7 +67,6 @@ open class CNLDataViewerRefreshControl {
         }
     }
     
-    
     public init<T: CNLDataProvider>(dataProvider: T, color: UIColor, activity: CNLDataViewerActivity, action: @escaping () -> Void) where T: CNLDataViewerRefreshControlProtocol {
         self.action = action
         refreshControl = UIRefreshControl()
@@ -100,7 +99,12 @@ public protocol CNLRefreshableScrollView: UIScrollViewDelegate {
     var refreshControl: CNLDataViewerRefreshControl? { get set }
     var refreshNotificationIdentifier: String? { get }
     
-    func initializeRefresher<T: CNLDataProvider>(_ dataProvider: T, color: UIColor, activity: CNLDataViewerActivity, action: CNLRefreshableScrollViewAction?) where T: CNLDataViewerRefreshControlProtocol
+    func initializeRefresher<T: CNLDataProvider>(
+        _ dataProvider: T,
+        color: UIColor,
+        activity: CNLDataViewerActivity,
+        action: CNLRefreshableScrollViewAction?
+        ) where T: CNLDataViewerRefreshControlProtocol
 }
 
 fileprivate var refreshControlVar = "refreshControlVar"
@@ -122,7 +126,12 @@ extension CNLRefreshableScrollView where Self: CNLDataProvider {
         }
     }
     
-    public func initializeRefresher<T: CNLDataProvider>(_ dataProvider: T, color: UIColor, activity: CNLDataViewerActivity, action: CNLRefreshableScrollViewAction? = nil) where T: CNLDataViewerRefreshControlProtocol {
+    public func initializeRefresher<T: CNLDataProvider>(
+        _ dataProvider: T,
+        color: UIColor,
+        activity: CNLDataViewerActivity,
+        action: CNLRefreshableScrollViewAction? = nil
+        ) where T: CNLDataViewerRefreshControlProtocol {
         
         refreshControl = CNLDataViewerRefreshControl(
             dataProvider: dataProvider,
@@ -144,4 +153,3 @@ extension CNLRefreshableScrollView where Self: CNLDataProvider {
     }
     
 }
-

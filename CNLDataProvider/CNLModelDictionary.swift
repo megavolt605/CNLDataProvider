@@ -37,7 +37,7 @@ public extension CNLModelDictionary where Self: CNLModelObject {
     }
     
     public func updateDictionary() {
-        updateDictionary(success: { model, status in }, failed: { model, error in })
+        updateDictionary(success: { _, _ in }, failed: { _, _ in })
     }
     
     public func updateDictionary(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed) {
