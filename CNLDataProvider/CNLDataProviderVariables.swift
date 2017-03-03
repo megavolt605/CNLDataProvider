@@ -11,7 +11,7 @@ import Foundation
 public typealias CNLDataProviderVariablesLoadMore = (section: Int, visible: Bool)
 public typealias CNLDataProviderSectionIndexes = [Int:[Int]]
 
-public struct CNLDataProviderVariables<T: CNLModelArray> {
+public struct CNLDataProviderVariables<T: CNLDataSourceModel> {
     public typealias ModelType = T
     public var isFetching = false
     public var loadMore: CNLDataProviderVariablesLoadMore = (section: 0, visible: false)

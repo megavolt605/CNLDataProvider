@@ -68,7 +68,7 @@ extension CNLModelObject where Self: CNLModelDictionaryDictionary {
     public func loadFromDictionaryDictionary(array: CNLDictionary) {
         list = array.mapSkipNil { key, value in
             if let value = value as? CNLArray, let item = DictionaryElement(keyValue: key) {
-                item.loadFromArray(value)
+                item.list = item.loadFromArray(value)
                 return (key: item.primaryKey, value: item)
             }
             return nil

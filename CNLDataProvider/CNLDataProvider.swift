@@ -9,7 +9,7 @@
 import Foundation
 
 public protocol CNLDataProvider: class {
-    associatedtype ModelType: CNLModelObject, CNLModelArray
+    associatedtype ModelType: CNLModelObject, CNLDataSourceModel
     
     var dataSource: CNLDataSource<ModelType>! { get set }
     var dataViewer: CNLDataViewer { get }
@@ -191,16 +191,24 @@ extension CNLDataProvider where Self.ModelType: CNLModelArray {
                 self.dataSource.reset()
                 self.dataSource.requestCompleted()
                 self.updateSetcions()
+                #if DEBUG
                 print("Delete Section\n", savedSectionIndexes.reduce("") { return $0 + ($0 == "" ? "" : ", ") + $1.toString })
+                #endif
                 self.dataViewer.deleteSections(savedSectionIndexes as IndexSet)
+                #if DEBUG
                 print("Delete Rows\n", savedSectionRowIndexes.reduce("") { return $0 + ($0 == "" ? "" : ", ") + "\($1.section) - \($1.row)" })
+                #endif
                 self.dataViewer.deleteItemsAtIndexPaths(savedSectionRowIndexes)
                 
                 self.updateCounts()
                 
+                #if DEBUG
                 print("Insert Section\n", self.sectionIndexes().reduce("") { return $0 + ($0 == "" ? "" : ", ") + $1.toString })
+                #endif
                 self.dataViewer.insertSections(self.sectionIndexes())
+                #if DEBUG
                 print("Insert Rows\n", self.sectionRowIndexes().reduce("") { return $0 + ($0 == "" ? "" : ", ") + "\($1.section) - \($1.row)" })
+                #endif
                 self.dataViewer.insertItemsAtIndexPaths(self.sectionRowIndexes())
                 self.dataViewer.reloadData()
         },
@@ -240,9 +248,11 @@ extension CNLDataProvider where Self.ModelType: CNLModelArray {
                 }
             }
         }
+        #if DEBUG
         print("PInsert Section\n", newSectionIndexes.reduce("") { return $0 + ($0 == "" ? "" : ", ") + $1.toString })
         print("PInsert Rows\n", newRowIndexes.reduce("") { return $0 + ($0 == "" ? "" : ", ") + "\($1.section) - \($1.row)" })
-        //dataSource.fetchItems()
+        #endif
+
         UIView.setAnimationsEnabled(false)
         self.dataViewer.batchUpdates(
             updates: {
@@ -255,9 +265,13 @@ extension CNLDataProvider where Self.ModelType: CNLModelArray {
                         self.dataViewer.deleteSections(IndexSet([savedLoadMore.section]))
                     }
                 }
+                #if DEBUG
                 print("Insert Section\n", newSectionIndexes.map { return $0.toString + ", " })
+                #endif
                 self.dataViewer.insertSections(newSectionIndexes)
+                #if DEBUG
                 print("Insert Rows\n", newRowIndexes.map { return "\($0.section) - \($0.row), " })
+                #endif
                 self.dataViewer.insertItemsAtIndexPaths(newRowIndexes)
         },
             completion: { _ in

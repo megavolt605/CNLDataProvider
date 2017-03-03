@@ -17,7 +17,7 @@ private var pagingArrayTotalRecords = "totalRecords"
 private var pagingArrayAdditionalRecords = "additionalRecords"
 
 // MARK: - CNLModelArray protocol
-public protocol CNLModelArray: class {
+public protocol CNLModelArray: class, CNLDataSourceModel {
     associatedtype ArrayElement: CNLModelDictionary
     var list: [ArrayElement] { get set }
     var isPagingEnabled: Bool { get }
@@ -28,11 +28,11 @@ public protocol CNLModelArray: class {
     
     func reset()
     func createItems(_ data: CNLDictionary) -> [ArrayElement]?
-    func loadFromArray(_ array: CNLArray)
+    func loadFromArray(_ array: CNLArray) -> [ArrayElement]
     func storeToArray() -> CNLArray
     func updateArray()
     func updateArray(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed)
-    func afterLoad(_ newList: [ArrayElement])
+    func afterLoad(_ newList: [ArrayElement]) -> [ArrayElement]
     func rows(_ json: CNLDictionary?) -> CNLArray?
     func preprocessData(_ data: CNLDictionary?) -> CNLDictionary?
     init()
@@ -54,14 +54,13 @@ public extension CNLModelObject where Self: CNLModelArray {
         return nil
     }
     
-    public func loadFromArray(_ array: CNLArray) {
-        defaultLoadFrom(array)
+    public func loadFromArray(_ array: CNLArray) -> [ArrayElement] {
+        return defaultLoadFrom(array)
     }
     
-    public func afterLoad(_ newList: [ArrayElement]) { }
+    public func afterLoad(_ newList: [ArrayElement]) -> [ArrayElement] { return newList }
     
     public func rows(_ json: CNLDictionary?) -> CNLArray? {
-        //print(json?["rows"] as? CNLModelArray)
         return json?["rows"] as? CNLArray
     }
     
@@ -123,7 +122,7 @@ public extension CNLModelObject where Self: CNLModelArray {
     public static func loadFromArray(_ array: CNLArray?) -> Self? {
         guard let array = array else { return nil }
         let result = Self()
-        result.loadFromArray(array)
+        result.list = result.loadFromArray(array)
         return result
     }
     
@@ -138,11 +137,13 @@ public extension CNLModelObject where Self: CNLModelArray {
                 success: { apiObject in
                     let data = self.preprocessData(apiObject.answerJSON)
                     if let json = self.rows(data) {
-                        self.loadFromArray(json)
+                        self.list = self.loadFromArray(json)
                     } else {
-                        self.loadFromArray([])
+                        self.list = self.loadFromArray([])
                     }
+                    #if DEBUG
                     print("Model count: \(self.list.count)")
+                    #endif
                     if let value: Int = data?.value("total") {
                         self.totalRecords = value
                     } else {
@@ -158,23 +159,22 @@ public extension CNLModelObject where Self: CNLModelArray {
             }
             )
         } else {
-            loadFromArray([])
+            list = loadFromArray([])
             success(self, okStatus) //(kind: CNLErrorKind.Ok, success: true))
         }
     }
     
-    public func defaultLoadFrom(_ array: CNLArray) {
+    public func defaultLoadFrom(_ array: CNLArray) -> [ArrayElement] {
         let newListOfList = array.mapSkipNil { return self.createItems($0) }
         let newList = newListOfList.flatMap { return $0 }
         additionalRecords += newList.count - newListOfList.count
-        list = newList
-        afterLoad(newList)
+        return afterLoad(newList)
     }
     
     public init?(array: CNLArray?) {
         self.init()
         if let data = array {
-            loadFromArray(data)
+            list = loadFromArray(data)
         } else {
             return nil
         }

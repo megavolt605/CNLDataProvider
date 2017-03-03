@@ -44,7 +44,7 @@ public extension CNLModelObject {
     
 }
 
-public protocol CNLModelObjectPrimaryKey: class {
+public protocol CNLModelObjectPrimaryKey: class, CNLModelObject {
     associatedtype KeyType: Hashable
     var primaryKey: KeyType { get }
     init?(keyValue: String)

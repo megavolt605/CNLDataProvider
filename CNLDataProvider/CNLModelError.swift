@@ -27,7 +27,6 @@ public struct CNLModelErrorAlertStruct {
 
 public protocol CNLModelErrorKind {
     var identifier: String { get }
-    var localizedDescription: String { get }
 }
 
 public protocol CNLModelError {

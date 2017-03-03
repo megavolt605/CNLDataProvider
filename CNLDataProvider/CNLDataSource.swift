@@ -8,7 +8,14 @@
 
 import Foundation
 
-open class CNLDataSource<ModelType: CNLModelArray> {
+public protocol CNLDataSourceModel {
+    associatedtype ArrayElement: CNLModelDictionary
+    var list: [ArrayElement] { get set }
+    func reset()
+    init()
+}
+
+open class CNLDataSource<ModelType: CNLDataSourceModel> {
     typealias ArrayElement = ModelType.ArrayElement
     
     open var model: ModelType
