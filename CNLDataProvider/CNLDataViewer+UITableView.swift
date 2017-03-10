@@ -199,30 +199,23 @@ open class CNLTableViewLoadMoreCell: UITableViewCell, CNLDataViewerLoadMoreCell 
     
     open var activity: CNLDataViewerActivity?
     open var createActivity: () -> CNLDataViewerActivity? = { _ in return nil }
+    open var verticalInset: CGFloat = 0.0
     
     open func setupCell<T: CNLDataViewer>(_ dataViewer: T, indexPath: IndexPath) where T : UIView {
         contentView.backgroundColor = UIColor.clear
         activity = createActivity()
         if let activity = activity as? UIView {
+            let centerX = NSLayoutConstraint(item: activity, attribute: .centerX, relatedBy: .equal, toItem: contentView, attribute: NSLayoutAttribute.centerX, multiplier: 1.0, constant: 0.0)
+            let height = NSLayoutConstraint(item: activity, attribute: .height, relatedBy: .equal, toItem: contentView, attribute: .height, multiplier: 1.0, constant: -verticalInset)
+            let proportion = NSLayoutConstraint(item: activity, attribute: .height, relatedBy: .equal, toItem: activity, attribute: .width, multiplier: 1.0, constant: 0.0)
             contentView.addSubview(activity)
+            contentView.addConstraints([centerX, height])
+            activity.addConstraint(proportion)
         }
     }
     
     static open func cellSize<T: CNLDataViewer>(_ dataViewer: T, indexPath: IndexPath) -> CGSize where T: UIView {
         return CGSize(width: 0, height: 40)
-    }
-    
-    override open func layoutSubviews() {
-        super.layoutSubviews()
-        // sometimes layout is called BEFORE setupCell - workaround this bug
-        if activity != nil {
-            let minimalDimension = min(bounds.width, bounds.height)
-            activity!.frame.origin = CGPoint(x: bounds.midX - minimalDimension / 2.0, y: 0)
-            activity!.frame.size = CGSize(width: minimalDimension, height: minimalDimension)
-            if !activity!.isAnimating {
-                activity!.startAnimating()
-            }
-        }
     }
     
 }
