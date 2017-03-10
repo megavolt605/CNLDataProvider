@@ -219,39 +219,3 @@ open class CNLTableViewLoadMoreCell: UITableViewCell, CNLDataViewerLoadMoreCell 
     }
     
 }
-
-/*
-class RPTableViewLoadMoreCell: UITableViewCell, CNLDataViewerLoadMoreCell {
-    
-    var activity: NVActivityIndicatorView!
-    
-    func setupCell<T : CNLDataViewer>(_ dataViewer: T, indexPath: IndexPath) where T : UIView {
-        contentView.backgroundColor = UIColor.clear
-        activity = NVActivityIndicatorView(
-            frame: CGRect.zero,
-            type: NVActivityIndicatorType.randomType,
-            color: RPUIConfig.config.basicControls.animationColor,
-            padding: nil
-        )
-        contentView.addSubview(activity)
-    }
-    
-    static func cellSize<T: CNLDataViewer>(_ dataViewer: T, indexPath: IndexPath) -> CGSize where T: UIView {
-        return CGSize(width: 0, height: 40)
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        // sometimes layout is called BEFORE setupCell - workaround this bug
-        if activity != nil {
-            activity.center = CGPoint(x: bounds.midX, y: 0)
-            let minimalDimension = min(bounds.width, bounds.height)
-            activity.frame.size = CGSize(width: minimalDimension, height: minimalDimension)
-            if !activity.isAnimating {
-                activity.startAnimating()
-            }
-        }
-    }
-    
-}
-*/
