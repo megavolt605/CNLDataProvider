@@ -16,6 +16,8 @@ public protocol CNLDataViewerActivity {
     
     var isAnimating: Bool { get }
     
+    var view: UIView { get }
+    
     func startAnimating()
     func stopAnimating()
     
