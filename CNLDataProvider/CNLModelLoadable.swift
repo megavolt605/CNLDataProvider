@@ -148,7 +148,7 @@ public extension CNLModelResizableImageLoadable {
     
     public func imageScale() -> CGFloat {
         var scale: CGFloat = 0.0
-        if CNLModelNetworkProvider?.isReachableOnEthernetOrWiFi ?? true {
+        if !(CNLModelNetworkProvider?.isReachableOnEthernetOrWiFi ?? true) {
             if let networkType = CTTelephonyNetworkInfo().currentRadioAccessTechnology {
                 switch networkType {
                 case CTRadioAccessTechnologyGPRS: scale = 1.5
