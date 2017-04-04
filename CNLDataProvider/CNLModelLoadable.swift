@@ -128,7 +128,7 @@ public extension CNLModelResizableImageLoadable {
         fail: @escaping CNLModelNetworkDownloadFileFail
         ) {
         
-        let scale = scale ?? 1.0 // imageScale()
+        let scale = scale ?? imageScale()
         var newFileName = fileName
         if size.width != 0 && size.height != 0 && !fileName.contains(".gif") {
             newFileName = newFileName.appendSuffixBeforeExtension("@\(Int(scale * size.width))x\(Int(scale * size.height))")
@@ -146,12 +146,9 @@ public extension CNLModelResizableImageLoadable {
         )
     }
     
-    /*
-    TODO
     public func imageScale() -> CGFloat {
         var scale: CGFloat = 0.0
-        if let rm = CNLNetwork.network.reachabilityManager, !rm.isReachableOnEthernetOrWiFi {
-            //if !CNLNetwork.network.managerAPI.reachabilityManager.reachableViaWiFi {
+        if CNLModelNetworkProvider?.isReachableOnEthernetOrWiFi ?? true {
             if let networkType = CTTelephonyNetworkInfo().currentRadioAccessTechnology {
                 switch networkType {
                 case CTRadioAccessTechnologyGPRS: scale = 1.5
@@ -173,6 +170,6 @@ public extension CNLModelResizableImageLoadable {
             scale = UIScreen.main.scale
         }
         return scale
-    }*/
+    }
     
 }

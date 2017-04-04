@@ -16,7 +16,7 @@ public protocol CNLDataSourceModel {
 }
 
 open class CNLDataSource<ModelType: CNLDataSourceModel> {
-    typealias ArrayElement = ModelType.ArrayElement
+    public typealias ArrayElement = ModelType.ArrayElement
     
     open var model: ModelType
     

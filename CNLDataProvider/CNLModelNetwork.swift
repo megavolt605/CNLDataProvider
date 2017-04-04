@@ -40,6 +40,7 @@ public protocol CNLModelNetwork {
         success: @escaping CNLModelNetworkDownloadFileSuccess,
         fail: @escaping CNLModelNetworkDownloadFileFail
         ) -> CNLModelNetworkDownloadFileCancel?
+    var isReachableOnEthernetOrWiFi: Bool { get }
 }
 
 public extension CNLModelNetwork {
