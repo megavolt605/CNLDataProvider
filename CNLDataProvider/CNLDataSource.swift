@@ -8,11 +8,91 @@
 
 import Foundation
 
-public protocol CNLDataSourceModel {
+import CNLFoundationTools
+
+public protocol CNLDataSourceModel: class {
     associatedtype ArrayElement: CNLModelDictionary
     var list: [ArrayElement] { get set }
+    var fromIndex: Int { get set }
+    var totalRecords: Int? { get set }
+    var additionalRecords: Int { get set }
+    var isPagingEnabled: Bool { get }
+    func pagingReset()
     func reset()
+    func update()
+    func update(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed)
+    func requestCompleted()
+    
     init()
+}
+
+fileprivate var pagingArrayFromIndex = "fromIndex"
+fileprivate var pagingArrayTotalRecords = "totalRecords"
+fileprivate var pagingArrayAdditionalRecords = "additionalRecords"
+
+public extension CNLDataSourceModel {
+    
+    public var pageLimit: Int { return isPagingEnabled ? kCNLModelDefaultPageLimit : -1 }
+    public var isPagingEnabled: Bool { return false }
+    
+    public func reset() {
+        list = []
+    }
+    
+    public func pagingReset() {
+        //reset()
+        fromIndex = 0
+        totalRecords = nil
+        additionalRecords = 0
+    }
+    
+    public final var fromIndex: Int {
+        get {
+            if let value = (objc_getAssociatedObject(self, &pagingArrayFromIndex) as? CNLAssociated<Int>)?.closure {
+                return value
+            } else {
+                return 0
+            }
+        }
+        set {
+            objc_setAssociatedObject(self, &pagingArrayFromIndex, CNLAssociated<Int>(closure: newValue), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+        }
+    }
+    
+    public final var totalRecords: Int? {
+        get {
+            if let value = (objc_getAssociatedObject(self, &pagingArrayTotalRecords) as? CNLAssociated<Int?>)?.closure {
+                return value
+            } else {
+                return nil
+            }
+        }
+        set {
+            objc_setAssociatedObject(self, &pagingArrayTotalRecords, CNLAssociated<Int?>(closure: newValue), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+        }
+    }
+    
+    public final var additionalRecords: Int {
+        get {
+            if let value = (objc_getAssociatedObject(self, &pagingArrayAdditionalRecords) as? CNLAssociated<Int>)?.closure {
+                return value
+            } else {
+                return 0
+            }
+        }
+        set {
+            objc_setAssociatedObject(self, &pagingArrayAdditionalRecords, CNLAssociated<Int>(closure: newValue), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+        }
+    }
+    
+    public func update() {
+        update(success: { _ in }, failed: { _, _ in })
+    }
+    
+    public func requestCompleted() {
+        
+    }
+
 }
 
 open class CNLDataSource<ModelType: CNLDataSourceModel> {
@@ -58,16 +138,39 @@ open class CNLDataSource<ModelType: CNLDataSourceModel> {
         list = newList
     }
     
-    open func requestPrepared() {
-        model.reset()
-    }
-    
 }
 
 public extension CNLDataSource where ModelType: CNLModelArray {
+    
+    var isPagingEnabled: Bool {
+        return model.isPagingEnabled
+    }
     
     func requestCompleted() {
         list.append(contentsOf: model.list)
     }
     
+    func update(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed) {
+        model.update(success: success, failed: failed)
+    }
+    
 }
+
+public extension CNLDataSource where ModelType: CNLModelIncrementalArray {
+    
+    var isPagingEnabled: Bool {
+        return model.isPagingEnabled
+    }
+
+    func requestCompleted() {
+        list.append(contentsOf: model.list)
+    }
+    
+    func update(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed) {
+        model.update(success: success, failed: failed)
+    }
+    
+}
+
+//public extension CNLDataSource where ModelType: CNLModelIncrementalTokenizedArray {
+//}

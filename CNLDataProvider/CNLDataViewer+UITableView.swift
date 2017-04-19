@@ -140,7 +140,7 @@ extension UITableView: CNLDataViewer {
         cellIdentifier: String?,
         indexPath: IndexPath,
         context: CNLModelObject?
-        ) -> AnyObject where T.ModelType : CNLModelArray, T.ModelType.ArrayElement : CNLModelObject {
+        ) -> AnyObject where T.ModelType : CNLDataSourceModel, T.ModelType.ArrayElement : CNLModelObject {
         
         if dataProvider.dataProviderVariables.isLoadMoreIndexPath(indexPath) {
             let cell = loadMoreCell(indexPath)

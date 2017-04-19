@@ -25,7 +25,7 @@ public protocol CNLModelObjectTokenized: CNLModelObject, CNLModelObjectPrimaryKe
     static var token: CNLModelObjectToken { get }
 }
 
-public extension CNLModelObjectPrimaryKey where Self: CNLModelIncrementalTokenizedArray, KeyType == Self.ArrayElement.KeyType {
+public extension CNLModelObject where Self: CNLModelIncrementalTokenizedArray {
     
     public func reset() {
         list = []

@@ -35,7 +35,7 @@ public extension CNLModelMetaArray where MetaArrayItem: CNLModelMetaArrayItem, M
         }
     }
 
-    public func updateArray(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed) {
+    public func update(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed) {
         updateMetaArray(success: success, failed: failed)
     }
     
@@ -53,7 +53,7 @@ public extension CNLModelMetaArray where MetaArrayItem: CNLModelMetaArrayItem, M
         list = []
         
         metaItems.forEach { item in
-            item.updateArray(
+            item.update(
                 success: { model, status in
                     successStatus = status
                     signal()

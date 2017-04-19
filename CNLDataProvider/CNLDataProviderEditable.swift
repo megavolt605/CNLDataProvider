@@ -22,7 +22,7 @@ public protocol CNLDataProviderEditable: CNLDataProvider {
     func saveAction()
 }
 
-public extension CNLDataProviderEditable where Self: CNLCanShowViewAcvtitity, Self.ModelType: CNLModelArray,
+public extension CNLDataProviderEditable where Self: CNLCanShowViewAcvtitity,
 Self.ModelType.ArrayElement: CNLModelDictionaryKeyStored, Self.ModelType: CNLModelObjectEditable {
     
     fileprivate typealias Lists = (old: [ModelType.ArrayElement], new: [ModelType.ArrayElement])
@@ -32,7 +32,7 @@ Self.ModelType.ArrayElement: CNLModelDictionaryKeyStored, Self.ModelType: CNLMod
         self.dataSource.model.editing = !self.dataSource.model.editing
         self.dataSource.model.updateList()
         self.dataSource.reset()
-        self.dataSource.requestCompleted()
+        self.dataSource.model.requestCompleted()
         result.new = self.dataSource.allItems
         return result
     }

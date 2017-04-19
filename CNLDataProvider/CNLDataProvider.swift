@@ -21,6 +21,7 @@ public protocol CNLDataProvider: class {
     var contentState: CNLDataProviderContentState? { get set }
     var noData: Bool { get }
     func updateContentState()
+    func updateCounts()
     
     func beforeFetch()
     func fetchFromStart(completed: ((_ success: Bool) -> Void)?)
@@ -40,7 +41,7 @@ public protocol CNLDataProvider: class {
     func initializeWith(dataSource: CNLDataSource<ModelType>, fetch: Bool)
 }
 
-extension CNLDataProvider where Self.ModelType: CNLModelArray {
+public extension CNLDataProvider {
     
     public var noData: Bool {
         return dataSource.model.list.count <= 0
@@ -136,7 +137,7 @@ extension CNLDataProvider where Self.ModelType: CNLModelArray {
     public func fetchFromStart(completed: ((_ success: Bool) -> Void)? = nil) {
         beforeFetch()
         dataSource.model.pagingReset()
-        dataSource.model.updateArray(
+        dataSource.model.update(
             success: { _, _ in
                 self.updateDataViewer { isCompleted in
                     DispatchQueue.main.async {
@@ -156,7 +157,7 @@ extension CNLDataProvider where Self.ModelType: CNLModelArray {
         if (dataSource.model.fromIndex != 0) && !dataProviderVariables.isFetching {
             dataProviderVariables.isFetching = true
             beforeFetch()
-            dataSource.model.updateArray(
+            dataSource.model.update(
                 success: { _, _ in
                     self.updateDataViewerPage { isCompleted in
                         self.updateContentState()
@@ -191,7 +192,7 @@ extension CNLDataProvider where Self.ModelType: CNLModelArray {
                 let savedSectionIndexes = self.sectionIndexes()
                 let savedSectionRowIndexes = self.sectionRowIndexes()
                 self.dataSource.reset()
-                self.dataSource.requestCompleted()
+                self.dataSource.model.requestCompleted()
                 self.updateSetcions()
                 #if DEBUG
                     do {
@@ -245,7 +246,7 @@ extension CNLDataProvider where Self.ModelType: CNLModelArray {
         let savedSections = self.dataProviderVariables.sectionIndexes
         let savedLoadMore = self.dataProviderVariables.loadMore
         
-        self.dataSource.requestCompleted()
+        self.dataSource.model.requestCompleted()
         self.updateSetcions()
         self.updateCounts()
         
@@ -282,7 +283,7 @@ extension CNLDataProvider where Self.ModelType: CNLModelArray {
                 CNLLog("PInsert Rows\n\(info2)", level: .debug)
             }
         #endif
-
+        
         UIView.setAnimationsEnabled(false)
         self.dataViewer.batchUpdates(
             updates: {

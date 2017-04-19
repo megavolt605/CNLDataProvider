@@ -17,11 +17,9 @@ public protocol CNLModelIncrementalArray: class, CNLDataSourceModel {
     var lastTimestamp: Date? { get set }
     func reset()
     func createItems(_ data: CNLDictionary) -> [ArrayElement]?
-    static func loadFromArray(_ array: CNLArray) -> [ArrayElement]
-    func loadFromArray(_ array: Any) -> [ArrayElement]
-    func storeToArray() -> Any
-    func updateArray()
-    func updateArray(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed)
+    static func loadFromArray(_ array: CNLArray?) -> Self?
+    func loadFromArray(_ array: CNLArray) -> [ArrayElement]
+    func storeToArray() -> CNLArray
     func afterLoad()
     func preprocessData(_ data: CNLDictionary?) -> CNLDictionary?
     init()
@@ -31,12 +29,25 @@ public protocol CNLModelIncrementalArray: class, CNLDataSourceModel {
     func deletedItems(_ data: CNLDictionary?) -> [ArrayElement.KeyType]?
 }
 
-public extension CNLModelObjectPrimaryKey where Self: CNLModelIncrementalArray, KeyType == Self.ArrayElement.KeyType {
+fileprivate var incrementalArrayLastTimestampKey: String = "incrementalArrayLastTimestampKey"
+
+public extension CNLModelObject where Self: CNLModelIncrementalArray {
     
-    public func reset() {
-        list = []
+    public var isPagingEnabled: Bool { return false }
+
+    public final var lastTimestamp: Date? {
+        get {
+            if let value = (objc_getAssociatedObject(self, &incrementalArrayLastTimestampKey) as? CNLAssociated<Date?>)?.closure {
+                return value
+            } else {
+                return nil
+            }
+        }
+        set {
+            objc_setAssociatedObject(self, &incrementalArrayLastTimestampKey, CNLAssociated<Date?>(closure: newValue), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+        }
     }
-    
+
     public func createItems(_ data: CNLDictionary) -> [ArrayElement]? {
         if let item = ArrayElement(dictionary: data) {
             return [item]
@@ -48,7 +59,7 @@ public extension CNLModelObjectPrimaryKey where Self: CNLModelIncrementalArray, 
         return data
     }
 
-    public func loadFromArray(array: CNLArray) -> [ArrayElement] {
+    public func loadFromArray(_ array: CNLArray) -> [ArrayElement] {
         return defaultLoadFrom(array)
     }
 
@@ -57,18 +68,14 @@ public extension CNLModelObjectPrimaryKey where Self: CNLModelIncrementalArray, 
         return captureList.map { $0.storeToDictionary() }
     }
     
-    public static func loadFromArray(token: String?, array: CNLArray?) -> Self? {
+    public static func loadFromArray(_ array: CNLArray?) -> Self? {
         guard let array = array else { return nil }
         let result = Self()
         result.list = result.loadFromArray(array)
         return result
     }
     
-    public func updateArray() {
-        updateArray(success: { _, _ in }, failed: { _, _ in })
-    }
-
-    public func updateArray(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed) {
+    public func update(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed) {
         if let localAPI = createAPI() {
             CNLModelNetworkProvider?.performRequest(
                 api: localAPI,
@@ -98,6 +105,7 @@ public extension CNLModelObjectPrimaryKey where Self: CNLModelIncrementalArray, 
                             self.list = self.list.filter { item in !deleted.contains(item.primaryKey) }
                         }
                     }
+                    self.afterLoad()
                     #if DEBUG
                         CNLLog("Model count: \(self.list.count)", level: .debug)
                     #endif
@@ -111,6 +119,8 @@ public extension CNLModelObjectPrimaryKey where Self: CNLModelIncrementalArray, 
         }
     }
 
+    public func afterLoad() { }
+    
     public func defaultLoadFrom(_ array: CNLArray) -> [ArrayElement] {
         let newListOfList = array.mapSkipNil { return self.createItems($0) }
         let newList = newListOfList.flatMap { return $0 }
@@ -122,15 +132,15 @@ public extension CNLModelObjectPrimaryKey where Self: CNLModelIncrementalArray, 
         return defaultLoadFrom(itemsData)
     }
     
-    private func createdItems(_ data: CNLDictionary?) -> [ArrayElement]? {
+    public func createdItems(_ data: CNLDictionary?) -> [ArrayElement]? {
         return loadItems(data, section: "created")
     }
     
-    private func modifiedItems(_ data: CNLDictionary?) -> [ArrayElement]? {
+    public func modifiedItems(_ data: CNLDictionary?) -> [ArrayElement]? {
         return loadItems(data, section: "modified")
     }
     
-    private func deletedItems(_ data: CNLDictionary?) -> [ArrayElement.KeyType]? {
+    public func deletedItems(_ data: CNLDictionary?) -> [ArrayElement.KeyType]? {
         return data?["deleted"] as? [ArrayElement.KeyType]
     }
 
