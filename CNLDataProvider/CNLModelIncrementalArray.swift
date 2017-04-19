@@ -10,27 +10,25 @@ import Foundation
 
 import CNLFoundationTools
 
-private var incrementalArrayAdditionalRecords = "additionalRecords"
-
 public protocol CNLModelIncrementalArray: class, CNLDataSourceModel {
-    associatedtype ArrayElement: CNLModelDictionary, CNLModelObjectPrimaryKey
+    associatedtype ArrayElement: CNLModelObjectPrimaryKey, CNLModelDictionary
 
     var list: [ArrayElement] { get set }
     var lastTimestamp: Date? { get set }
-    
     func reset()
     func createItems(_ data: CNLDictionary) -> [ArrayElement]?
-    func loadFromArray(_ array: CNLArray) -> [ArrayElement]
-    func storeToArray() -> CNLArray
+    static func loadFromArray(_ array: CNLArray) -> [ArrayElement]
+    func loadFromArray(_ array: Any) -> [ArrayElement]
+    func storeToArray() -> Any
     func updateArray()
     func updateArray(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed)
     func afterLoad()
     func preprocessData(_ data: CNLDictionary?) -> CNLDictionary?
     init()
 
-    func createdItems(_ data: CNLDictionary) -> [ArrayElement]?
-    func modifiedItems(_ data: CNLDictionary) -> [ArrayElement]?
-    func deletedItems(_ data: [ArrayElement.KeyType]) -> [ArrayElement.KeyType]?
+    func createdItems(_ data: CNLDictionary?) -> [ArrayElement]?
+    func modifiedItems(_ data: CNLDictionary?) -> [ArrayElement]?
+    func deletedItems(_ data: CNLDictionary?) -> [ArrayElement.KeyType]?
 }
 
 public extension CNLModelObjectPrimaryKey where Self: CNLModelIncrementalArray, KeyType == Self.ArrayElement.KeyType {
@@ -50,7 +48,7 @@ public extension CNLModelObjectPrimaryKey where Self: CNLModelIncrementalArray, 
         return data
     }
 
-    public func loadFromArray(_ array: CNLArray) -> [ArrayElement] {
+    public func loadFromArray(array: CNLArray) -> [ArrayElement] {
         return defaultLoadFrom(array)
     }
 
@@ -59,7 +57,7 @@ public extension CNLModelObjectPrimaryKey where Self: CNLModelIncrementalArray, 
         return captureList.map { $0.storeToDictionary() }
     }
     
-    public static func loadFromArray(_ array: CNLArray?) -> Self? {
+    public static func loadFromArray(token: String?, array: CNLArray?) -> Self? {
         guard let array = array else { return nil }
         let result = Self()
         result.list = result.loadFromArray(array)
@@ -78,27 +76,30 @@ public extension CNLModelObjectPrimaryKey where Self: CNLModelIncrementalArray, 
                     if let data = self.preprocessData(apiObject.answerJSON) {
                         if let created = self.createdItems(data) {
                             #if DEBUG
-                            print("Model new items: \(created.count)")
+                                CNLLog("Model new items: \(created.count)", level: .debug)
                             #endif
+                            
                             self.list += created
                         }
-                        if let modified = self.modifiedItems(data["modified"] as? CNLDictionary) {
+                        if let modified = self.modifiedItems(data) {
                             #if DEBUG
-                            print("Model changed items: \(modified.count)")
+                                CNLLog("Model changed items: \(modified.count)", level: .debug)
                             #endif
+                            
                             let ids = modified.map { item in return item.primaryKey }
                             self.list = self.list.filter { item in !ids.contains(item.primaryKey) }
                             self.list += modified
                         }
-                        if let deleted = self.deletedItems(data["deleted"] as? [ArrayElement.KeyType]) {
+                        if let deleted = self.deletedItems(data) {
                             #if DEBUG
-                            print("Model removed items: \(deleted.count)")
+                                CNLLog("Model removed items: \(deleted.count)", level: .debug)
                             #endif
+                            
                             self.list = self.list.filter { item in !deleted.contains(item.primaryKey) }
                         }
                     }
                     #if DEBUG
-                    print("Model count: \(self.list.count)")
+                        CNLLog("Model count: \(self.list.count)", level: .debug)
                     #endif
                     success(self, apiObject.status)
                 },
@@ -116,18 +117,21 @@ public extension CNLModelObjectPrimaryKey where Self: CNLModelIncrementalArray, 
         return newList
     }
     
-    func createdItems(_ data: CNLDictionary?) -> [ArrayElement]? {
-        guard let itemsData = data?["created"] as? CNLArray else { return nil }
+    private func loadItems(_ data: CNLDictionary?, section: String) -> [ArrayElement]? {
+        guard let itemsData = data?[section] as? CNLArray else { return nil }
         return defaultLoadFrom(itemsData)
     }
     
-    func modifiedItems(_ data: CNLDictionary?) -> [ArrayElement]? {
-        guard let itemsData = data?["modified"] as? CNLArray else { return nil }
-        return defaultLoadFrom(itemsData)
+    private func createdItems(_ data: CNLDictionary?) -> [ArrayElement]? {
+        return loadItems(data, section: "created")
     }
     
-    func deletedItems(_ data: [ArrayElement.KeyType]?) -> [ArrayElement.KeyType]? {
-        return data
+    private func modifiedItems(_ data: CNLDictionary?) -> [ArrayElement]? {
+        return loadItems(data, section: "modified")
+    }
+    
+    private func deletedItems(_ data: CNLDictionary?) -> [ArrayElement.KeyType]? {
+        return data?["deleted"] as? [ArrayElement.KeyType]
     }
 
     public init?(array: CNLArray?) {
