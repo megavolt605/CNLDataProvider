@@ -32,7 +32,7 @@ Self.ModelType.ArrayElement: CNLModelDictionaryKeyStored, Self.ModelType: CNLMod
         self.dataSource.model.editing = !self.dataSource.model.editing
         self.dataSource.model.updateList()
         self.dataSource.reset()
-        self.dataSource.model.requestCompleted()
+        self.dataSource.requestCompleted()
         result.new = self.dataSource.allItems
         return result
     }

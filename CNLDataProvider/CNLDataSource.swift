@@ -89,9 +89,7 @@ public extension CNLDataSourceModel {
         update(success: { _ in }, failed: { _, _ in })
     }
     
-    public func requestCompleted() {
-        
-    }
+    public func requestCompleted() { }
 
 }
 
@@ -138,16 +136,12 @@ open class CNLDataSource<ModelType: CNLDataSourceModel> {
         list = newList
     }
     
-}
-
-public extension CNLDataSource where ModelType: CNLModelArray {
+    open func requestCompleted() {
+        list.append(contentsOf: model.list)
+    }
     
     var isPagingEnabled: Bool {
         return model.isPagingEnabled
-    }
-    
-    func requestCompleted() {
-        list.append(contentsOf: model.list)
     }
     
     func update(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed) {
@@ -155,22 +149,3 @@ public extension CNLDataSource where ModelType: CNLModelArray {
     }
     
 }
-
-public extension CNLDataSource where ModelType: CNLModelIncrementalArray {
-    
-    var isPagingEnabled: Bool {
-        return model.isPagingEnabled
-    }
-
-    func requestCompleted() {
-        list.append(contentsOf: model.list)
-    }
-    
-    func update(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed) {
-        model.update(success: success, failed: failed)
-    }
-    
-}
-
-//public extension CNLDataSource where ModelType: CNLModelIncrementalTokenizedArray {
-//}

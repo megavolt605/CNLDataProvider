@@ -12,13 +12,15 @@ import CNLFoundationTools
 
 public protocol CNLModelMetaArray: class, CNLModelObject, CNLModelArray {
     associatedtype MetaArrayItem = CNLModelMetaArrayItem
+    typealias CNLModelMetaArrayInfo = (model: MetaArrayItem, count: Int)
     
     var list: [ArrayElement] { get set }
-    var metaItems: [MetaArrayItem] { get set }
+    var metaInfos: [CNLModelMetaArrayInfo] { get set }
     var ignoreFails: Bool { get }
 }
 
 fileprivate var ignoreFailsKey = "ignoreFails"
+fileprivate var pagingArrayFromIndex = "fromIndex"
 
 public extension CNLModelMetaArray where MetaArrayItem: CNLModelMetaArrayItem, MetaArrayItem.ArrayElement == ArrayElement {
 
@@ -35,13 +37,34 @@ public extension CNLModelMetaArray where MetaArrayItem: CNLModelMetaArrayItem, M
         }
     }
 
+    public final var fromIndex: Int {
+        get {
+            if let value = (objc_getAssociatedObject(self, &pagingArrayFromIndex) as? CNLAssociated<Int>)?.closure {
+                return value
+            } else {
+                return 0
+            }
+        }
+        set {
+            objc_setAssociatedObject(self, &pagingArrayFromIndex, CNLAssociated<Int>(closure: newValue), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+            print(metaInfos[0].model.isPagingEnabled)
+            print(metaInfos[1].model.isPagingEnabled)
+            if let index = (metaInfos.index { return $0.model.isPagingEnabled }) {
+                let pager = metaInfos[index]
+                print(pager.count)
+                print(additionalRecords)
+                pager.model.fromIndex = pager.count
+            }
+        }
+    }
+    
     public func update(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed) {
         updateMetaArray(success: success, failed: failed)
     }
     
     public func updateMetaArray(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed) {
         
-        var count = metaItems.count
+        var count = metaInfos.count
         
         let sem = DispatchSemaphore(value: 0)
         let signal: () -> Void = { count -= 1; if count == 0 { sem.signal() } }
@@ -52,8 +75,8 @@ public extension CNLModelMetaArray where MetaArrayItem: CNLModelMetaArrayItem, M
         
         list = []
         
-        metaItems.forEach { item in
-            item.update(
+        metaInfos.forEach { item in
+            item.model.update(
                 success: { model, status in
                     successStatus = status
                     signal()
@@ -71,8 +94,17 @@ public extension CNLModelMetaArray where MetaArrayItem: CNLModelMetaArrayItem, M
                 if !self.ignoreFails && wasFailed {
                     failed(self, wasFailedError)
                 } else {
-                    self.list = self.metaItems.flatMap { return $0.list }
-                    self.totalRecords = self.list.count
+                    self.list = self.metaInfos.flatMap { return $0.model.list }
+                    self.totalRecords = self.metaInfos.reduce(0) { return $0.0 + ($0.1.model.totalRecords ?? 0) }
+                    var infos = self.metaInfos
+                    self.metaInfos.enumerated().forEach { index, info in
+                        infos[index].count += info.model.list.count
+                        if !info.model.isPagingEnabled {
+                            self.additionalRecords += info.model.list.count
+                        }
+                    }
+                    self.metaInfos = infos
+                    print(self.totalRecords)
                     if let status = successStatus {
                         success(self, status)
                     }
@@ -81,6 +113,22 @@ public extension CNLModelMetaArray where MetaArrayItem: CNLModelMetaArrayItem, M
         }
     }
 
+    public func reset() {
+        list = []
+        totalRecords = nil
+        additionalRecords = 0
+        var infos = metaInfos
+        metaInfos.enumerated().forEach { index, info in
+            infos[index].count = 0
+            infos[index].model.reset()
+        }
+        metaInfos = infos
+    }
+    
+    public func pagingReset() {
+        reset()
+    }
+    
 }
 
 public protocol CNLModelMetaArrayItem: CNLModelArray {

@@ -192,7 +192,7 @@ public extension CNLDataProvider {
                 let savedSectionIndexes = self.sectionIndexes()
                 let savedSectionRowIndexes = self.sectionRowIndexes()
                 self.dataSource.reset()
-                self.dataSource.model.requestCompleted()
+                self.dataSource.requestCompleted()
                 self.updateSetcions()
                 #if DEBUG
                     do {
@@ -246,7 +246,7 @@ public extension CNLDataProvider {
         let savedSections = self.dataProviderVariables.sectionIndexes
         let savedLoadMore = self.dataProviderVariables.loadMore
         
-        self.dataSource.model.requestCompleted()
+        self.dataSource.requestCompleted()
         self.updateSetcions()
         self.updateCounts()
         
@@ -352,6 +352,9 @@ public extension CNLDataProvider {
     public func updateCounts() {
         let totalCount = dataSource.model.totalRecords
         let additionalCount = dataSource.model.additionalRecords
+        print("ds.c \(dataSource.count)")
+        print("ac \(additionalCount)")
+        print("tc \(totalCount)")
         dataProviderVariables.loadMore.visible = dataSource.model.isPagingEnabled && ((totalCount == nil) || ((dataSource.count - additionalCount) != totalCount))
         
         var res = updateCountsCollectItems()
