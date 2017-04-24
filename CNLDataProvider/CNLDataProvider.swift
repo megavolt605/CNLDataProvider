@@ -352,9 +352,6 @@ public extension CNLDataProvider {
     public func updateCounts() {
         let totalCount = dataSource.model.totalRecords
         let additionalCount = dataSource.model.additionalRecords
-        print("ds.c \(dataSource.count)")
-        print("ac \(additionalCount)")
-        print("tc \(totalCount)")
         dataProviderVariables.loadMore.visible = dataSource.model.isPagingEnabled && ((totalCount == nil) || ((dataSource.count - additionalCount) != totalCount))
         
         var res = updateCountsCollectItems()

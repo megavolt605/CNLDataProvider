@@ -21,7 +21,7 @@ public protocol CNLModelIncrementalTokenizedArray: CNLModelIncrementalArray {
     func createItems(_ data: CNLDictionary, withToken token: CNLModelObjectToken) -> [ArrayElement]?
 }
 
-public protocol CNLModelObjectTokenized: CNLModelObject, CNLModelObjectPrimaryKey {
+public protocol CNLModelObjectTokenized: CNLModelObject, CNLModelIncrementalArrayElement {
     static var token: CNLModelObjectToken { get }
 }
 
@@ -58,11 +58,11 @@ public extension CNLModelObject where Self: CNLModelIncrementalTokenizedArray {
         return defaultLoadFrom(itemsData)
     }
     
-    private func createdItems(_ data: CNLDictionary?) -> [ArrayElement]? {
+    public func createdItems(_ data: CNLDictionary?) -> [ArrayElement]? {
         return loadItems(data, section: "created")
     }
     
-    private func modifiedItems(_ data: CNLDictionary?) -> [ArrayElement]? {
+    public func modifiedItems(_ data: CNLDictionary?) -> [ArrayElement]? {
         return loadItems(data, section: "modified")
     }
     

@@ -10,8 +10,12 @@ import Foundation
 
 import CNLFoundationTools
 
+public protocol CNLModelIncrementalArrayElement: CNLModelObjectPrimaryKey {
+    var isNew: Bool { get set }
+}
+
 public protocol CNLModelIncrementalArray: class, CNLDataSourceModel {
-    associatedtype ArrayElement: CNLModelObjectPrimaryKey, CNLModelDictionary
+    associatedtype ArrayElement: CNLModelIncrementalArrayElement, CNLModelDictionary
 
     var list: [ArrayElement] { get set }
     var lastTimestamp: Date? { get set }
@@ -86,6 +90,7 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
                                 CNLLog("Model new items: \(created.count)", level: .debug)
                             #endif
                             
+                            created.forEach { $0.isNew = true }
                             self.list += created
                         }
                         if let modified = self.modifiedItems(data) {
@@ -95,6 +100,8 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
                             
                             let ids = modified.map { item in return item.primaryKey }
                             self.list = self.list.filter { item in !ids.contains(item.primaryKey) }
+                            
+                            modified.forEach { $0.isNew = true }
                             self.list += modified
                         }
                         if let deleted = self.deletedItems(data) {

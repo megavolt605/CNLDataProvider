@@ -47,12 +47,8 @@ public extension CNLModelMetaArray where MetaArrayItem: CNLModelMetaArrayItem, M
         }
         set {
             objc_setAssociatedObject(self, &pagingArrayFromIndex, CNLAssociated<Int>(closure: newValue), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
-            print(metaInfos[0].model.isPagingEnabled)
-            print(metaInfos[1].model.isPagingEnabled)
             if let index = (metaInfos.index { return $0.model.isPagingEnabled }) {
                 let pager = metaInfos[index]
-                print(pager.count)
-                print(additionalRecords)
                 pager.model.fromIndex = pager.count
             }
         }
@@ -104,7 +100,6 @@ public extension CNLModelMetaArray where MetaArrayItem: CNLModelMetaArrayItem, M
                         }
                     }
                     self.metaInfos = infos
-                    print(self.totalRecords)
                     if let status = successStatus {
                         success(self, status)
                     }
