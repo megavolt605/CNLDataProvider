@@ -15,7 +15,6 @@ public typealias CNLModelObjectToken = String
 public protocol CNLModelIncrementalTokenizedArray: CNLModelIncrementalArray {
     associatedtype ArrayElement: CNLModelObjectTokenized, CNLModelDictionary
     
-    var tokenizedList: [CNLModelObjectToken: ArrayElement] { get }
     var tokens: [String] { get set }
     func reset()
     func createItems(_ data: CNLDictionary, withToken token: CNLModelObjectToken) -> [ArrayElement]?
@@ -23,6 +22,11 @@ public protocol CNLModelIncrementalTokenizedArray: CNLModelIncrementalArray {
     //static func loadFromDictionary(_ data: CNLDictionary?) -> [CNLModelObjectToken: ArrayElement]?
     func loadFromDictionary(_ data: CNLDictionary) -> [ArrayElement]
     func storeToDictionary() -> CNLDictionary
+    
+    // states
+    func updateStatesFromDictionary(_ data: CNLDictionary, forItemKey itemKey: ArrayElement.KeyType, withToken token: CNLModelObjectToken)
+    func updateStatesFromDictionary(_ data: CNLDictionary, forItem item: ArrayElement)
+    
 }
 
 public protocol CNLModelObjectTokenized: CNLModelObject, CNLModelIncrementalArrayElement {
@@ -94,6 +98,29 @@ public extension CNLModelObject where Self: CNLModelIncrementalTokenizedArray, S
         }
         result["timestamp"] = lastTimestamp?.timeIntervalSince1970
         return result
+    }
+
+    public func indexOf(item: ArrayElement) -> Int? {
+        return self.list.index { return $0.primaryKey == item.primaryKey && $0.token == item.token }
+    }
+
+    // states
+    public func updateStatesFromDictionary(_ data: CNLDictionary) {
+        tokens.forEach { token in
+            if let tokenData = data[token] as? CNLArray {
+                tokenData.forEach { itemInfo in
+                    guard let key: ArrayElement.KeyType = itemInfo.value("id") else { return }
+                    self.updateStatesFromDictionary(itemInfo, forItemKey: key, withToken: token)
+                }
+            }
+        }
+    }
+    
+    public func updateStatesFromDictionary(_ data: CNLDictionary, forItemKey itemKey: ArrayElement.KeyType, withToken token: CNLModelObjectToken) {
+        let items = list.filter { item in return item.token == token && item.primaryKey == itemKey }
+        items.forEach { item in
+            updateStatesFromDictionary(data, forItem: item)
+        }
     }
 
     public init?(dictionary: CNLDictionary?) {

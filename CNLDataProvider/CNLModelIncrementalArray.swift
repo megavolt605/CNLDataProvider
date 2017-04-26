@@ -10,29 +10,43 @@ import Foundation
 
 import CNLFoundationTools
 
+public protocol CNLModelIncrementalArrayElementStates: CNLModelObject, CNLModelDictionary {
+    
+}
+
 public protocol CNLModelIncrementalArrayElement: CNLModelObjectPrimaryKey {
-    var isNew: Bool { get set }
+    var states: CNLModelIncrementalArrayElementStates { get set }
 }
 
 public protocol CNLModelIncrementalArray: class, CNLDataSourceModel {
     associatedtype ArrayElement: CNLModelIncrementalArrayElement, CNLModelDictionary
 
     var list: [ArrayElement] { get set }
+    
     var lastTimestamp: Date? { get set }
+    var statesLastTimestamp: Date? { get set }
+    
     func reset()
     func createItems(_ data: CNLDictionary) -> [ArrayElement]?
     func loadFromDictionary(_ data: CNLDictionary) -> [ArrayElement]
     func storeToDictionary() -> CNLDictionary
     func afterLoad()
     func preprocessData(_ data: CNLDictionary?) -> CNLDictionary?
+    func indexOf(item: ArrayElement) -> Int?
     init()
 
+    // states
+    func createStatesAPI() -> CNLModelAPI?
+    func updateStates(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed)
+    func updateStatesFromDictionary(_ data: CNLDictionary)
+    
     func createdItems(_ data: CNLDictionary?) -> [ArrayElement]?
     func modifiedItems(_ data: CNLDictionary?) -> [ArrayElement]?
     func deletedItems(_ data: CNLDictionary?) -> [ArrayElement.KeyType]?
 }
 
 fileprivate var incrementalArrayLastTimestampKey: String = "incrementalArrayLastTimestampKey"
+fileprivate var incrementalArrayStatesLastTimestampKey: String = "incrementalArrayStatesLastTimestampKey"
 
 public extension CNLModelObject where Self: CNLModelIncrementalArray {
     
@@ -48,6 +62,19 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
         }
         set {
             objc_setAssociatedObject(self, &incrementalArrayLastTimestampKey, CNLAssociated<Date?>(closure: newValue), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+        }
+    }
+
+    public final var statesLastTimestamp: Date? {
+        get {
+            if let value = (objc_getAssociatedObject(self, &incrementalArrayStatesLastTimestampKey) as? CNLAssociated<Date?>)?.closure {
+                return value
+            } else {
+                return nil
+            }
+        }
+        set {
+            objc_setAssociatedObject(self, &incrementalArrayStatesLastTimestampKey, CNLAssociated<Date?>(closure: newValue), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
         }
     }
 
@@ -77,6 +104,10 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
         return result
     }
     
+    public func indexOf(item: ArrayElement) -> Int? {
+        return self.list.index { return $0.primaryKey == item.primaryKey }
+    }
+    
     public func update(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed) {
         if let localAPI = createAPI() {
             CNLModelNetworkProvider?.performRequest(
@@ -88,7 +119,6 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
                                 CNLLog("Model new items: \(created.count)", level: .debug)
                             #endif
                             
-                            created.forEach { $0.isNew = true }
                             self.list += created
                         }
                         if let modified = self.modifiedItems(data) {
@@ -96,11 +126,15 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
                                 CNLLog("Model changed items: \(modified.count)", level: .debug)
                             #endif
                             
-                            let ids = modified.map { item in return item.primaryKey }
-                            self.list = self.list.filter { item in !ids.contains(item.primaryKey) }
+                            modified.forEach { modifiedItem in
+                                if let index = self.indexOf(item: modifiedItem) {
+                                    modifiedItem.states = self.list[index].states
+                                    self.list[index] = modifiedItem
+                                    return
+                                }
+                                self.list.append(modifiedItem)
+                            }
                             
-                            modified.forEach { $0.isNew = true }
-                            self.list += modified
                         }
                         if let deleted = self.deletedItems(data) {
                             #if DEBUG
@@ -111,13 +145,19 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
                         }
                     }
                     if let timestamp = apiObject.answerJSON?.date("timestamp") {
-                        self.lastTimestamp = Date(timeIntervalSince1970: 1492550407) //timestamp
+                        self.lastTimestamp = timestamp
                     }
-                    self.afterLoad()
-                    #if DEBUG
-                        CNLLog("Model count: \(self.list.count)", level: .debug)
-                    #endif
-                    success(self, apiObject.status)
+
+                    self.updateStates(
+                        success: { model, status in
+                            self.afterLoad()
+                            #if DEBUG
+                                CNLLog("Model count: \(self.list.count)", level: .debug)
+                            #endif
+                            success(model, status)
+                        },
+                        failed: { apiObject, error in failed(self, error) }
+                    )
                 },
                 fail: { apiObject in failed(self, apiObject.errorStatus) },
                 networkError: { apiObject, error in failed(self, apiObject.errorStatus(error)) }
@@ -127,6 +167,28 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
         }
     }
 
+    public func updateStates(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed) {
+        if let statesAPI = createStatesAPI() {
+            CNLModelNetworkProvider?.performRequest(
+                api: statesAPI,
+                success: { apiObject in
+                    // update primary model first
+                    success(self, apiObject.status)
+                    if let statesInfo = apiObject.answerJSON {
+                        if let timestamp = statesInfo.date("timestamp") {
+                            self.statesLastTimestamp = timestamp
+                        }
+                        self.updateStatesFromDictionary(statesInfo)
+                    }
+                },
+                fail: { apiObject in failed(self, apiObject.errorStatus) },
+                networkError: { apiObject, error in failed(self, apiObject.errorStatus(error)) }
+            )
+        } else {
+            success(self, okStatus) //(kind: CNLErrorKind.Ok, success: true))
+        }
+    }
+    
     public func afterLoad() { }
     
     public func defaultLoadFrom(_ array: CNLArray) -> [ArrayElement] {
