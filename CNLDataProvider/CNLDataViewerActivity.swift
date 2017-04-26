@@ -95,6 +95,7 @@ open class CNLDataViewerRefreshControl {
 }
 
 public typealias CNLRefreshableScrollViewAction = (_ success: Bool) -> Void
+public typealias CNLRefreshableScrollViewBeforeRefresh = () -> Bool
 
 public protocol CNLRefreshableScrollView: UIScrollViewDelegate {
     
@@ -105,6 +106,7 @@ public protocol CNLRefreshableScrollView: UIScrollViewDelegate {
         _ dataProvider: T,
         color: UIColor,
         activity: CNLDataViewerActivity,
+        beforeRefresh: CNLRefreshableScrollViewBeforeRefresh?,
         action: CNLRefreshableScrollViewAction?
         ) where T: CNLDataViewerRefreshControlProtocol
 }
@@ -132,6 +134,7 @@ extension CNLRefreshableScrollView where Self: CNLDataProvider {
         _ dataProvider: T,
         color: UIColor,
         activity: CNLDataViewerActivity,
+        beforeRefresh: CNLRefreshableScrollViewBeforeRefresh? = nil,
         action: CNLRefreshableScrollViewAction? = nil
         ) where T: CNLDataViewerRefreshControlProtocol {
         
@@ -140,9 +143,11 @@ extension CNLRefreshableScrollView where Self: CNLDataProvider {
             color: color,
             activity: activity,
             action: {
-                self.fetchFromStart { completed in
-                    self.refreshControl?.stopAnimating()
-                    action?(completed)
+                if beforeRefresh?() ?? true {
+                    self.fetchFromStart { completed in
+                        self.refreshControl?.stopAnimating()
+                        action?(completed)
+                    }
                 }
             }
         )

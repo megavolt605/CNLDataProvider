@@ -21,9 +21,8 @@ public protocol CNLModelIncrementalArray: class, CNLDataSourceModel {
     var lastTimestamp: Date? { get set }
     func reset()
     func createItems(_ data: CNLDictionary) -> [ArrayElement]?
-    static func loadFromArray(_ array: CNLArray?) -> Self?
-    func loadFromArray(_ array: CNLArray) -> [ArrayElement]
-    func storeToArray() -> CNLArray
+    func loadFromDictionary(_ data: CNLDictionary) -> [ArrayElement]
+    func storeToDictionary() -> CNLDictionary
     func afterLoad()
     func preprocessData(_ data: CNLDictionary?) -> CNLDictionary?
     init()
@@ -63,19 +62,18 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
         return data
     }
 
-    public func loadFromArray(_ array: CNLArray) -> [ArrayElement] {
-        return defaultLoadFrom(array)
+    public func loadFromDictionary(_ data: CNLDictionary) -> [ArrayElement] {
+        lastTimestamp = data.date("timestamp") ?? lastTimestamp
+        if let itemsInfo = data["items"] as? CNLArray {
+            return defaultLoadFrom(itemsInfo)
+        }
+        return []
     }
 
-    public func storeToArray() -> CNLArray {
-        let captureList = list
-        return captureList.map { $0.storeToDictionary() }
-    }
-    
-    public static func loadFromArray(_ array: CNLArray?) -> Self? {
-        guard let array = array else { return nil }
-        let result = Self()
-        result.list = result.loadFromArray(array)
+    public func storeToDictionary() -> CNLDictionary {
+        let items = list.map { $0.storeToDictionary() }
+        var result: CNLDictionary = ["items": items]
+        result["timestamp"] = lastTimestamp?.timeIntervalSince1970
         return result
     }
     
@@ -111,6 +109,9 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
                             
                             self.list = self.list.filter { item in !deleted.contains(item.primaryKey) }
                         }
+                    }
+                    if let timestamp = apiObject.answerJSON?.date("timestamp") {
+                        self.lastTimestamp = Date(timeIntervalSince1970: 1492550407) //timestamp
                     }
                     self.afterLoad()
                     #if DEBUG
@@ -151,13 +152,10 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
         return data?["deleted"] as? [ArrayElement.KeyType]
     }
 
-    public init?(array: CNLArray?) {
+    public init?(data: CNLDictionary?) {
+        guard let data = data else { return nil }
         self.init()
-        if let data = array {
-            list = loadFromArray(data)
-        } else {
-            return nil
-        }
+        list = loadFromDictionary(data)
     }
     
 }

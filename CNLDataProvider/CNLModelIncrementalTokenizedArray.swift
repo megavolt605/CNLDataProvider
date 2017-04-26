@@ -19,13 +19,17 @@ public protocol CNLModelIncrementalTokenizedArray: CNLModelIncrementalArray {
     var tokens: [String] { get set }
     func reset()
     func createItems(_ data: CNLDictionary, withToken token: CNLModelObjectToken) -> [ArrayElement]?
+    
+    //static func loadFromDictionary(_ data: CNLDictionary?) -> [CNLModelObjectToken: ArrayElement]?
+    func loadFromDictionary(_ data: CNLDictionary) -> [ArrayElement]
+    func storeToDictionary() -> CNLDictionary
 }
 
 public protocol CNLModelObjectTokenized: CNLModelObject, CNLModelIncrementalArrayElement {
-    static var token: CNLModelObjectToken { get }
+    var token: CNLModelObjectToken { get set }
 }
 
-public extension CNLModelObject where Self: CNLModelIncrementalTokenizedArray {
+public extension CNLModelObject where Self: CNLModelIncrementalTokenizedArray, Self.ArrayElement: CNLModelObjectTokenized {
     
     public func reset() {
         list = []
@@ -33,6 +37,7 @@ public extension CNLModelObject where Self: CNLModelIncrementalTokenizedArray {
     
     public func createItems(_ data: CNLDictionary, withToken token: CNLModelObjectToken) -> [ArrayElement]? {
         if let item = ArrayElement(dictionary: data) {
+            item.token = token
             return [item]
         }
         return nil
@@ -66,7 +71,7 @@ public extension CNLModelObject where Self: CNLModelIncrementalTokenizedArray {
         return loadItems(data, section: "modified")
     }
     
-    func deletedItems(_ data: CNLDictionary?) -> [ArrayElement.KeyType]? {
+    public func deletedItems(_ data: CNLDictionary?) -> [ArrayElement.KeyType]? {
         guard let idsData = data?["deleted"] as? CNLDictionary else { return nil }
         let ids: [[ArrayElement.KeyType]] = tokens.flatMap { token in
             return idsData[token] as? [ArrayElement.KeyType]
@@ -75,10 +80,26 @@ public extension CNLModelObject where Self: CNLModelIncrementalTokenizedArray {
         return result
     }
     
-    public init?(array: CNLArray?) {
+    public func loadFromDictionary(_ data: CNLDictionary) -> [ArrayElement] {
+        lastTimestamp = data.date("timestamp") ?? lastTimestamp
+        return defaultLoadFrom(data)
+    }
+    
+    public func storeToDictionary() -> CNLDictionary {
+        var result: CNLDictionary = [:]
+        tokens.forEach { token in
+            result[token] = list
+                .filter { item in return item.token == token }
+                .map { item in return item.storeToDictionary() }
+        }
+        result["timestamp"] = lastTimestamp?.timeIntervalSince1970
+        return result
+    }
+
+    public init?(dictionary: CNLDictionary?) {
         self.init()
-        if let data = array {
-            list = loadFromArray(data)
+        if let data = dictionary {
+            list = loadFromDictionary(data)
         } else {
             return nil
         }
