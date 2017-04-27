@@ -173,13 +173,13 @@ public extension CNLDataProvider {
         }
     }
     
-    public func fullRefresh() {
-        if let canShowViewActivity = self as? CNLCanShowViewAcvtitity {
+    public func fullRefresh(showActivity: Bool = true) {
+        if let canShowViewActivity = self as? CNLCanShowViewAcvtitity, showActivity {
             canShowViewActivity.startViewActivity(nil, completion: nil)
         }
         self.fetchFromStart { _ in
-            DispatchQueue.main.async {
-                if let canShowViewActivity = self as? CNLCanShowViewAcvtitity {
+            if let canShowViewActivity = self as? CNLCanShowViewAcvtitity, showActivity {
+                DispatchQueue.main.async {
                     canShowViewActivity.finishViewActivity()
                 }
             }
