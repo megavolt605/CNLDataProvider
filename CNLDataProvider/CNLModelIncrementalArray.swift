@@ -18,13 +18,18 @@ public protocol CNLModelIncrementalArrayElement: CNLModelObjectPrimaryKey {
     var states: CNLModelIncrementalArrayElementStates { get set }
 }
 
+
 public protocol CNLModelIncrementalArray: class, CNLDataSourceModel {
     associatedtype ArrayElement: CNLModelIncrementalArrayElement, CNLModelDictionary
 
+    typealias CNLModelIncrementalArrayCompletion = (_ model: CNLModelObject, _ status: CNLModelError, _ created: [ArrayElement], _ modified: [ArrayElement], _ deleted: [ArrayElement.KeyType]) -> Void
+    
     var list: [ArrayElement] { get set }
     
     var lastTimestamp: Date? { get set }
     var statesLastTimestamp: Date? { get set }
+    
+    func update(success: @escaping CNLModelIncrementalArrayCompletion, failed: @escaping CNLModelFailed)
     
     func reset()
     func createItems(_ data: CNLDictionary) -> [ArrayElement]?
@@ -107,12 +112,24 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
     public func indexOf(item: ArrayElement) -> Int? {
         return self.list.index { return $0.primaryKey == item.primaryKey }
     }
-    
+
     public func update(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed) {
+        update(
+            success: { model, error, _, _, _ in success(model, error) },
+            failed: failed
+        )
+    }
+    
+    public func update(success: @escaping CNLModelIncrementalArrayCompletion, failed: @escaping CNLModelFailed) {
         if let localAPI = createAPI() {
             CNLModelNetworkProvider?.performRequest(
                 api: localAPI,
                 success: { apiObject in
+                    
+                    var createdItems: [ArrayElement] = []
+                    var modifiedItems: [ArrayElement] = []
+                    var deletedItems: [ArrayElement.KeyType] = []
+                    
                     if let data = self.preprocessData(apiObject.answerJSON) {
                         if let created = self.createdItems(data) {
                             #if DEBUG
@@ -120,6 +137,7 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
                             #endif
                             
                             self.list += created
+                            createdItems = created
                         }
                         if let modified = self.modifiedItems(data) {
                             #if DEBUG
@@ -130,8 +148,10 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
                                 if let index = self.indexOf(item: modifiedItem) {
                                     modifiedItem.states = self.list[index].states
                                     self.list[index] = modifiedItem
+                                    modifiedItems.append(modifiedItem)
                                     return
                                 }
+                                createdItems.append(modifiedItem)
                                 self.list.append(modifiedItem)
                             }
                             
@@ -140,7 +160,7 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
                             #if DEBUG
                                 CNLLog("Model removed items: \(deleted.count)", level: .debug)
                             #endif
-                            
+                            deletedItems = deleted
                             self.list = self.list.filter { item in !deleted.contains(item.primaryKey) }
                         }
                     }
@@ -154,7 +174,7 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
                             #if DEBUG
                                 CNLLog("Model count: \(self.list.count)", level: .debug)
                             #endif
-                            success(model, status)
+                            success(self, status, createdItems, modifiedItems, deletedItems)
                         },
                         failed: { apiObject, error in failed(self, error) }
                     )
@@ -163,7 +183,7 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
                 networkError: { apiObject, error in failed(self, apiObject.errorStatus(error)) }
             )
         } else {
-            success(self, okStatus) //(kind: CNLErrorKind.Ok, success: true))
+            success(self, okStatus, [], [], []) //(kind: CNLErrorKind.Ok, success: true))
         }
     }
 
