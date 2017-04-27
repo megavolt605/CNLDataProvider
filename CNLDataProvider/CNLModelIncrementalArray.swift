@@ -11,7 +11,7 @@ import Foundation
 import CNLFoundationTools
 
 public protocol CNLModelIncrementalArrayElementStates: CNLModelObject, CNLModelDictionary {
-    
+    //func setDefaultState()
 }
 
 public protocol CNLModelIncrementalArrayElement: CNLModelObjectPrimaryKey {
@@ -172,14 +172,10 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
             CNLModelNetworkProvider?.performRequest(
                 api: statesAPI,
                 success: { apiObject in
-                    // update primary model first
-                    success(self, apiObject.status)
                     if let statesInfo = apiObject.answerJSON {
-                        if let timestamp = statesInfo.date("timestamp") {
-                            self.statesLastTimestamp = timestamp
-                        }
                         self.updateStatesFromDictionary(statesInfo)
                     }
+                    success(self, apiObject.status)
                 },
                 fail: { apiObject in failed(self, apiObject.errorStatus) },
                 networkError: { apiObject, error in failed(self, apiObject.errorStatus(error)) }
