@@ -10,12 +10,20 @@ import Foundation
 
 import CNLFoundationTools
 
+public struct CNLModelMetaArrayInfo<T> {
+    public var model: T
+    public var count: Int = 0
+    public init(model: T) {
+        self.model = model
+    }
+}
+
 public protocol CNLModelMetaArray: class, CNLModelObject, CNLModelArray {
     associatedtype MetaArrayItem = CNLModelMetaArrayItem
-    typealias CNLModelMetaArrayInfo = (model: MetaArrayItem, count: Int)
+    //typealias CNLModelMetaArrayInfo = (model: MetaArrayItem, count: Int)
     
     var list: [ArrayElement] { get set }
-    var metaInfos: [CNLModelMetaArrayInfo] { get set }
+    var metaInfos: [CNLModelMetaArrayInfo<MetaArrayItem>] { get set }
     var ignoreFails: Bool { get }
 }
 
