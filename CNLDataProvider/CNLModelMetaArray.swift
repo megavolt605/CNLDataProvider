@@ -121,7 +121,7 @@ public extension CNLModelMetaArray where MetaArrayItem: CNLModelMetaArrayItem, M
         totalRecords = nil
         additionalRecords = 0
         var infos = metaInfos
-        metaInfos.enumerated().forEach { index, info in
+        metaInfos.enumerated().forEach { index, _ in
             infos[index].count = 0
             infos[index].model.reset()
         }

@@ -18,7 +18,6 @@ public protocol CNLModelIncrementalArrayElement: CNLModelObjectPrimaryKey {
     var states: CNLModelIncrementalArrayElementStates { get set }
 }
 
-
 public protocol CNLModelIncrementalArray: class, CNLDataSourceModel {
     associatedtype ArrayElement: CNLModelIncrementalArrayElement, CNLModelDictionary
 

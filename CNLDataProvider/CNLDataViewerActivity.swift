@@ -51,7 +51,7 @@ open class CNLDataViewerRefreshControl {
                 refreshControl.tintColor = UIColor.clear
                 action()
                 activity?.frame = animationFrame
-                //refreshControl.addSubview(animation!)
+                refreshControl.superview?.addSubview(activity.view)
                 activity?.startAnimating()
             }
         }
@@ -64,8 +64,7 @@ open class CNLDataViewerRefreshControl {
             refreshControl.tintColor = UIColor.white
             refreshControl.isHidden = false
             activity?.stopAnimating()
-            //animation?.removeFromSuperview()
-            //animation = nil
+            activity?.view.removeFromSuperview()
         }
     }
     
@@ -75,21 +74,7 @@ open class CNLDataViewerRefreshControl {
         refreshControl.backgroundColor = UIColor.clear
         refreshControl.tintColor = UIColor.white
         dataProvider.dataViewer.addSubview(refreshControl)
-        
         self.activity = activity
-        
-        /*
-        animation = NVActivityIndicatorView(
-            frame: animationFrame,
-            type: NVActivityIndicatorType.randomType,
-            color: color,
-            padding: nil
-        )
-        */
-        if let activityView = activity as? UIView {
-            dataProvider.dataViewer.addSubview(activityView)
-        }
-        
     }
     
 }
