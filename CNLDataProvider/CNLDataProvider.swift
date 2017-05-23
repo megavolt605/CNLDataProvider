@@ -352,6 +352,32 @@ public extension CNLDataProvider {
     public func updateCounts() {
         let totalCount = dataSource.model.totalRecords
         let additionalCount = dataSource.model.additionalRecords
+        #if DEBUG
+            CNLLog("ds.c \(dataSource.count)", level: .debug)
+            CNLLog("ac \(additionalCount)", level: .debug)
+            CNLLog("tc \(totalCount ?? 0)", level: .debug)
+            CNLLog(dataProviderVariables.loadMore.visible, level: .debug)
+        #endif
+        dataProviderVariables.loadMore.visible = dataSource.model.isPagingEnabled && ((totalCount == nil) || ((dataSource.count - additionalCount) != totalCount))
+        
+        var res = updateCountsCollectItems()
+        if dataProviderVariables.loadMore.visible { res[dataProviderVariables.loadMore.section] = [0] }
+        dataProviderVariables.sectionIndexes = res
+    }
+    
+}
+
+extension CNLDataProvider where Self.ModelType: CNLModelMetaArray {
+
+    public func updateCounts() {
+        let totalCount = dataSource.model.totalRecords
+        let additionalCount = dataSource.model.additionalRecords
+        #if DEBUG
+            CNLLog("ds.c \(dataSource.count)", level: .debug)
+            CNLLog("ac \(additionalCount)", level: .debug)
+            CNLLog("tc \(totalCount ?? 0)", level: .debug)
+            CNLLog(dataProviderVariables.loadMore.visible, level: .debug)
+        #endif
         dataProviderVariables.loadMore.visible = dataSource.model.isPagingEnabled && ((totalCount == nil) || ((dataSource.count - additionalCount) != totalCount))
         
         var res = updateCountsCollectItems()
