@@ -14,28 +14,34 @@ import CNLFoundationTools
 fileprivate var cancelLoadingTaskCallbacksFunc = "cancelLoadingTaskCallbacksFunc"
 
 public protocol CNLModelDataLoadable: class {
-    func loadData(_ fileName: String, priority: Float?, userData: Any?, success: @escaping CNLModelNetworkDownloadFileSuccess, fail: @escaping CNLModelNetworkDownloadFileFail)
+    func loadData(_ url: URL?, priority: Float?, userData: Any?, success: @escaping CNLModelNetworkDownloadFileSuccess, fail: @escaping CNLModelNetworkDownloadFileFail)
     func cancelLoading()
 }
 
 public extension CNLModelDataLoadable {
     
-    public func loadData(_ fileName: String, priority: Float?, userData: Any?, success: @escaping CNLModelNetworkDownloadFileSuccess, fail: @escaping CNLModelNetworkDownloadFileFail) {
+    public func loadData(_ url: URL?, priority: Float?, userData: Any?, success: @escaping CNLModelNetworkDownloadFileSuccess, fail: @escaping CNLModelNetworkDownloadFileFail) {
         let cancelTask = CNLModelNetworkProvider?.downloadFileFromURL(
-            fileName,
+            url,
             priority: priority ?? 1.0,
             userData: userData,
             success: { fileName, data, userData in
-                success(fileName, data, userData)
-                self.cancelLoadingTaskCallbacks[fileName] = nil
+                success(url, data, userData)
+                if let key = url?.absoluteString {
+                    self.cancelLoadingTaskCallbacks[key] = nil
+                }
             },
-            fail: { fileName, error, userData in
-                fail(fileName, error, userData)
-                self.cancelLoadingTaskCallbacks[fileName] = nil
+            fail: { url, error, userData in
+                fail(url, error, userData)
+                if let key = url?.absoluteString {
+                    self.cancelLoadingTaskCallbacks[key] = nil
+                }
             }
         )
         if let cancelTask = cancelTask {
-            cancelLoadingTaskCallbacks[fileName] = { [fileName, userData] in cancelTask(fileName, userData) }
+            if let key = url?.absoluteString {
+                cancelLoadingTaskCallbacks[key] = { [url, userData] in cancelTask(url, userData) }
+            }
         }
     }
     
@@ -64,16 +70,21 @@ public extension CNLModelDataLoadable {
 }
 
 public protocol CNLModelImageLoadable: CNLModelDataLoadable {
-    func loadImage(_ fileName: String, priority: Float?, userData: Any?, success: @escaping CNLModelNetworkDownloadImageSuccess, fail: @escaping CNLModelNetworkDownloadFileFail)
+    func loadImage(_ url: URL?, priority: Float?, userData: Any?, success: @escaping CNLModelNetworkDownloadImageSuccess, fail: @escaping CNLModelNetworkDownloadFileFail)
 }
 
 public extension CNLModelImageLoadable {
     
-    public func loadImage(_ fileName: String, priority: Float?, userData: Any?, success: @escaping CNLModelNetworkDownloadImageSuccess, fail: @escaping CNLModelNetworkDownloadFileFail) {
+    public func loadImage(_ url: URL?, priority: Float?, userData: Any?, success: @escaping CNLModelNetworkDownloadImageSuccess, fail: @escaping CNLModelNetworkDownloadFileFail) {
         let start = Date()
         
+        guard let url = url else {
+            fail(nil, nil, userData)
+            return
+        }
+        
         loadData(
-            fileName,
+            url,
             priority: priority,
             userData: userData,
             success: { fileName, fileData, userData in
@@ -82,7 +93,7 @@ public extension CNLModelImageLoadable {
                     #if DEBUG
                         let stop = Date().timeIntervalSince(start)
                         CNLLog(
-                            "\(fileName) loaded, network time: \(floor(networkStop * 1000.0 * 1000.0) / 1000.0), " +
+                            "\(url.absoluteString) loaded, network time: \(floor(networkStop * 1000.0 * 1000.0) / 1000.0), " +
                             "total time: \(floor(stop * 1000.0 * 1000.0) / 1000.0) size: \(img.size.width) x \(img.size.height) \(data.count) ",
                             level: .debug
                         )
@@ -90,7 +101,7 @@ public extension CNLModelImageLoadable {
                     success(fileName, img, data, userData)
                 } else {
                     #if DEBUG
-                        CNLLog("\(fileName) loading error", level: .error)
+                        CNLLog("\(url.absoluteString) loading error", level: .error)
                         if let data = fileData, let dataString = NSString(data: data, encoding: String.Encoding.utf16.rawValue) {
                             CNLLog("Received data:\n\(dataString)", level: .error)
                         }
@@ -106,7 +117,7 @@ public extension CNLModelImageLoadable {
 
 public protocol CNLModelResizableImageLoadable: CNLModelImageLoadable {
     func loadImage(
-        _ fileName: String,
+        _ url: URL?,
         priority: Float?,
         userData: Any?,
         size: CGSize,
@@ -119,7 +130,7 @@ public protocol CNLModelResizableImageLoadable: CNLModelImageLoadable {
 public extension CNLModelResizableImageLoadable {
     
     public func loadImage(
-        _ fileName: String,
+        _ url: URL?,
         priority: Float?,
         userData: Any?,
         size: CGSize,
@@ -128,20 +139,32 @@ public extension CNLModelResizableImageLoadable {
         fail: @escaping CNLModelNetworkDownloadFileFail
         ) {
         
+        guard let url = url else {
+            fail(nil, nil, userData)
+            return
+        }
+            
         let scale = scale ?? imageScale()
-        var newFileName = fileName
-        if size.width != 0 && size.height != 0 && !fileName.contains(".gif") {
-            newFileName = newFileName.appendSuffixBeforeExtension("@\(Int(scale * size.width))x\(Int(scale * size.height))")
+        var newURL = url
+        let urlString = newURL.absoluteString
+        if size.width != 0 && size.height != 0 && !urlString.contains(".gif") {
+            let newURLString = urlString.appendSuffixBeforeExtension("@\(Int(scale * size.width))x\(Int(scale * size.height))")
+            if let updatedURL = URL(string: newURLString) {
+                newURL = updatedURL
+            } else {
+                fail(url, nil, userData)
+                return
+            }
         }
         loadImage(
-            newFileName,
+            newURL,
             priority: priority,
             userData: userData,
-            success: { newFileName, image, imageData, userData in
-                success(fileName, image, imageData, userData)
+            success: { newURL, image, imageData, userData in
+                success(url, image, imageData, userData)
             },
-            fail: { newFileName, error, userData in
-                fail(fileName, error, userData)
+            fail: { newURL, error, userData in
+                fail(url, error, userData)
             }
         )
     }

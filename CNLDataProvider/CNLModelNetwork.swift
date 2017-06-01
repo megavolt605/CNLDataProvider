@@ -12,11 +12,11 @@ public typealias CNLModelNetworkSuccess = (_ api: CNLModelAPI) -> Void
 public typealias CNLModelNetworkFail = (_ api: CNLModelAPI) -> Void
 public typealias CNLModelNetworkNetworkError = (_ api: CNLModelAPI, _ error: Error?) -> Void
 
-public typealias CNLModelNetworkDownloadFileSuccess = (_ fileName: String, _ fileData: Data?, _ userData: Any?) -> Void
-public typealias CNLModelNetworkDownloadFileFail = (_ fileName: String, _ error: Error?, _ userData: Any?) -> Void
-public typealias CNLModelNetworkDownloadFileCancel = (_ fileName: String, _ userData: Any?) -> Void
+public typealias CNLModelNetworkDownloadFileSuccess = (_ url: URL?, _ fileData: Data?, _ userData: Any?) -> Void
+public typealias CNLModelNetworkDownloadFileFail = (_ url: URL?, _ error: Error?, _ userData: Any?) -> Void
+public typealias CNLModelNetworkDownloadFileCancel = (_ url: URL?, _ userData: Any?) -> Void
 
-public typealias CNLModelNetworkDownloadImageSuccess = (_ fileName: String, _ image: UIImage, _ imageData: Data, _ userData: Any?) -> Void
+public typealias CNLModelNetworkDownloadImageSuccess = (_ url: URL?, _ image: UIImage, _ imageData: Data, _ userData: Any?) -> Void
 
 public protocol CNLModelNetwork {
     func performRequest(
@@ -34,7 +34,7 @@ public protocol CNLModelNetwork {
         networkError: @escaping CNLModelNetworkNetworkError
     )
     func downloadFileFromURL(
-        _ urlString: String,
+        _ url: URL?,
         priority: Float,
         userData: Any?,
         success: @escaping CNLModelNetworkDownloadFileSuccess,
