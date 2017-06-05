@@ -8,6 +8,8 @@
 
 import Foundation
 
+import CNLFoundationTools
+
 public enum CNLModelErrorAlertStyle {
     case info, error, warning
 }

@@ -8,6 +8,8 @@
 
 import Foundation
 
+import CNLFoundationTools
+
 public protocol CNLModelDictionary {
     init()
     init?(dictionary: CNLDictionary?)

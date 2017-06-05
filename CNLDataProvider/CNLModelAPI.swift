@@ -8,6 +8,8 @@
 
 import Foundation
 
+import CNLFoundationTools
+
 public enum CNLModelAPIMethod {
     case get, put, post, mpost, patch, delete
     public var description: String {

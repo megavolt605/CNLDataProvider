@@ -94,7 +94,7 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
     }
 
     public func loadFromDictionary(_ data: CNLDictionary) -> [ArrayElement] {
-        lastTimestamp = data.date("timestamp") ?? lastTimestamp
+        lastTimestamp = data.value("timestamp") ?? lastTimestamp
         if let itemsInfo = data["items"] as? CNLArray {
             return defaultLoadFrom(itemsInfo)
         }
@@ -163,7 +163,7 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
                             self.list = self.list.filter { item in !deleted.contains(item.primaryKey) }
                         }
                     }
-                    if let timestamp = apiObject.answerJSON?.date("timestamp") {
+                    if let timestamp: Date = apiObject.answerJSON?.value("timestamp") {
                         self.lastTimestamp = timestamp
                     }
 

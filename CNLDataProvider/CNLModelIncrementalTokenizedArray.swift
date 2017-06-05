@@ -84,8 +84,8 @@ public extension CNLModelObject where Self: CNLModelIncrementalTokenizedArray, S
     }
     
     public func loadFromDictionary(_ data: CNLDictionary) -> [ArrayElement] {
-        lastTimestamp = data.date("timestamp") ?? lastTimestamp
-        statesLastTimestamp = data.date("states_timestamp") ?? statesLastTimestamp
+        lastTimestamp = data.value("timestamp") ?? lastTimestamp
+        statesLastTimestamp = data.value("states_timestamp") ?? statesLastTimestamp
         return defaultLoadFrom(data)
     }
     
@@ -107,7 +107,7 @@ public extension CNLModelObject where Self: CNLModelIncrementalTokenizedArray, S
 
     // states
     public func updateStatesFromDictionary(_ data: CNLDictionary) {
-        if let timestamp = data.date("timestamp") {
+        if let timestamp: Date = data.value("timestamp") {
             self.statesLastTimestamp = timestamp
         }
         // modified

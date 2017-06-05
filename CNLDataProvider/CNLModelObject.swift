@@ -8,13 +8,12 @@
 
 import Foundation
 
+import CNLFoundationTools
+
 // used for access to resource through class bundle reference
 class CNLModelDummy {
     
 }
-
-public typealias CNLDictionary = [String: Any]
-public typealias CNLArray = [CNLDictionary]
 
 public typealias CNLModelCompletion = (_ model: CNLModelObject, _ status: CNLModelError) -> Void
 public typealias CNLModelFailed = (_ model: CNLModelObject, _ error: CNLModelError?) -> Void
@@ -45,7 +44,7 @@ public extension CNLModelObject {
 }
 
 public protocol CNLModelObjectPrimaryKey: class, CNLModelObject {
-    associatedtype KeyType: Hashable
+    associatedtype KeyType: Hashable, CNLDictionaryDecodable
     var primaryKey: KeyType { get }
     init?(keyValue: KeyType)
     var encodedPrimaryKey: String? { get }

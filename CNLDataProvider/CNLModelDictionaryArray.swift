@@ -8,6 +8,8 @@
 
 import Foundation
 
+import CNLFoundationTools
+
 public protocol CNLModelDictionaryArray: class {
     associatedtype DictionaryElement: CNLModelDictionaryKeyStored
     var list: [DictionaryElement.KeyType:DictionaryElement] {get set}

@@ -25,7 +25,7 @@ public extension CNLModelDataLoadable {
             url,
             priority: priority ?? 1.0,
             userData: userData,
-            success: { fileName, data, userData in
+            success: { url, data, userData in
                 success(url, data, userData)
                 if let key = url?.absoluteString {
                     self.cancelLoadingTaskCallbacks[key] = nil
@@ -87,26 +87,26 @@ public extension CNLModelImageLoadable {
             url,
             priority: priority,
             userData: userData,
-            success: { fileName, fileData, userData in
+            success: { url, fileData, userData in
                 let networkStop = Date().timeIntervalSince(start)
                 if let data = fileData, let img = UIImage(data: data) {
                     #if DEBUG
                         let stop = Date().timeIntervalSince(start)
                         CNLLog(
-                            "\(url.absoluteString) loaded, network time: \(floor(networkStop * 1000.0 * 1000.0) / 1000.0), " +
+                            "\(url!.absoluteString) loaded, network time: \(floor(networkStop * 1000.0 * 1000.0) / 1000.0), " +
                             "total time: \(floor(stop * 1000.0 * 1000.0) / 1000.0) size: \(img.size.width) x \(img.size.height) \(data.count) ",
                             level: .debug
                         )
                     #endif
-                    success(fileName, img, data, userData)
+                    success(url, img, data, userData)
                 } else {
                     #if DEBUG
-                        CNLLog("\(url.absoluteString) loading error", level: .error)
+                        CNLLog("\(url!.absoluteString) loading error", level: .error)
                         if let data = fileData, let dataString = NSString(data: data, encoding: String.Encoding.utf16.rawValue) {
                             CNLLog("Received data:\n\(dataString)", level: .error)
                         }
                     #endif
-                    fail(fileName, nil, userData)
+                    fail(url, nil, userData)
                 }
             },
             fail: fail
