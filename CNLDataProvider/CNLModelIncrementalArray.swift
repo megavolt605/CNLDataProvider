@@ -52,6 +52,15 @@ public protocol CNLModelIncrementalArray: class, CNLDataSourceModel {
 fileprivate var incrementalArrayLastTimestampKey: String = "incrementalArrayLastTimestampKey"
 fileprivate var incrementalArrayStatesLastTimestampKey: String = "incrementalArrayStatesLastTimestampKey"
 
+internal struct CNLModelIncrementalArrayKeys {
+    static let statesTimestamp = "states_timestamp"
+    static let timestamp = "timestamp"
+    static let items = "items"
+    static let created = "created"
+    static let modified = "modified"
+    static let deleted = "deleted"
+}
+
 public extension CNLModelObject where Self: CNLModelIncrementalArray {
     
     public var isPagingEnabled: Bool { return false }
@@ -94,8 +103,9 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
     }
 
     public func loadFromDictionary(_ data: CNLDictionary) -> [ArrayElement] {
-        lastTimestamp = data.value("timestamp") ?? lastTimestamp
-        if let itemsInfo = data["items"] as? CNLArray {
+        lastTimestamp = data.date(CNLModelIncrementalArrayKeys.timestamp, lastTimestamp)
+        statesLastTimestamp = data.date(CNLModelIncrementalArrayKeys.statesTimestamp, statesLastTimestamp)
+        if let itemsInfo = data[CNLModelIncrementalArrayKeys.items] as? CNLArray {
             return defaultLoadFrom(itemsInfo)
         }
         return []
@@ -103,8 +113,9 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
 
     public func storeToDictionary() -> CNLDictionary {
         let items = list.map { $0.storeToDictionary() }
-        var result: CNLDictionary = ["items": items]
-        result["timestamp"] = lastTimestamp?.timeIntervalSince1970
+        var result: CNLDictionary = [CNLModelIncrementalArrayKeys.items: items]
+        result[CNLModelIncrementalArrayKeys.timestamp] = lastTimestamp?.timeIntervalSince1970
+        result[CNLModelIncrementalArrayKeys.statesTimestamp] = statesLastTimestamp?.timeIntervalSince1970
         return result
     }
     
@@ -163,8 +174,11 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
                             self.list = self.list.filter { item in !deleted.contains(item.primaryKey) }
                         }
                     }
-                    if let timestamp: Date = apiObject.answerJSON?.value("timestamp") {
+                    if let timestamp: Date = apiObject.answerJSON?.date(CNLModelIncrementalArrayKeys.timestamp) {
                         self.lastTimestamp = timestamp
+                    }
+                    if let timestamp: Date = apiObject.answerJSON?.date(CNLModelIncrementalArrayKeys.statesTimestamp) {
+                        self.statesLastTimestamp = timestamp
                     }
 
                     self.updateStates(
@@ -218,15 +232,15 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
     }
     
     public func createdItems(_ data: CNLDictionary?) -> [ArrayElement]? {
-        return loadItems(data, section: "created")
+        return loadItems(data, section: CNLModelIncrementalArrayKeys.created)
     }
     
     public func modifiedItems(_ data: CNLDictionary?) -> [ArrayElement]? {
-        return loadItems(data, section: "modified")
+        return loadItems(data, section: CNLModelIncrementalArrayKeys.modified)
     }
     
     public func deletedItems(_ data: CNLDictionary?) -> [ArrayElement.KeyType]? {
-        return data?["deleted"] as? [ArrayElement.KeyType]
+        return data?[CNLModelIncrementalArrayKeys.deleted] as? [ArrayElement.KeyType]
     }
 
     public init?(data: CNLDictionary?) {

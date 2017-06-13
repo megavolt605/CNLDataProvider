@@ -67,15 +67,15 @@ public extension CNLModelObject where Self: CNLModelIncrementalTokenizedArray, S
     }
     
     public func createdItems(_ data: CNLDictionary?) -> [ArrayElement]? {
-        return loadItems(data, section: "created")
+        return loadItems(data, section: CNLModelIncrementalArrayKeys.created)
     }
     
     public func modifiedItems(_ data: CNLDictionary?) -> [ArrayElement]? {
-        return loadItems(data, section: "modified")
+        return loadItems(data, section: CNLModelIncrementalArrayKeys.modified)
     }
     
     public func deletedItems(_ data: CNLDictionary?) -> [ArrayElement.KeyType]? {
-        guard let idsData = data?["deleted"] as? CNLDictionary else { return nil }
+        guard let idsData = data?[CNLModelIncrementalArrayKeys.deleted] as? CNLDictionary else { return nil }
         let ids: [[ArrayElement.KeyType]] = tokens.flatMap { token in
             return idsData[token] as? [ArrayElement.KeyType]
         }
@@ -84,8 +84,8 @@ public extension CNLModelObject where Self: CNLModelIncrementalTokenizedArray, S
     }
     
     public func loadFromDictionary(_ data: CNLDictionary) -> [ArrayElement] {
-        lastTimestamp = data.value("timestamp") ?? lastTimestamp
-        statesLastTimestamp = data.value("states_timestamp") ?? statesLastTimestamp
+        lastTimestamp = data.date(CNLModelIncrementalArrayKeys.timestamp, lastTimestamp)
+        statesLastTimestamp = data.date(CNLModelIncrementalArrayKeys.statesTimestamp, statesLastTimestamp)
         return defaultLoadFrom(data)
     }
     
@@ -96,8 +96,8 @@ public extension CNLModelObject where Self: CNLModelIncrementalTokenizedArray, S
                 .filter { item in return item.token == token }
                 .map { item in return item.storeToDictionary() }
         }
-        result["timestamp"] = lastTimestamp?.timeIntervalSince1970
-        result["states_timestamp"] = statesLastTimestamp?.timeIntervalSince1970
+        result[CNLModelIncrementalArrayKeys.timestamp] = lastTimestamp?.timeIntervalSince1970
+        result[CNLModelIncrementalArrayKeys.statesTimestamp] = statesLastTimestamp?.timeIntervalSince1970
         return result
     }
 
@@ -107,7 +107,10 @@ public extension CNLModelObject where Self: CNLModelIncrementalTokenizedArray, S
 
     // states
     public func updateStatesFromDictionary(_ data: CNLDictionary) {
-        if let timestamp: Date = data.value("timestamp") {
+        if let timestamp: Date = data.date(CNLModelIncrementalArrayKeys.timestamp) {
+            self.lastTimestamp = timestamp
+        }
+        if let timestamp: Date = data.date(CNLModelIncrementalArrayKeys.statesTimestamp) {
             self.statesLastTimestamp = timestamp
         }
         // modified

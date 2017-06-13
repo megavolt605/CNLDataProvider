@@ -44,7 +44,7 @@ public extension CNLModelObject {
 }
 
 public protocol CNLModelObjectPrimaryKey: class, CNLModelObject {
-    associatedtype KeyType: Hashable, CNLDictionaryDecodable
+    associatedtype KeyType: Hashable, CNLDictionaryValue
     var primaryKey: KeyType { get }
     init?(keyValue: KeyType)
     var encodedPrimaryKey: String? { get }
