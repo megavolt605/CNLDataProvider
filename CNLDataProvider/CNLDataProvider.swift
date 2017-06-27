@@ -220,14 +220,10 @@ public extension CNLDataProvider {
     }
     
     /// Default implementation. Does nothing
-    public func beforeFetch() {
-        
-    }
+    public func beforeFetch() { }
     
     /// Default implementation. Does nothing
-    public func afterFetch() {
-        
-    }
+    public func afterFetch() { }
     
     /// Default implementation. Fetch model items from the data source from the beginning
     ///
@@ -341,11 +337,11 @@ public extension CNLDataProvider {
                 #endif
                 self.dataViewer.insertItemsAtIndexPaths(self.sectionRowIndexes())
                 self.dataViewer.reloadData()
-        },
+            },
             completion: { _ in
                 self.afterFetch()
                 completed?(true)
-        }
+            }
         )
     }
     
@@ -426,12 +422,12 @@ public extension CNLDataProvider {
                     }
                 #endif
                 self.dataViewer.insertItemsAtIndexPaths(newRowIndexes)
-        },
+            },
             completion: { _ in
                 UIView.setAnimationsEnabled(true)
                 self.afterFetch()
                 completed?(true)
-        }
+            }
         )
     }
     
@@ -446,7 +442,7 @@ public extension CNLDataProvider {
         fullRefresh()
     }
     
-    /// Collect section/items count information for cach purposes
+    /// Collect section/items count information for cache purposes
     ///
     /// - Returns: Calculated values
     fileprivate func updateCountsCollectItems() -> [Int:[Int]] {
@@ -467,7 +463,8 @@ public extension CNLDataProvider {
         return res
     }
     
-    /// Default implementation. Update cached counts for sections, manages visibility flag for artifical "load more" section and item
+    /// Default implementation. 
+    /// Update cached counts for sections, manages visibility flag for artifical "load more" section and item
     public func updateCounts() {
         let totalCount = dataSource.model.totalRecords
         let additionalCount = dataSource.model.additionalRecords
