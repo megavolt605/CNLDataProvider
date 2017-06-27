@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// Protocol for views and view controllers that have possibility show (and possibly animate) long activity (for example, network requests lags etc.)
+/// Protocol for views and view controllers that have possibility to show (and possibly to animate) long activity (for example: network requests lags, etc.)
 public protocol CNLCanShowViewAcvtitity {
     /// Starts visual activity
     ///

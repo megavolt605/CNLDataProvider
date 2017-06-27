@@ -10,7 +10,7 @@ import Foundation
 
 import CNLFoundationTools
 
-/// Common class used for access to resources through class bundle reference, holding singletone for network provider
+/// Common class used for access to resources through class bundle reference, holding the singletone for network provider
 open class CNLModel {
     /// Callback type for success network request completion
     public typealias Success = (_ model: CNLModelObject, _ status: Error) -> Void
