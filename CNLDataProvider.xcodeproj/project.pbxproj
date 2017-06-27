@@ -40,6 +40,76 @@
 		6AF975F4220F28CA7EEC6FDA /* Pods-CNLDataProvider.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CNLDataProvider.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CNLDataProvider/Pods-CNLDataProvider.debug.xcconfig"; sourceTree = "<group>"; };
 		783FE1A31EA7787E00478924 /* CNLModelIncrementalTokenizedArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLModelIncrementalTokenizedArray.swift; sourceTree = "<group>"; };
 		7853C3AA1E143B8B00373F00 /* CNLModelLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLModelLoadable.swift; sourceTree = "<group>"; };
+		786873521F02B77F00B28BA5 /* badge.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = badge.svg; sourceTree = "<group>"; };
+		786873541F02B77F00B28BA5 /* CNLCollectionViewLoadMoreCell.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLCollectionViewLoadMoreCell.html; sourceTree = "<group>"; };
+		786873551F02B77F00B28BA5 /* CNLDataSource.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLDataSource.html; sourceTree = "<group>"; };
+		786873561F02B77F00B28BA5 /* CNLDataViewerRefreshControl.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLDataViewerRefreshControl.html; sourceTree = "<group>"; };
+		786873571F02B77F00B28BA5 /* CNLTableViewLoadMoreCell.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLTableViewLoadMoreCell.html; sourceTree = "<group>"; };
+		786873581F02B77F00B28BA5 /* Classes.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Classes.html; sourceTree = "<group>"; };
+		7868735A1F02B77F00B28BA5 /* highlight.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = highlight.css; sourceTree = "<group>"; };
+		7868735B1F02B77F00B28BA5 /* jazzy.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = jazzy.css; sourceTree = "<group>"; };
+		7868735D1F02B77F00B28BA5 /* CNLDataProvider.docset */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = CNLDataProvider.docset; sourceTree = "<group>"; };
+		7868735E1F02B77F00B28BA5 /* CNLDataProvider.tgz */ = {isa = PBXFileReference; lastKnownFileType = file; path = CNLDataProvider.tgz; sourceTree = "<group>"; };
+		786873601F02B77F00B28BA5 /* CNLDataProviderContentStateKind.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLDataProviderContentStateKind.html; sourceTree = "<group>"; };
+		786873611F02B77F00B28BA5 /* CNLDataViewerCellAnimation.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLDataViewerCellAnimation.html; sourceTree = "<group>"; };
+		786873621F02B77F00B28BA5 /* CNLDataViewerScrollPosition.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLDataViewerScrollPosition.html; sourceTree = "<group>"; };
+		786873631F02B77F00B28BA5 /* CNLModelAPIMethod.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLModelAPIMethod.html; sourceTree = "<group>"; };
+		786873641F02B77F00B28BA5 /* CNLModelErrorAlertStyle.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLModelErrorAlertStyle.html; sourceTree = "<group>"; };
+		786873651F02B77F00B28BA5 /* Enums.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Enums.html; sourceTree = "<group>"; };
+		786873671F02B77F00B28BA5 /* UICollectionView.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = UICollectionView.html; sourceTree = "<group>"; };
+		786873681F02B77F00B28BA5 /* UITableView.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = UITableView.html; sourceTree = "<group>"; };
+		786873691F02B77F00B28BA5 /* Extensions.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Extensions.html; sourceTree = "<group>"; };
+		7868736A1F02B77F00B28BA5 /* Global Variables.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "Global Variables.html"; sourceTree = "<group>"; };
+		7868736B1F02B77F00B28BA5 /* Guides.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Guides.html; sourceTree = "<group>"; };
+		7868736D1F02B77F00B28BA5 /* carat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carat.png; sourceTree = "<group>"; };
+		7868736E1F02B77F00B28BA5 /* dash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dash.png; sourceTree = "<group>"; };
+		7868736F1F02B77F00B28BA5 /* gh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gh.png; sourceTree = "<group>"; };
+		786873701F02B77F00B28BA5 /* spinner.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = spinner.gif; sourceTree = "<group>"; };
+		786873711F02B77F00B28BA5 /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		786873731F02B77F00B28BA5 /* jazzy.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = jazzy.js; sourceTree = "<group>"; };
+		786873741F02B77F00B28BA5 /* jazzy.search.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = jazzy.search.js; sourceTree = "<group>"; };
+		786873751F02B77F00B28BA5 /* jquery.min.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = jquery.min.js; sourceTree = "<group>"; };
+		786873761F02B77F00B28BA5 /* lunr.min.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = lunr.min.js; sourceTree = "<group>"; };
+		786873771F02B77F00B28BA5 /* typeahead.jquery.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = typeahead.jquery.js; sourceTree = "<group>"; };
+		786873791F02B77F00B28BA5 /* CNLCanShowViewAcvtitity.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLCanShowViewAcvtitity.html; sourceTree = "<group>"; };
+		7868737A1F02B77F00B28BA5 /* CNLDataProvider.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLDataProvider.html; sourceTree = "<group>"; };
+		7868737B1F02B77F00B28BA5 /* CNLDataProviderContentState.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLDataProviderContentState.html; sourceTree = "<group>"; };
+		7868737C1F02B77F00B28BA5 /* CNLDataProviderEditable.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLDataProviderEditable.html; sourceTree = "<group>"; };
+		7868737D1F02B77F00B28BA5 /* CNLDataSourceModel.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLDataSourceModel.html; sourceTree = "<group>"; };
+		7868737E1F02B77F00B28BA5 /* CNLDataViewer.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLDataViewer.html; sourceTree = "<group>"; };
+		7868737F1F02B77F00B28BA5 /* CNLDataViewerActivity.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLDataViewerActivity.html; sourceTree = "<group>"; };
+		786873801F02B77F00B28BA5 /* CNLDataViewerCell.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLDataViewerCell.html; sourceTree = "<group>"; };
+		786873811F02B77F00B28BA5 /* CNLDataViewerHeader.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLDataViewerHeader.html; sourceTree = "<group>"; };
+		786873821F02B77F00B28BA5 /* CNLDataViewerLoadMoreCell.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLDataViewerLoadMoreCell.html; sourceTree = "<group>"; };
+		786873831F02B77F00B28BA5 /* CNLDataViewerRefreshControlProtocol.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLDataViewerRefreshControlProtocol.html; sourceTree = "<group>"; };
+		786873841F02B77F00B28BA5 /* CNLModelAPI.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLModelAPI.html; sourceTree = "<group>"; };
+		786873851F02B77F00B28BA5 /* CNLModelAPIEndpoint.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLModelAPIEndpoint.html; sourceTree = "<group>"; };
+		786873861F02B77F00B28BA5 /* CNLModelArray.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLModelArray.html; sourceTree = "<group>"; };
+		786873871F02B77F00B28BA5 /* CNLModelDataLoadable.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLModelDataLoadable.html; sourceTree = "<group>"; };
+		786873881F02B77F00B28BA5 /* CNLModelDictionary.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLModelDictionary.html; sourceTree = "<group>"; };
+		786873891F02B77F00B28BA5 /* CNLModelDictionaryArray.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLModelDictionaryArray.html; sourceTree = "<group>"; };
+		7868738A1F02B77F00B28BA5 /* CNLModelDictionaryDictionary.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLModelDictionaryDictionary.html; sourceTree = "<group>"; };
+		7868738B1F02B77F00B28BA5 /* CNLModelError.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLModelError.html; sourceTree = "<group>"; };
+		7868738C1F02B77F00B28BA5 /* CNLModelErrorKind.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLModelErrorKind.html; sourceTree = "<group>"; };
+		7868738D1F02B77F00B28BA5 /* CNLModelImageLoadable.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLModelImageLoadable.html; sourceTree = "<group>"; };
+		7868738E1F02B77F00B28BA5 /* CNLModelIncrementalArray.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLModelIncrementalArray.html; sourceTree = "<group>"; };
+		7868738F1F02B77F00B28BA5 /* CNLModelIncrementalArrayElement.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLModelIncrementalArrayElement.html; sourceTree = "<group>"; };
+		786873901F02B77F00B28BA5 /* CNLModelIncrementalTokenizedArray.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLModelIncrementalTokenizedArray.html; sourceTree = "<group>"; };
+		786873911F02B77F00B28BA5 /* CNLModelMetaArray.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLModelMetaArray.html; sourceTree = "<group>"; };
+		786873921F02B77F00B28BA5 /* CNLModelNetwork.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLModelNetwork.html; sourceTree = "<group>"; };
+		786873931F02B77F00B28BA5 /* CNLModelObject.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLModelObject.html; sourceTree = "<group>"; };
+		786873941F02B77F00B28BA5 /* CNLModelObjectEditable.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLModelObjectEditable.html; sourceTree = "<group>"; };
+		786873951F02B77F00B28BA5 /* CNLModelObjectPrimaryKey.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLModelObjectPrimaryKey.html; sourceTree = "<group>"; };
+		786873961F02B77F00B28BA5 /* CNLModelObjectTokenized.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLModelObjectTokenized.html; sourceTree = "<group>"; };
+		786873971F02B77F00B28BA5 /* CNLRefreshableScrollView.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLRefreshableScrollView.html; sourceTree = "<group>"; };
+		786873981F02B77F00B28BA5 /* Protocols.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Protocols.html; sourceTree = "<group>"; };
+		786873991F02B77F00B28BA5 /* readme.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = readme.html; sourceTree = "<group>"; };
+		7868739A1F02B77F00B28BA5 /* search.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = search.json; sourceTree = "<group>"; };
+		7868739C1F02B77F00B28BA5 /* CNLDataProviderVariables.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLDataProviderVariables.html; sourceTree = "<group>"; };
+		7868739D1F02B77F00B28BA5 /* CNLModelErrorAlertStruct.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLModelErrorAlertStruct.html; sourceTree = "<group>"; };
+		7868739E1F02B77F00B28BA5 /* CNLModelMetaArrayInfo.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CNLModelMetaArrayInfo.html; sourceTree = "<group>"; };
+		7868739F1F02B77F00B28BA5 /* Structs.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Structs.html; sourceTree = "<group>"; };
+		786873A01F02B77F00B28BA5 /* undocumented.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = undocumented.json; sourceTree = "<group>"; };
 		789E68BD1E0BF318003F3F83 /* CNLDataProvider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CNLDataProvider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		789E68C01E0BF318003F3F83 /* CNLDataProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNLDataProvider.h; sourceTree = "<group>"; };
 		789E68C11E0BF318003F3F83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -81,10 +151,160 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		786873511F02B77F00B28BA5 /* Docs */ = {
+			isa = PBXGroup;
+			children = (
+				786873521F02B77F00B28BA5 /* badge.svg */,
+				786873531F02B77F00B28BA5 /* Classes */,
+				786873581F02B77F00B28BA5 /* Classes.html */,
+				786873591F02B77F00B28BA5 /* css */,
+				7868735C1F02B77F00B28BA5 /* docsets */,
+				7868735F1F02B77F00B28BA5 /* Enums */,
+				786873651F02B77F00B28BA5 /* Enums.html */,
+				786873661F02B77F00B28BA5 /* Extensions */,
+				786873691F02B77F00B28BA5 /* Extensions.html */,
+				7868736A1F02B77F00B28BA5 /* Global Variables.html */,
+				7868736B1F02B77F00B28BA5 /* Guides.html */,
+				7868736C1F02B77F00B28BA5 /* img */,
+				786873711F02B77F00B28BA5 /* index.html */,
+				786873721F02B77F00B28BA5 /* js */,
+				786873781F02B77F00B28BA5 /* Protocols */,
+				786873981F02B77F00B28BA5 /* Protocols.html */,
+				786873991F02B77F00B28BA5 /* readme.html */,
+				7868739A1F02B77F00B28BA5 /* search.json */,
+				7868739B1F02B77F00B28BA5 /* Structs */,
+				7868739F1F02B77F00B28BA5 /* Structs.html */,
+				786873A01F02B77F00B28BA5 /* undocumented.json */,
+			);
+			path = Docs;
+			sourceTree = "<group>";
+		};
+		786873531F02B77F00B28BA5 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				786873541F02B77F00B28BA5 /* CNLCollectionViewLoadMoreCell.html */,
+				786873551F02B77F00B28BA5 /* CNLDataSource.html */,
+				786873561F02B77F00B28BA5 /* CNLDataViewerRefreshControl.html */,
+				786873571F02B77F00B28BA5 /* CNLTableViewLoadMoreCell.html */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		786873591F02B77F00B28BA5 /* css */ = {
+			isa = PBXGroup;
+			children = (
+				7868735A1F02B77F00B28BA5 /* highlight.css */,
+				7868735B1F02B77F00B28BA5 /* jazzy.css */,
+			);
+			path = css;
+			sourceTree = "<group>";
+		};
+		7868735C1F02B77F00B28BA5 /* docsets */ = {
+			isa = PBXGroup;
+			children = (
+				7868735D1F02B77F00B28BA5 /* CNLDataProvider.docset */,
+				7868735E1F02B77F00B28BA5 /* CNLDataProvider.tgz */,
+			);
+			path = docsets;
+			sourceTree = "<group>";
+		};
+		7868735F1F02B77F00B28BA5 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				786873601F02B77F00B28BA5 /* CNLDataProviderContentStateKind.html */,
+				786873611F02B77F00B28BA5 /* CNLDataViewerCellAnimation.html */,
+				786873621F02B77F00B28BA5 /* CNLDataViewerScrollPosition.html */,
+				786873631F02B77F00B28BA5 /* CNLModelAPIMethod.html */,
+				786873641F02B77F00B28BA5 /* CNLModelErrorAlertStyle.html */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		786873661F02B77F00B28BA5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				786873671F02B77F00B28BA5 /* UICollectionView.html */,
+				786873681F02B77F00B28BA5 /* UITableView.html */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7868736C1F02B77F00B28BA5 /* img */ = {
+			isa = PBXGroup;
+			children = (
+				7868736D1F02B77F00B28BA5 /* carat.png */,
+				7868736E1F02B77F00B28BA5 /* dash.png */,
+				7868736F1F02B77F00B28BA5 /* gh.png */,
+				786873701F02B77F00B28BA5 /* spinner.gif */,
+			);
+			path = img;
+			sourceTree = "<group>";
+		};
+		786873721F02B77F00B28BA5 /* js */ = {
+			isa = PBXGroup;
+			children = (
+				786873731F02B77F00B28BA5 /* jazzy.js */,
+				786873741F02B77F00B28BA5 /* jazzy.search.js */,
+				786873751F02B77F00B28BA5 /* jquery.min.js */,
+				786873761F02B77F00B28BA5 /* lunr.min.js */,
+				786873771F02B77F00B28BA5 /* typeahead.jquery.js */,
+			);
+			path = js;
+			sourceTree = "<group>";
+		};
+		786873781F02B77F00B28BA5 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				786873791F02B77F00B28BA5 /* CNLCanShowViewAcvtitity.html */,
+				7868737A1F02B77F00B28BA5 /* CNLDataProvider.html */,
+				7868737B1F02B77F00B28BA5 /* CNLDataProviderContentState.html */,
+				7868737C1F02B77F00B28BA5 /* CNLDataProviderEditable.html */,
+				7868737D1F02B77F00B28BA5 /* CNLDataSourceModel.html */,
+				7868737E1F02B77F00B28BA5 /* CNLDataViewer.html */,
+				7868737F1F02B77F00B28BA5 /* CNLDataViewerActivity.html */,
+				786873801F02B77F00B28BA5 /* CNLDataViewerCell.html */,
+				786873811F02B77F00B28BA5 /* CNLDataViewerHeader.html */,
+				786873821F02B77F00B28BA5 /* CNLDataViewerLoadMoreCell.html */,
+				786873831F02B77F00B28BA5 /* CNLDataViewerRefreshControlProtocol.html */,
+				786873841F02B77F00B28BA5 /* CNLModelAPI.html */,
+				786873851F02B77F00B28BA5 /* CNLModelAPIEndpoint.html */,
+				786873861F02B77F00B28BA5 /* CNLModelArray.html */,
+				786873871F02B77F00B28BA5 /* CNLModelDataLoadable.html */,
+				786873881F02B77F00B28BA5 /* CNLModelDictionary.html */,
+				786873891F02B77F00B28BA5 /* CNLModelDictionaryArray.html */,
+				7868738A1F02B77F00B28BA5 /* CNLModelDictionaryDictionary.html */,
+				7868738B1F02B77F00B28BA5 /* CNLModelError.html */,
+				7868738C1F02B77F00B28BA5 /* CNLModelErrorKind.html */,
+				7868738D1F02B77F00B28BA5 /* CNLModelImageLoadable.html */,
+				7868738E1F02B77F00B28BA5 /* CNLModelIncrementalArray.html */,
+				7868738F1F02B77F00B28BA5 /* CNLModelIncrementalArrayElement.html */,
+				786873901F02B77F00B28BA5 /* CNLModelIncrementalTokenizedArray.html */,
+				786873911F02B77F00B28BA5 /* CNLModelMetaArray.html */,
+				786873921F02B77F00B28BA5 /* CNLModelNetwork.html */,
+				786873931F02B77F00B28BA5 /* CNLModelObject.html */,
+				786873941F02B77F00B28BA5 /* CNLModelObjectEditable.html */,
+				786873951F02B77F00B28BA5 /* CNLModelObjectPrimaryKey.html */,
+				786873961F02B77F00B28BA5 /* CNLModelObjectTokenized.html */,
+				786873971F02B77F00B28BA5 /* CNLRefreshableScrollView.html */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		7868739B1F02B77F00B28BA5 /* Structs */ = {
+			isa = PBXGroup;
+			children = (
+				7868739C1F02B77F00B28BA5 /* CNLDataProviderVariables.html */,
+				7868739D1F02B77F00B28BA5 /* CNLModelErrorAlertStruct.html */,
+				7868739E1F02B77F00B28BA5 /* CNLModelMetaArrayInfo.html */,
+			);
+			path = Structs;
+			sourceTree = "<group>";
+		};
 		789E68B31E0BF318003F3F83 = {
 			isa = PBXGroup;
 			children = (
 				789E68BF1E0BF318003F3F83 /* CNLDataProvider */,
+				786873511F02B77F00B28BA5 /* Docs */,
 				789E68BE1E0BF318003F3F83 /* Products */,
 				CD4AB208160905C6A1B3593F /* Pods */,
 				9B4F2529F26B84C5A9094469 /* Frameworks */,
@@ -283,7 +503,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		78172AE41E56EA880008B4EE /* Lint */ = {

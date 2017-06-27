@@ -85,7 +85,6 @@ public typealias CNLRefreshableScrollViewBeforeRefresh = () -> Bool
 public protocol CNLRefreshableScrollView: UIScrollViewDelegate {
     
     var refreshControl: CNLDataViewerRefreshControl? { get set }
-    var refreshNotificationIdentifier: String? { get }
     
     func initializeRefresher<T: CNLDataProvider>(
         _ dataProvider: T,
@@ -97,10 +96,9 @@ public protocol CNLRefreshableScrollView: UIScrollViewDelegate {
 }
 
 fileprivate var refreshControlVar = "refreshControlVar"
+fileprivate var notificationObserverVar = "notificationObserver"
 
 extension CNLRefreshableScrollView where Self: CNLDataProvider {
-    
-    public var refreshNotificationIdentifier: String? { return nil }
     
     public var refreshControl: CNLDataViewerRefreshControl? {
         get {
@@ -112,6 +110,31 @@ extension CNLRefreshableScrollView where Self: CNLDataProvider {
         }
         set {
             objc_setAssociatedObject(self, &refreshControlVar, CNLAssociated<CNLDataViewerRefreshControl?>(closure: newValue), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+        }
+    }
+    
+    public var notificationObserver: AnyObject? {
+        get {
+            if let value = (objc_getAssociatedObject(self, &notificationObserverVar) as? CNLAssociated<AnyObject?>)?.closure {
+                return value
+            } else {
+                return nil
+            }
+        }
+        set {
+            objc_setAssociatedObject(self, &notificationObserverVar, CNLAssociated<AnyObject?>(closure: newValue), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+        }
+    }
+    
+    public func registerRefreshNotifications(withName name: String) {
+        notificationObserver = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: name), object: nil, queue: nil) { _ in
+            self.refreshControl?.action()
+        }
+    }
+    
+    public func removeRefreshNotifications() {
+        if let observer = notificationObserver {
+            NotificationCenter.default.removeObserver(observer)
         }
     }
     
@@ -136,12 +159,6 @@ extension CNLRefreshableScrollView where Self: CNLDataProvider {
                 }
             }
         )
-        
-        if let refreshIdentifier = refreshNotificationIdentifier {
-            NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: refreshIdentifier), object: nil, queue: nil) { _ in
-                self.refreshControl?.action()
-            }
-        }
     }
     
 }

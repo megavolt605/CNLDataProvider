@@ -10,16 +10,17 @@ import Foundation
 
 import CNLFoundationTools
 
-public enum CNLModelErrorAlertStyle {
-    case info, error, warning
-}
-
-public struct CNLModelErrorAlertStruct {
-    public var type: CNLModelErrorAlertStyle
+public struct CNLModelErrorAlert {
+    
+    public enum Style {
+        case info, error, warning
+    }
+    
+    public var type: Style
     public var title: String?
     public var message: String
-    
-    public init?(type: CNLModelErrorAlertStyle, title: String?, message: String?) {
+
+    public init?(type: Style, title: String?, message: String?) {
         guard let message = message else { return nil }
         self.type = type
         self.title = title
@@ -32,8 +33,8 @@ public protocol CNLModelErrorKind {
 }
 
 public protocol CNLModelError {
-    var alertStruct: CNLModelErrorAlertStruct? { get }
-    var json: CNLDictionary? { get }
-    var kind: CNLModelErrorKind { get }
+    var alertStruct: CNLModel.ErrorAlert? { get }
+    var json: CNLDictionary? { get  }
+    var kind: CNLModel.ErrorKind { get }
     var success: Bool { get }
 }

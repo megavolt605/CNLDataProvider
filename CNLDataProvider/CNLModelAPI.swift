@@ -26,15 +26,15 @@ public enum CNLModelAPIMethod {
 public protocol CNLModelAPI {
     var request: CNLDictionary { get }
     var response: HTTPURLResponse? { get set }
-    var status: CNLModelError { get }
-    var statusKind: CNLModelErrorKind { get set }
-    var errorStatus: CNLModelError { get }
+    var status: CNLModel.Error { get }
+    var statusKind: CNLModel.ErrorKind { get set }
+    var errorStatus: CNLModel.Error { get }
     var answerJSON: CNLDictionary? { get set }
     var success: Bool { get }
     var endpoint: CNLModelAPIEndpoint? { get }
-    func errorStatus(_ error: Error?) -> CNLModelError
-    func createAlertStruct(_ json: CNLDictionary?, defaultType: CNLModelErrorAlertStyle) -> CNLModelErrorAlertStruct?
-    func createAlertStruct(_ defaultType: CNLModelErrorAlertStyle) -> CNLModelErrorAlertStruct?
+    func errorStatus(_ error: Error?) -> CNLModel.Error
+    func createAlertStruct(_ json: CNLDictionary?, defaultType: CNLModel.ErrorAlert.Style) -> CNLModel.ErrorAlert?
+    func createAlertStruct(_ defaultType: CNLModel.ErrorAlert.Style) -> CNLModel.ErrorAlert?
     init(endpoint: CNLModelAPIEndpoint)
 }
 

@@ -16,7 +16,7 @@ public protocol CNLModelDictionary {
     func loadFromDictionary(_ dictionary: CNLDictionary)
     func storeToDictionary() -> CNLDictionary
     func updateDictionary()
-    func updateDictionary(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed)
+    func updateDictionary(success: @escaping CNLModel.Success, failed: @escaping CNLModel.Failed)
 }
 
 public extension CNLModelDictionary where Self: CNLModelObject {
@@ -42,9 +42,9 @@ public extension CNLModelDictionary where Self: CNLModelObject {
         updateDictionary(success: { _, _ in }, failed: { _, _ in })
     }
     
-    public func updateDictionary(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed) {
+    public func updateDictionary(success: @escaping CNLModel.Success, failed: @escaping CNLModel.Failed) {
         if let localAPI = createAPI() {
-            CNLModelNetworkProvider?.performRequest(
+            CNLModel.networkProvider?.performRequest(
                 api: localAPI,
                 success: { apiObject in
                     if let json = apiObject.answerJSON {

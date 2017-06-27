@@ -19,7 +19,7 @@ public enum CNLDataProviderContentStateKind {
     }
     public var image: UIImage? {
         guard let imageName = imageName else { return nil }
-        let i = UIImage(named: imageName, in: Bundle(for: CNLModelDummy.self), compatibleWith: nil)
+        let i = UIImage(named: imageName, in: Bundle(for: CNLModel.self), compatibleWith: nil)
         return i
     }
 }

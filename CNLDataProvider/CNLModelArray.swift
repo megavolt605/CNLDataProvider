@@ -14,7 +14,7 @@ public var kCNLModelDefaultPageLimit: Int = 20
 
 // MARK: - CNLModelArray protocol
 public protocol CNLModelArray: class, CNLDataSourceModel {
-    associatedtype ArrayElement: CNLModelDictionary
+    //associatedtype ArrayElement: CNLModelDictionary
     
     func createItems(_ data: CNLDictionary) -> [ArrayElement]?
     func loadFromArray(_ array: CNLArray) -> [ArrayElement]
@@ -60,9 +60,9 @@ public extension CNLModelObject where Self: CNLModelArray {
         return result
     }
     
-    public func update(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed) {
+    public func update(success: @escaping CNLModel.Success, failed: @escaping CNLModel.Failed) {
         if let localAPI = createAPI() {
-            CNLModelNetworkProvider?.performRequest(
+            CNLModel.networkProvider?.performRequest(
                 api: localAPI,
                 success: { apiObject in
                     let data = self.preprocessData(apiObject.answerJSON)

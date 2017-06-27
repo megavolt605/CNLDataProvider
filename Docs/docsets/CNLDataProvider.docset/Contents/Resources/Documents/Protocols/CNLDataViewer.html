@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CNLDataViewer Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Protocol/CNLDataViewer" class="dashAnchor"></a>
+
+    <a title="CNLDataViewer Protocol Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          CNLDataProvider Docs
+        </a>
+         (0% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/megavolt605/CNLDataProvider">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">CNLDataProvider Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      CNLDataViewer Protocol Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Guides.html">Guides</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../readme.html">README</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CNLCollectionViewLoadMoreCell.html">CNLCollectionViewLoadMoreCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CNLDataSource.html">CNLDataSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CNLDataViewerRefreshControl.html">CNLDataViewerRefreshControl</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CNLTableViewLoadMoreCell.html">CNLTableViewLoadMoreCell</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Global Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Global Variables.html#/s:v15CNLDataProvider23CNLModelNetworkProviderGSqPS_15CNLModelNetwork__">CNLModelNetworkProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Global Variables.html#/s:v15CNLDataProvider25kCNLModelDefaultPageLimitSi">kCNLModelDefaultPageLimit</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/CNLDataProviderContentStateKind.html">CNLDataProviderContentStateKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/CNLDataViewerCellAnimation.html">CNLDataViewerCellAnimation</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/CNLDataViewerScrollPosition.html">CNLDataViewerScrollPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/CNLModelAPIMethod.html">CNLModelAPIMethod</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/CNLModelErrorAlertStyle.html">CNLModelErrorAlertStyle</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UICollectionView.html">UICollectionView</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UITableView.html">UITableView</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLCanShowViewAcvtitity.html">CNLCanShowViewAcvtitity</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLDataProvider.html">CNLDataProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLDataProviderContentState.html">CNLDataProviderContentState</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLDataProviderEditable.html">CNLDataProviderEditable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLDataSourceModel.html">CNLDataSourceModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLDataViewer.html">CNLDataViewer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLDataViewerActivity.html">CNLDataViewerActivity</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLDataViewerCell.html">CNLDataViewerCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLDataViewerHeader.html">CNLDataViewerHeader</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLDataViewerLoadMoreCell.html">CNLDataViewerLoadMoreCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLDataViewerRefreshControlProtocol.html">CNLDataViewerRefreshControlProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelAPI.html">CNLModelAPI</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelAPIEndpoint.html">CNLModelAPIEndpoint</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelArray.html">CNLModelArray</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelDataLoadable.html">CNLModelDataLoadable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelDictionary.html">CNLModelDictionary</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelDictionaryArray.html">CNLModelDictionaryArray</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelDictionaryDictionary.html">CNLModelDictionaryDictionary</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols.html#/s:P15CNLDataProvider27CNLModelDictionaryKeyStored">CNLModelDictionaryKeyStored</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelError.html">CNLModelError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelErrorKind.html">CNLModelErrorKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelImageLoadable.html">CNLModelImageLoadable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelIncrementalArray.html">CNLModelIncrementalArray</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelIncrementalArrayElement.html">CNLModelIncrementalArrayElement</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols.html#/s:P15CNLDataProvider37CNLModelIncrementalArrayElementStates">CNLModelIncrementalArrayElementStates</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelIncrementalTokenizedArray.html">CNLModelIncrementalTokenizedArray</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelMetaArray.html">CNLModelMetaArray</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols.html#/s:P15CNLDataProvider21CNLModelMetaArrayItem">CNLModelMetaArrayItem</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelNetwork.html">CNLModelNetwork</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelObject.html">CNLModelObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelObjectEditable.html">CNLModelObjectEditable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelObjectPrimaryKey.html">CNLModelObjectPrimaryKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelObjectTokenized.html">CNLModelObjectTokenized</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLRefreshableScrollView.html">CNLRefreshableScrollView</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/CNLDataProviderVariables.html">CNLDataProviderVariables</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/CNLModelErrorAlertStruct.html">CNLModelErrorAlertStruct</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/CNLModelMetaArrayInfo.html">CNLModelMetaArrayInfo</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>CNLDataViewer</h1>
+            <p>Undocumented</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP15CNLDataProvider13CNLDataViewer23allowsMultipleSelectionSb"></a>
+                    <a name="//apple_ref/swift/Property/allowsMultipleSelection" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP15CNLDataProvider13CNLDataViewer23allowsMultipleSelectionSb">allowsMultipleSelection</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP15CNLDataProvider13CNLDataViewer12contentInsetVSC12UIEdgeInsets"></a>
+                    <a name="//apple_ref/swift/Property/contentInset" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP15CNLDataProvider13CNLDataViewer12contentInsetVSC12UIEdgeInsets">contentInset</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP15CNLDataProvider13CNLDataViewer13contentOffsetVSC7CGPoint"></a>
+                    <a name="//apple_ref/swift/Property/contentOffset" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP15CNLDataProvider13CNLDataViewer13contentOffsetVSC7CGPoint">contentOffset</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP15CNLDataProvider13CNLDataViewer11contentSizeVSC6CGSize"></a>
+                    <a name="//apple_ref/swift/Property/contentSize" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP15CNLDataProvider13CNLDataViewer11contentSizeVSC6CGSize">contentSize</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP15CNLDataProvider13CNLDataViewer21scrollIndicatorInsetsVSC12UIEdgeInsets"></a>
+                    <a name="//apple_ref/swift/Property/scrollIndicatorInsets" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP15CNLDataProvider13CNLDataViewer21scrollIndicatorInsetsVSC12UIEdgeInsets">scrollIndicatorInsets</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP15CNLDataProvider13CNLDataViewer19ownerViewControllerGSqCSo16UIViewController_"></a>
+                    <a name="//apple_ref/swift/Property/ownerViewController" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP15CNLDataProvider13CNLDataViewer19ownerViewControllerGSqCSo16UIViewController_">ownerViewController</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP15CNLDataProvider13CNLDataViewer16setContentOffsetFTVSC7CGPoint8animatedSb_T_"></a>
+                    <a name="//apple_ref/swift/Method/setContentOffset(_:animated:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP15CNLDataProvider13CNLDataViewer16setContentOffsetFTVSC7CGPoint8animatedSb_T_">setContentOffset(_:animated:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP15CNLDataProvider13CNLDataViewer21selectItemAtIndexPathFTV10Foundation9IndexPath8animatedSb14scrollPositionOS_27CNLDataViewerScrollPosition_T_"></a>
+                    <a name="//apple_ref/swift/Method/selectItemAtIndexPath(_:animated:scrollPosition:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP15CNLDataProvider13CNLDataViewer21selectItemAtIndexPathFTV10Foundation9IndexPath8animatedSb14scrollPositionOS_27CNLDataViewerScrollPosition_T_">selectItemAtIndexPath(_:animated:scrollPosition:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP15CNLDataProvider13CNLDataViewer10addSubviewFCSo6UIViewT_"></a>
+                    <a name="//apple_ref/swift/Method/addSubview(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP15CNLDataProvider13CNLDataViewer10addSubviewFCSo6UIViewT_">addSubview(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP15CNLDataProvider13CNLDataViewer8cellTypeGSqFV10Foundation9IndexPathGSqPMPS_17CNLDataViewerCell___"></a>
+                    <a name="//apple_ref/swift/Property/cellType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP15CNLDataProvider13CNLDataViewer8cellTypeGSqFV10Foundation9IndexPathGSqPMPS_17CNLDataViewerCell___">cellType</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP15CNLDataProvider13CNLDataViewer10headerTypeGSqFSiGSqPMPS_19CNLDataViewerHeader___"></a>
+                    <a name="//apple_ref/swift/Property/headerType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP15CNLDataProvider13CNLDataViewer10headerTypeGSqFSiGSqPMPS_19CNLDataViewerHeader___">headerType</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP15CNLDataProvider13CNLDataViewer16loadMoreCellTypePMPs9AnyObject_"></a>
+                    <a name="//apple_ref/swift/Property/loadMoreCellType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP15CNLDataProvider13CNLDataViewer16loadMoreCellTypePMPs9AnyObject_">loadMoreCellType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP15CNLDataProvider13CNLDataViewer15initializeCellsFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/initializeCells()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP15CNLDataProvider13CNLDataViewer15initializeCellsFT_T_">initializeCells()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP15CNLDataProvider13CNLDataViewer12loadMoreCellFV10Foundation9IndexPathPS_25CNLDataViewerLoadMoreCell_"></a>
+                    <a name="//apple_ref/swift/Method/loadMoreCell(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP15CNLDataProvider13CNLDataViewer12loadMoreCellFV10Foundation9IndexPathPS_25CNLDataViewerLoadMoreCell_">loadMoreCell(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP15CNLDataProvider13CNLDataViewer10reloadDataFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/reloadData()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP15CNLDataProvider13CNLDataViewer10reloadDataFT_T_">reloadData()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP15CNLDataProvider13CNLDataViewer12batchUpdatesFFT_T_T_"></a>
+                    <a name="//apple_ref/swift/Method/batchUpdates(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP15CNLDataProvider13CNLDataViewer12batchUpdatesFFT_T_T_">batchUpdates(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP15CNLDataProvider13CNLDataViewer12batchUpdatesFT7updatesFT_T_10completionFSbT__T_"></a>
+                    <a name="//apple_ref/swift/Method/batchUpdates(updates:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP15CNLDataProvider13CNLDataViewer12batchUpdatesFT7updatesFT_T_10completionFSbT__T_">batchUpdates(updates:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP15CNLDataProvider13CNLDataViewer14insertSectionsFV10Foundation8IndexSetT_"></a>
+                    <a name="//apple_ref/swift/Method/insertSections(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP15CNLDataProvider13CNLDataViewer14insertSectionsFV10Foundation8IndexSetT_">insertSections(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP15CNLDataProvider13CNLDataViewer23insertItemsAtIndexPathsFGSaV10Foundation9IndexPath_T_"></a>
+                    <a name="//apple_ref/swift/Method/insertItemsAtIndexPaths(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP15CNLDataProvider13CNLDataViewer23insertItemsAtIndexPathsFGSaV10Foundation9IndexPath_T_">insertItemsAtIndexPaths(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP15CNLDataProvider13CNLDataViewer14deleteSectionsFV10Foundation8IndexSetT_"></a>
+                    <a name="//apple_ref/swift/Method/deleteSections(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP15CNLDataProvider13CNLDataViewer14deleteSectionsFV10Foundation8IndexSetT_">deleteSections(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP15CNLDataProvider13CNLDataViewer23deleteItemsAtIndexPathsFGSaV10Foundation9IndexPath_T_"></a>
+                    <a name="//apple_ref/swift/Method/deleteItemsAtIndexPaths(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP15CNLDataProvider13CNLDataViewer23deleteItemsAtIndexPathsFGSaV10Foundation9IndexPath_T_">deleteItemsAtIndexPaths(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP15CNLDataProvider13CNLDataViewer14reloadSectionsFTV10Foundation8IndexSet16withRowAnimationOS_26CNLDataViewerCellAnimation_T_"></a>
+                    <a name="//apple_ref/swift/Method/reloadSections(_:withRowAnimation:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP15CNLDataProvider13CNLDataViewer14reloadSectionsFTV10Foundation8IndexSet16withRowAnimationOS_26CNLDataViewerCellAnimation_T_">reloadSections(_:withRowAnimation:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP15CNLDataProvider13CNLDataViewer23reloadItemsAtIndexPathsFTGSaV10Foundation9IndexPath_13withAnimationOS_26CNLDataViewerCellAnimation_T_"></a>
+                    <a name="//apple_ref/swift/Method/reloadItemsAtIndexPaths(_:withAnimation:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP15CNLDataProvider13CNLDataViewer23reloadItemsAtIndexPathsFTGSaV10Foundation9IndexPath_13withAnimationOS_26CNLDataViewerCellAnimation_T_">reloadItemsAtIndexPaths(_:withAnimation:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP15CNLDataProvider13CNLDataViewer17selectedItemPathsFT_GSaV10Foundation9IndexPath_"></a>
+                    <a name="//apple_ref/swift/Method/selectedItemPaths()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP15CNLDataProvider13CNLDataViewer17selectedItemPathsFT_GSaV10Foundation9IndexPath_">selectedItemPaths()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP15CNLDataProvider13CNLDataViewer17scrollToIndexPathFTV10Foundation9IndexPath16atScrollPositionOS_27CNLDataViewerScrollPosition8animatedSb_T_"></a>
+                    <a name="//apple_ref/swift/Method/scrollToIndexPath(_:atScrollPosition:animated:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP15CNLDataProvider13CNLDataViewer17scrollToIndexPathFTV10Foundation9IndexPath16atScrollPositionOS_27CNLDataViewerScrollPosition8animatedSb_T_">scrollToIndexPath(_:atScrollPosition:animated:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP15CNLDataProvider13CNLDataViewer11scrollToTopFSbT_"></a>
+                    <a name="//apple_ref/swift/Method/scrollToTop(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP15CNLDataProvider13CNLDataViewer11scrollToTopFSbT_">scrollToTop(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP15CNLDataProvider13CNLDataViewer14scrollToBottomFSbT_"></a>
+                    <a name="//apple_ref/swift/Method/scrollToBottom(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP15CNLDataProvider13CNLDataViewer14scrollToBottomFSbT_">scrollToBottom(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP15CNLDataProvider13CNLDataViewer11deselectAllFSbT_"></a>
+                    <a name="//apple_ref/swift/Method/deselectAll(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP15CNLDataProvider13CNLDataViewer11deselectAllFSbT_">deselectAll(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP15CNLDataProvider13CNLDataViewer15createIndexPathFT4itemSi7sectionSi_V10Foundation9IndexPath"></a>
+                    <a name="//apple_ref/swift/Method/createIndexPath(item:section:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP15CNLDataProvider13CNLDataViewer15createIndexPathFT4itemSi7sectionSi_V10Foundation9IndexPath">createIndexPath(item:section:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP15CNLDataProvider13CNLDataViewer22cellForItemAtIndexPathuRd__S_15CNLDataProviderWd__9ModelTypePS_18CNLDataSourceModel12ArrayElement_S_14CNLModelObjectrFTqd__14cellIdentifierGSqSS_9indexPathV10Foundation9IndexPath7contextGSqPS5____Ps9AnyObject_"></a>
+                    <a name="//apple_ref/swift/Method/cellForItemAtIndexPath(_:cellIdentifier:indexPath:context:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP15CNLDataProvider13CNLDataViewer22cellForItemAtIndexPathuRd__S_15CNLDataProviderWd__9ModelTypePS_18CNLDataSourceModel12ArrayElement_S_14CNLModelObjectrFTqd__14cellIdentifierGSqSS_9indexPathV10Foundation9IndexPath7contextGSqPS5____Ps9AnyObject_">cellForItemAtIndexPath(_:cellIdentifier:indexPath:context:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP15CNLDataProvider13CNLDataViewer38notifyDelegateDidSelectItemAtIndexPathFV10Foundation9IndexPathT_"></a>
+                    <a name="//apple_ref/swift/Method/notifyDelegateDidSelectItemAtIndexPath(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP15CNLDataProvider13CNLDataViewer38notifyDelegateDidSelectItemAtIndexPathFV10Foundation9IndexPathT_">notifyDelegateDidSelectItemAtIndexPath(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2017 <a class="link" href="https://github.com/megavolt605/CNLDataProvider" target="_blank" rel="external">Complex Numbers</a>. All rights reserved. (Last updated: 2017-06-27)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

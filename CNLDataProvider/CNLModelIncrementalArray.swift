@@ -21,14 +21,14 @@ public protocol CNLModelIncrementalArrayElement: CNLModelObjectPrimaryKey {
 public protocol CNLModelIncrementalArray: class, CNLDataSourceModel {
     associatedtype ArrayElement: CNLModelIncrementalArrayElement, CNLModelDictionary
 
-    typealias CNLModelIncrementalArrayCompletion = (_ model: CNLModelObject, _ status: CNLModelError, _ created: [ArrayElement], _ modified: [ArrayElement], _ deleted: [ArrayElement.KeyType]) -> Void
+    typealias CNLModelIncrementalArrayCompletion = (_ model: CNLModelObject, _ status: CNLModel.Error, _ created: [ArrayElement], _ modified: [ArrayElement], _ deleted: [ArrayElement.KeyType]) -> Void
     
     var list: [ArrayElement] { get set }
     
     var lastTimestamp: Date? { get set }
     var statesLastTimestamp: Date? { get set }
     
-    func update(success: @escaping CNLModelIncrementalArrayCompletion, failed: @escaping CNLModelFailed)
+    func update(success: @escaping CNLModelIncrementalArrayCompletion, failed: @escaping CNLModel.Failed)
     
     func reset()
     func createItems(_ data: CNLDictionary) -> [ArrayElement]?
@@ -41,7 +41,7 @@ public protocol CNLModelIncrementalArray: class, CNLDataSourceModel {
 
     // states
     func createStatesAPI() -> CNLModelAPI?
-    func updateStates(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed)
+    func updateStates(success: @escaping CNLModel.Success, failed: @escaping CNLModel.Failed)
     func updateStatesFromDictionary(_ data: CNLDictionary)
     
     func createdItems(_ data: CNLDictionary?) -> [ArrayElement]?
@@ -123,16 +123,16 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
         return self.list.index { return $0.primaryKey == item.primaryKey }
     }
 
-    public func update(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed) {
+    public func update(success: @escaping CNLModel.Success, failed: @escaping CNLModel.Failed) {
         update(
             success: { model, error, _, _, _ in success(model, error) },
             failed: failed
         )
     }
     
-    public func update(success: @escaping CNLModelIncrementalArrayCompletion, failed: @escaping CNLModelFailed) {
+    public func update(success: @escaping CNLModelIncrementalArrayCompletion, failed: @escaping CNLModel.Failed) {
         if let localAPI = createAPI() {
-            CNLModelNetworkProvider?.performRequest(
+            CNLModel.networkProvider?.performRequest(
                 api: localAPI,
                 success: { apiObject in
                     
@@ -200,9 +200,9 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
         }
     }
 
-    public func updateStates(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed) {
+    public func updateStates(success: @escaping CNLModel.Success, failed: @escaping CNLModel.Failed) {
         if let statesAPI = createStatesAPI() {
-            CNLModelNetworkProvider?.performRequest(
+            CNLModel.networkProvider?.performRequest(
                 api: statesAPI,
                 success: { apiObject in
                     if let statesInfo = apiObject.answerJSON {

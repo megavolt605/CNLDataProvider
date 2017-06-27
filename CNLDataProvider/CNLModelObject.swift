@@ -10,21 +10,29 @@ import Foundation
 
 import CNLFoundationTools
 
-// used for access to resource through class bundle reference
-class CNLModelDummy {
+/// Common class used for access to resources through class bundle reference, holding singletone for network provider
+open class CNLModel {
+    /// Callback type for success network request completion
+    public typealias Success = (_ model: CNLModelObject, _ status: Error) -> Void
+    /// Callback type for failed network request
+    public typealias Failed = (_ model: CNLModelObject, _ error: Error?) -> Void
+
+    /// Type alias for CNLModelError
+    public typealias Error = CNLModelError
+    /// Type alias for CNLModelErrorKind
+    public typealias ErrorKind = CNLModelErrorKind
+    /// Type alias for CNLModelErrorAlert
+    public typealias ErrorAlert = CNLModelErrorAlert
     
+    open static var networkProvider: CNLModelNetwork?
 }
 
-public typealias CNLModelCompletion = (_ model: CNLModelObject, _ status: CNLModelError) -> Void
-public typealias CNLModelFailed = (_ model: CNLModelObject, _ error: CNLModelError?) -> Void
-
+/// Common model object
 public protocol CNLModelObject: class {
     func createAPI() -> CNLModelAPI?
-    var okStatus: CNLModelError { get }
+    var okStatus: CNLModel.Error { get }
     init()
 }
-
-public var CNLModelNetworkProvider: CNLModelNetwork?
 
 public extension CNLModelObject {
     
@@ -32,8 +40,8 @@ public extension CNLModelObject {
         return nil
     }
     
-    public func defaultAPIPerform(_ api: CNLModelAPI, success: @escaping CNLModelCompletion, fail: @escaping CNLModelFailed) {
-        CNLModelNetworkProvider?.performRequest(
+    public func defaultAPIPerform(_ api: CNLModelAPI, success: @escaping CNLModel.Success, fail: @escaping CNLModel.Failed) {
+        CNLModel.networkProvider?.performRequest(
             api: api,
             success: { apiObject in success(self, apiObject.status) },
             fail: { apiObject in fail(self, apiObject.errorStatus) },

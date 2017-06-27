@@ -14,14 +14,14 @@ import CNLFoundationTools
 fileprivate var cancelLoadingTaskCallbacksFunc = "cancelLoadingTaskCallbacksFunc"
 
 public protocol CNLModelDataLoadable: class {
-    func loadData(_ url: URL?, priority: Float?, userData: Any?, success: @escaping CNLModelNetworkDownloadFileSuccess, fail: @escaping CNLModelNetworkDownloadFileFail)
+    func loadData(_ url: URL?, priority: Float?, userData: Any?, success: @escaping CNLNetwork.Download.File.Success, fail: @escaping CNLNetwork.Download.File.Failed)
     func cancelLoading()
 }
 
 public extension CNLModelDataLoadable {
     
-    public func loadData(_ url: URL?, priority: Float?, userData: Any?, success: @escaping CNLModelNetworkDownloadFileSuccess, fail: @escaping CNLModelNetworkDownloadFileFail) {
-        let cancelTask = CNLModelNetworkProvider?.downloadFileFromURL(
+    public func loadData(_ url: URL?, priority: Float?, userData: Any?, success: @escaping CNLNetwork.Download.File.Success, fail: @escaping CNLNetwork.Download.File.Failed) {
+        let cancelTask = CNLModel.networkProvider?.downloadFileFromURL(
             url,
             priority: priority ?? 1.0,
             userData: userData,
@@ -70,12 +70,12 @@ public extension CNLModelDataLoadable {
 }
 
 public protocol CNLModelImageLoadable: CNLModelDataLoadable {
-    func loadImage(_ url: URL?, priority: Float?, userData: Any?, success: @escaping CNLModelNetworkDownloadImageSuccess, fail: @escaping CNLModelNetworkDownloadFileFail)
+    func loadImage(_ url: URL?, priority: Float?, userData: Any?, success: @escaping CNLNetwork.Download.Image.Success, fail: @escaping CNLNetwork.Download.File.Failed)
 }
 
 public extension CNLModelImageLoadable {
     
-    public func loadImage(_ url: URL?, priority: Float?, userData: Any?, success: @escaping CNLModelNetworkDownloadImageSuccess, fail: @escaping CNLModelNetworkDownloadFileFail) {
+    public func loadImage(_ url: URL?, priority: Float?, userData: Any?, success: @escaping CNLNetwork.Download.Image.Success, fail: @escaping CNLNetwork.Download.File.Failed) {
         let start = Date()
         
         guard let url = url else {
@@ -122,8 +122,8 @@ public protocol CNLModelResizableImageLoadable: CNLModelImageLoadable {
         userData: Any?,
         size: CGSize,
         scale: CGFloat?,
-        success: @escaping CNLModelNetworkDownloadImageSuccess,
-        fail: @escaping CNLModelNetworkDownloadFileFail
+        success: @escaping CNLNetwork.Download.Image.Success,
+        fail: @escaping CNLNetwork.Download.File.Failed
     )
 }
 
@@ -135,8 +135,8 @@ public extension CNLModelResizableImageLoadable {
         userData: Any?,
         size: CGSize,
         scale: CGFloat?,
-        success: @escaping CNLModelNetworkDownloadImageSuccess,
-        fail: @escaping CNLModelNetworkDownloadFileFail
+        success: @escaping CNLNetwork.Download.Image.Success,
+        fail: @escaping CNLNetwork.Download.File.Failed
         ) {
         
         guard let url = url else {
@@ -171,7 +171,7 @@ public extension CNLModelResizableImageLoadable {
     
     public func imageScale() -> CGFloat {
         var scale: CGFloat = 0.0
-        if !(CNLModelNetworkProvider?.isReachableOnEthernetOrWiFi ?? true) {
+        if !(CNLModel.networkProvider?.isReachableOnEthernetOrWiFi ?? true) {
             if let networkType = CTTelephonyNetworkInfo().currentRadioAccessTechnology {
                 switch networkType {
                 case CTRadioAccessTechnologyGPRS: scale = 1.5

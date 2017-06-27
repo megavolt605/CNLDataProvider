@@ -62,11 +62,11 @@ public extension CNLModelMetaArray where MetaArrayItem: CNLModelMetaArrayItem, M
         }
     }
     
-    public func update(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed) {
+    public func update(success: @escaping CNLModel.Success, failed: @escaping CNLModel.Failed) {
         updateMetaArray(success: success, failed: failed)
     }
     
-    public func updateMetaArray(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed) {
+    public func updateMetaArray(success: @escaping CNLModel.Success, failed: @escaping CNLModel.Failed) {
         
         var count = metaInfos.count
         
@@ -74,18 +74,18 @@ public extension CNLModelMetaArray where MetaArrayItem: CNLModelMetaArrayItem, M
         let signal: () -> Void = { count -= 1; if count == 0 { sem.signal() } }
         
         var wasFailed = false
-        var wasFailedError: CNLModelError?
-        var successStatus: CNLModelError?
+        var wasFailedError: CNLModel.Error?
+        var successStatus: CNLModel.Error?
         
         list = []
         
         metaInfos.forEach { item in
             item.model.update(
-                success: { model, status in
+                success: { _, status in
                     successStatus = status
                     signal()
                 },
-                failed: { model, error in
+                failed: { _, error in
                     wasFailed = true
                     wasFailedError = error
                     signal()

@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CNLModelObject Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Protocol/CNLModelObject" class="dashAnchor"></a>
+
+    <a title="CNLModelObject Protocol Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          CNLDataProvider Docs
+        </a>
+         (0% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/megavolt605/CNLDataProvider">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">CNLDataProvider Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      CNLModelObject Protocol Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Guides.html">Guides</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../readme.html">README</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CNLCollectionViewLoadMoreCell.html">CNLCollectionViewLoadMoreCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CNLDataSource.html">CNLDataSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CNLDataViewerRefreshControl.html">CNLDataViewerRefreshControl</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CNLTableViewLoadMoreCell.html">CNLTableViewLoadMoreCell</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Global Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Global Variables.html#/s:v15CNLDataProvider23CNLModelNetworkProviderGSqPS_15CNLModelNetwork__">CNLModelNetworkProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Global Variables.html#/s:v15CNLDataProvider25kCNLModelDefaultPageLimitSi">kCNLModelDefaultPageLimit</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/CNLDataProviderContentStateKind.html">CNLDataProviderContentStateKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/CNLDataViewerCellAnimation.html">CNLDataViewerCellAnimation</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/CNLDataViewerScrollPosition.html">CNLDataViewerScrollPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/CNLModelAPIMethod.html">CNLModelAPIMethod</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/CNLModelErrorAlertStyle.html">CNLModelErrorAlertStyle</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UICollectionView.html">UICollectionView</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UITableView.html">UITableView</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLCanShowViewAcvtitity.html">CNLCanShowViewAcvtitity</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLDataProvider.html">CNLDataProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLDataProviderContentState.html">CNLDataProviderContentState</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLDataProviderEditable.html">CNLDataProviderEditable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLDataSourceModel.html">CNLDataSourceModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLDataViewer.html">CNLDataViewer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLDataViewerActivity.html">CNLDataViewerActivity</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLDataViewerCell.html">CNLDataViewerCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLDataViewerHeader.html">CNLDataViewerHeader</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLDataViewerLoadMoreCell.html">CNLDataViewerLoadMoreCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLDataViewerRefreshControlProtocol.html">CNLDataViewerRefreshControlProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelAPI.html">CNLModelAPI</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelAPIEndpoint.html">CNLModelAPIEndpoint</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelArray.html">CNLModelArray</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelDataLoadable.html">CNLModelDataLoadable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelDictionary.html">CNLModelDictionary</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelDictionaryArray.html">CNLModelDictionaryArray</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelDictionaryDictionary.html">CNLModelDictionaryDictionary</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols.html#/s:P15CNLDataProvider27CNLModelDictionaryKeyStored">CNLModelDictionaryKeyStored</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelError.html">CNLModelError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelErrorKind.html">CNLModelErrorKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelImageLoadable.html">CNLModelImageLoadable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelIncrementalArray.html">CNLModelIncrementalArray</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelIncrementalArrayElement.html">CNLModelIncrementalArrayElement</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols.html#/s:P15CNLDataProvider37CNLModelIncrementalArrayElementStates">CNLModelIncrementalArrayElementStates</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelIncrementalTokenizedArray.html">CNLModelIncrementalTokenizedArray</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelMetaArray.html">CNLModelMetaArray</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols.html#/s:P15CNLDataProvider21CNLModelMetaArrayItem">CNLModelMetaArrayItem</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelNetwork.html">CNLModelNetwork</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelObject.html">CNLModelObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelObjectEditable.html">CNLModelObjectEditable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelObjectPrimaryKey.html">CNLModelObjectPrimaryKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLModelObjectTokenized.html">CNLModelObjectTokenized</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CNLRefreshableScrollView.html">CNLRefreshableScrollView</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/CNLDataProviderVariables.html">CNLDataProviderVariables</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/CNLModelErrorAlertStruct.html">CNLModelErrorAlertStruct</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/CNLModelMetaArrayInfo.html">CNLModelMetaArrayInfo</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>CNLModelObject</h1>
+            <p>Undocumented</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP15CNLDataProvider14CNLModelObject9createAPIFT_GSqPS_11CNLModelAPI__"></a>
+                    <a name="//apple_ref/swift/Method/createAPI()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP15CNLDataProvider14CNLModelObject9createAPIFT_GSqPS_11CNLModelAPI__">createAPI()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP15CNLDataProvider14CNLModelObject8okStatusPS_13CNLModelError_"></a>
+                    <a name="//apple_ref/swift/Property/okStatus" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP15CNLDataProvider14CNLModelObject8okStatusPS_13CNLModelError_">okStatus</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP15CNLDataProvider14CNLModelObjectcFT_x"></a>
+                    <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP15CNLDataProvider14CNLModelObjectcFT_x">init()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Fe15CNLDataProviderRxS_33CNLModelIncrementalTokenizedArrayxS_14CNLModelObjectrS1_5resetFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/reset()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Fe15CNLDataProviderRxS_33CNLModelIncrementalTokenizedArrayxS_14CNLModelObjectrS1_5resetFT_T_">reset()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Fe15CNLDataProviderRxS_33CNLModelIncrementalTokenizedArrayxS_14CNLModelObjectrS1_11createItemsFTGVs10DictionarySSP__9withTokenSS_GSqGSawxPS0_12ArrayElement__"></a>
+                    <a name="//apple_ref/swift/Method/createItems(_:withToken:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Fe15CNLDataProviderRxS_33CNLModelIncrementalTokenizedArrayxS_14CNLModelObjectrS1_11createItemsFTGVs10DictionarySSP__9withTokenSS_GSqGSawxPS0_12ArrayElement__">createItems(_:withToken:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Fe15CNLDataProviderRxS_33CNLModelIncrementalTokenizedArrayxS_14CNLModelObjectrS1_15defaultLoadFromFTGSaGVs10DictionarySSP___9withTokenSS_GSawxPS0_12ArrayElement_"></a>
+                    <a name="//apple_ref/swift/Method/defaultLoadFrom(_:withToken:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Fe15CNLDataProviderRxS_33CNLModelIncrementalTokenizedArrayxS_14CNLModelObjectrS1_15defaultLoadFromFTGSaGVs10DictionarySSP___9withTokenSS_GSawxPS0_12ArrayElement_">defaultLoadFrom(_:withToken:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Fe15CNLDataProviderRxS_33CNLModelIncrementalTokenizedArrayxS_14CNLModelObjectrS1_15defaultLoadFromFGVs10DictionarySSP__GSawxPS0_12ArrayElement_"></a>
+                    <a name="//apple_ref/swift/Method/defaultLoadFrom(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Fe15CNLDataProviderRxS_33CNLModelIncrementalTokenizedArrayxS_14CNLModelObjectrS1_15defaultLoadFromFGVs10DictionarySSP__GSawxPS0_12ArrayElement_">defaultLoadFrom(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Fe15CNLDataProviderRxS_33CNLModelIncrementalTokenizedArrayxS_14CNLModelObjectrS1_12createdItemsFGSqGVs10DictionarySSP___GSqGSawxPS0_12ArrayElement__"></a>
+                    <a name="//apple_ref/swift/Method/createdItems(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Fe15CNLDataProviderRxS_33CNLModelIncrementalTokenizedArrayxS_14CNLModelObjectrS1_12createdItemsFGSqGVs10DictionarySSP___GSqGSawxPS0_12ArrayElement__">createdItems(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Fe15CNLDataProviderRxS_33CNLModelIncrementalTokenizedArrayxS_14CNLModelObjectrS1_13modifiedItemsFGSqGVs10DictionarySSP___GSqGSawxPS0_12ArrayElement__"></a>
+                    <a name="//apple_ref/swift/Method/modifiedItems(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Fe15CNLDataProviderRxS_33CNLModelIncrementalTokenizedArrayxS_14CNLModelObjectrS1_13modifiedItemsFGSqGVs10DictionarySSP___GSqGSawxPS0_12ArrayElement__">modifiedItems(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Fe15CNLDataProviderRxS_33CNLModelIncrementalTokenizedArrayxS_14CNLModelObjectrS1_12deletedItemsFGSqGVs10DictionarySSP___GSqGSaWxPS0_12ArrayElementPS_24CNLModelObjectPrimaryKey7KeyType___"></a>
+                    <a name="//apple_ref/swift/Method/deletedItems(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Fe15CNLDataProviderRxS_33CNLModelIncrementalTokenizedArrayxS_14CNLModelObjectrS1_12deletedItemsFGSqGVs10DictionarySSP___GSqGSaWxPS0_12ArrayElementPS_24CNLModelObjectPrimaryKey7KeyType___">deletedItems(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Fe15CNLDataProviderRxS_33CNLModelIncrementalTokenizedArrayxS_14CNLModelObjectrS1_18loadFromDictionaryFGVs10DictionarySSP__GSawxPS0_12ArrayElement_"></a>
+                    <a name="//apple_ref/swift/Method/loadFromDictionary(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Fe15CNLDataProviderRxS_33CNLModelIncrementalTokenizedArrayxS_14CNLModelObjectrS1_18loadFromDictionaryFGVs10DictionarySSP__GSawxPS0_12ArrayElement_">loadFromDictionary(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Fe15CNLDataProviderRxS_33CNLModelIncrementalTokenizedArrayxS_14CNLModelObjectrS1_17storeToDictionaryFT_GVs10DictionarySSP__"></a>
+                    <a name="//apple_ref/swift/Method/storeToDictionary()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Fe15CNLDataProviderRxS_33CNLModelIncrementalTokenizedArrayxS_14CNLModelObjectrS1_17storeToDictionaryFT_GVs10DictionarySSP__">storeToDictionary()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Fe15CNLDataProviderRxS_33CNLModelIncrementalTokenizedArrayxS_14CNLModelObjectrS1_7indexOfFT4itemwxPS0_12ArrayElement_GSqSi_"></a>
+                    <a name="//apple_ref/swift/Method/indexOf(item:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Fe15CNLDataProviderRxS_33CNLModelIncrementalTokenizedArrayxS_14CNLModelObjectrS1_7indexOfFT4itemwxPS0_12ArrayElement_GSqSi_">indexOf(item:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Fe15CNLDataProviderRxS_33CNLModelIncrementalTokenizedArrayxS_14CNLModelObjectrS1_26updateStatesFromDictionaryFGVs10DictionarySSP__T_"></a>
+                    <a name="//apple_ref/swift/Method/updateStatesFromDictionary(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Fe15CNLDataProviderRxS_33CNLModelIncrementalTokenizedArrayxS_14CNLModelObjectrS1_26updateStatesFromDictionaryFGVs10DictionarySSP__T_">updateStatesFromDictionary(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Fe15CNLDataProviderRxS_33CNLModelIncrementalTokenizedArrayxS_14CNLModelObjectrS1_26updateStatesFromDictionaryFTGVs10DictionarySSP__10forItemKeyWxPS0_12ArrayElementPS_24CNLModelObjectPrimaryKey7KeyType_9withTokenSS_T_"></a>
+                    <a name="//apple_ref/swift/Method/updateStatesFromDictionary(_:forItemKey:withToken:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Fe15CNLDataProviderRxS_33CNLModelIncrementalTokenizedArrayxS_14CNLModelObjectrS1_26updateStatesFromDictionaryFTGVs10DictionarySSP__10forItemKeyWxPS0_12ArrayElementPS_24CNLModelObjectPrimaryKey7KeyType_9withTokenSS_T_">updateStatesFromDictionary(_:forItemKey:withToken:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Fe15CNLDataProviderRxS_33CNLModelIncrementalTokenizedArrayxS_14CNLModelObjectrS1_cFT10dictionaryGSqGVs10DictionarySSP____GSqx_"></a>
+                    <a name="//apple_ref/swift/Method/init(dictionary:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Fe15CNLDataProviderRxS_33CNLModelIncrementalTokenizedArrayxS_14CNLModelObjectrS1_cFT10dictionaryGSqGVs10DictionarySSP____GSqx_">init(dictionary:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FE15CNLDataProviderPS_14CNLModelObject17defaultAPIPerformFTPS_11CNLModelAPI_7successFTPS0__PS_13CNLModelError__T_4failFTPS0__GSqPS2____T__T_"></a>
+                    <a name="//apple_ref/swift/Method/defaultAPIPerform(_:success:fail:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FE15CNLDataProviderPS_14CNLModelObject17defaultAPIPerformFTPS_11CNLModelAPI_7successFTPS0__PS_13CNLModelError__T_4failFTPS0__GSqPS2____T__T_">defaultAPIPerform(_:success:fail:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Fe15CNLDataProviderRxS_23CNLModelDictionaryArrayxS_14CNLModelObjectrS1_5resetFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/reset()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Fe15CNLDataProviderRxS_23CNLModelDictionaryArrayxS_14CNLModelObjectrS1_5resetFT_T_">reset()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Fe15CNLDataProviderRxS_23CNLModelDictionaryArrayxS_14CNLModelObjectrS1_cFT5arrayGSqGSaGVs10DictionarySSP_____GSqx_"></a>
+                    <a name="//apple_ref/swift/Method/init(array:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Fe15CNLDataProviderRxS_23CNLModelDictionaryArrayxS_14CNLModelObjectrS1_cFT5arrayGSqGSaGVs10DictionarySSP_____GSqx_">init(array:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Fe15CNLDataProviderRxS_23CNLModelDictionaryArrayxS_14CNLModelObjectrS1_28loadFromDictionaryDictionaryFGSaGVs10DictionarySSP___T_"></a>
+                    <a name="//apple_ref/swift/Method/loadFromDictionaryDictionary(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Fe15CNLDataProviderRxS_23CNLModelDictionaryArrayxS_14CNLModelObjectrS1_28loadFromDictionaryDictionaryFGSaGVs10DictionarySSP___T_">loadFromDictionaryDictionary(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Fe15CNLDataProviderRxS_23CNLModelDictionaryArrayxS_14CNLModelObjectrS1_27storeToDictionaryDictionaryFT_GSaGVs10DictionarySSP___"></a>
+                    <a name="//apple_ref/swift/Method/storeToDictionaryDictionary()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Fe15CNLDataProviderRxS_23CNLModelDictionaryArrayxS_14CNLModelObjectrS1_27storeToDictionaryDictionaryFT_GSaGVs10DictionarySSP___">storeToDictionaryDictionary()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Fe15CNLDataProviderRxS_28CNLModelDictionaryDictionaryxS_14CNLModelObjectrS1_5resetFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/reset()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Fe15CNLDataProviderRxS_28CNLModelDictionaryDictionaryxS_14CNLModelObjectrS1_5resetFT_T_">reset()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Fe15CNLDataProviderRxS_28CNLModelDictionaryDictionaryxS_14CNLModelObjectrS1_28loadFromDictionaryDictionaryFT5arrayGVs10DictionarySSP___T_"></a>
+                    <a name="//apple_ref/swift/Method/loadFromDictionaryDictionary(array:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Fe15CNLDataProviderRxS_28CNLModelDictionaryDictionaryxS_14CNLModelObjectrS1_28loadFromDictionaryDictionaryFT5arrayGVs10DictionarySSP___T_">loadFromDictionaryDictionary(array:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Fe15CNLDataProviderRxS_28CNLModelDictionaryDictionaryxS_14CNLModelObjectrS1_27storeToDictionaryDictionaryFT_GVs10DictionarySSP__"></a>
+                    <a name="//apple_ref/swift/Method/storeToDictionaryDictionary()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Fe15CNLDataProviderRxS_28CNLModelDictionaryDictionaryxS_14CNLModelObjectrS1_27storeToDictionaryDictionaryFT_GVs10DictionarySSP__">storeToDictionaryDictionary()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Fe15CNLDataProviderRxS_28CNLModelDictionaryDictionaryxS_14CNLModelObjectrS1_cFT5arrayGSqGVs10DictionarySSP____GSqx_"></a>
+                    <a name="//apple_ref/swift/Method/init(array:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Fe15CNLDataProviderRxS_28CNLModelDictionaryDictionaryxS_14CNLModelObjectrS1_cFT5arrayGSqGVs10DictionarySSP____GSqx_">init(array:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2017 <a class="link" href="https://github.com/megavolt605/CNLDataProvider" target="_blank" rel="external">Complex Numbers</a>. All rights reserved. (Last updated: 2017-06-27)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

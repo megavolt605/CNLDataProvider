@@ -1,0 +1,1 @@
+jazzy -x -workspace,CNLDataProvider.xcworkspace,-scheme,CNLDataProvider -a Complex\ Numbers -o ./Docs --sdk iphoneos --documentation=./*.md --github_url https://github.com/megavolt605/CNLDataProvider --theme fullwidth

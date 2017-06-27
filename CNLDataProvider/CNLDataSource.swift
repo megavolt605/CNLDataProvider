@@ -20,7 +20,7 @@ public protocol CNLDataSourceModel: class {
     func pagingReset()
     func reset()
     func update()
-    func update(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed)
+    func update(success: @escaping CNLModel.Success, failed: @escaping CNLModel.Failed)
     func requestCompleted()
     
     init()
@@ -144,7 +144,7 @@ open class CNLDataSource<ModelType: CNLDataSourceModel> {
         return model.isPagingEnabled
     }
     
-    func update(success: @escaping CNLModelCompletion, failed: @escaping CNLModelFailed) {
+    func update(success: @escaping CNLModel.Success, failed: @escaping CNLModel.Failed) {
         model.update(success: success, failed: failed)
     }
     
