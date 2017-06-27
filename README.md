@@ -20,6 +20,18 @@ use_frameworks!
 pod 'CNLDataProvider'
 ```
 
+## Dependicies
+
+This framework depends on other frameworks:
+
+[CNLFoundationTools](https://www.github.com/megavolt605/CNLFoundationTools) - common tools for the Foundation framework
+
+[CNLUIKitTools](https://www.github.com/megavolt605/CNLUIKitTools") - common tools for the UIKit framework
+
+## Documentation
+
+You can found yazzy-generated documentation right here, in the <Docs folder
+
 ## Usage
 
 ## Author
@@ -28,4 +40,4 @@ pod 'CNLDataProvider'
 
 ## License
 
-CNLFoundationTools is released under [MIT license](https://raw.githubusercontent.com/xmartlabs/XLActionController/master/LICENSE) and copyrighted by Igor Smirnov.
+CNLDataProvider is released under [MIT license](https://raw.githubusercontent.com/xmartlabs/XLActionController/master/LICENSE) and copyrighted by Igor Smirnov.

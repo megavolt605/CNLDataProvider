@@ -10,66 +10,144 @@ import Foundation
 
 import CNLFoundationTools
 
+/// Common data provider
 public protocol CNLDataProvider: class {
+    /// Associated model type with the provider
     associatedtype ModelType: CNLModelObject, CNLDataSourceModel
     
+    /// Datasource proxy object for the provider
     var dataSource: CNLDataSource<ModelType>! { get set }
+
+    /// Data viewer (table view, collection view or what ever)
     var dataViewer: CNLDataViewer { get }
+
+    /// Provider state variables
     var dataProviderVariables: CNLDataProviderVariables<ModelType> { get set }
     
-    // content state
+    /// Content state
     var contentState: CNLDataProviderContentState? { get set }
+
+    /// Empty data set flag (read only)
     var noData: Bool { get }
+
+    /// Updates visual content state (no data, no network, etc.)
     func updateContentState()
+
+    /// Calculates current counts for sections, items with in sections
     func updateCounts()
     
+    /// Called before new fetch
     func beforeFetch()
+
+    /// Performs fetch new model objects from beginning
+    ///
+    /// - Parameter completed: Completion closure
     func fetchFromStart(completed: ((_ success: Bool) -> Void)?)
+
+    /// Performs fetch next frame of model objects
+    ///
+    /// - Parameter completed: Completion closure
     func fetchNext(completed: ((_ success: Bool) -> Void)?)
+
+    /// Called after fetch is completed
     func afterFetch()
     
+    /// Number of sections (read only)
     var sectionCount: Int { get }
+
+    /// Returns number of model items in the section
+    ///
+    /// - Parameter section: Section index
     func itemCountInSection(section: Int) -> Int
     
+    /// Returns section index for the model item
+    ///
+    /// - Parameter item: Model item
+    /// - Returns: Section index
     func sectionForItem(item: ModelType.ArrayElement) -> Int
+
+    /// Returns display text for the section in witch model item belongs to
+    ///
+    /// - Parameter item: Model item
+    /// - Returns: Display text
     func sectionTextForItem(item: ModelType.ArrayElement) -> String
     
+    /// Returns model item for the index path
+    ///
+    /// - Parameter indexPath: Index path for item
+    /// - Returns: Model item
     func itemAtIndexPath(indexPath: IndexPath) -> ModelType.ArrayElement?
+    
+    /// Returns index path for the model item
+    ///
+    /// - Parameter check: Model item
+    /// - Returns: Index path of the item
     func indexPathOfItem(check: (_ modelItem: ModelType.ArrayElement) -> Bool) -> IndexPath?
+    
+    /// Returns array of index paths for model items array
+    ///
+    /// - Parameter check: Model items array
+    /// - Returns: Array of index path for items array
     func indexPathsOfItems(check: (_ modelItem: ModelType.ArrayElement) -> Bool) -> [IndexPath]
     
+    /// Basic initializer with data source instance.
+    /// Usually called in viewDidLoad() function
+    ///
+    /// - Parameters:
+    ///   - dataSource: Data source for the provider
+    ///   - fetch: Perform initial fetch (invoke FullRefrsh())
     func initializeWith(dataSource: CNLDataSource<ModelType>, fetch: Bool)
 }
 
+// MARK: - Default implementations
 public extension CNLDataProvider {
     
+    /// Default implementation. True when data source model list have more than 0 items
     public var noData: Bool {
         return dataSource.model.list.count <= 0
     }
     
+    /// Default implementation. Returns .noData when noData property is false, .normal otherwise
     public func updateContentState() {
         contentState?.kind = noData ? .noData : .normal
     }
     
+    /// Default implementation. Get cached section title using sectionTextForItem(item:). Returns 0 if it not found
+    ///
+    /// - Parameter item: Model item
+    /// - Returns: Section index
     public func sectionForItem(item: ModelType.ArrayElement) -> Int {
         let sectionText = sectionTextForItem(item: item)
         let res = dataProviderVariables.sectionTitles.index(of: sectionText) ?? 0
         return res
     }
     
+    /// Default implementation. Returns empty string. Override it for your purposes.
+    ///
+    /// - Parameter item: Model item
+    /// - Returns: Empty string
     public func sectionTextForItem(item: ModelType.ArrayElement) -> String {
         return ""
     }
     
+    /// Default implementation. Cached section count
     public var sectionCount: Int {
         return dataProviderVariables.sectionIndexes.count
     }
     
+    /// Default implementation. Cached item count in the section
+    ///
+    /// - Parameter section: Section index
+    /// - Returns: Number of model items in the section
     public func itemCountInSection(section: Int) -> Int {
         let res = (dataProviderVariables.sectionIndexes[section] ?? []).count
         return res
     }
     
+    /// Default implementation. Returns model item by index path
+    ///
+    /// - Parameter indexPath: Index path
+    /// - Returns: Model item
     public func itemAtIndexPath(indexPath: IndexPath) -> ModelType.ArrayElement? {
         if let index = dataProviderVariables.dataSourceIndexForIndexPath(indexPath) {
             return dataSource.itemAtIndex(index)
@@ -77,6 +155,10 @@ public extension CNLDataProvider {
         return nil
     }
     
+    /// Default implementation. Returns index path using conditional closure
+    ///
+    /// - Parameter check: Conditional closure. Returns Bool
+    /// - Returns: Index path (Optional)
     public func indexPathOfItem(check: (_ modelItem: ModelType.ArrayElement) -> Bool) -> IndexPath? {
         for (sectionIndex, section) in dataProviderVariables.sectionIndexes.enumerated() {
             for (itemIndex, modelItemIndex) in section.1.enumerated() {
@@ -89,6 +171,10 @@ public extension CNLDataProvider {
         return nil
     }
     
+    /// Default implementation. Returns array of index paths using conditional closure
+    ///
+    /// - Parameter check: Conditional closure. Returns Bool
+    /// - Returns: Result array of index path for all model items that applies conditional closure call
     public func indexPathsOfItems(check: (_ modelItem: ModelType.ArrayElement) -> Bool) -> [IndexPath] {
         var res: [IndexPath] = []
         for (sectionIndex, section) in dataProviderVariables.sectionIndexes.enumerated() {
@@ -102,6 +188,9 @@ public extension CNLDataProvider {
         return res
     }
     
+    /// Returns array of index path with all items
+    ///
+    /// - Returns: Result array
     fileprivate func sectionRowIndexes() -> [IndexPath] {
         return dataProviderVariables.sectionIndexes.flatMap { section, items in
             return items.enumerated().map { (index, item) in
@@ -110,12 +199,16 @@ public extension CNLDataProvider {
         }
     }
     
+    /// Returns index set for all sections
+    ///
+    /// - Returns: Result index set
     fileprivate func sectionIndexes() -> IndexSet {
         var res = IndexSet()
         dataProviderVariables.sectionIndexes.forEach { section, _ in res.insert(section) }
         return res
     }
     
+    /// Default implementation. Update cached section information based on current data source values
     fileprivate func updateSetcions() {
         dataProviderVariables.sectionTitles = []
         dataSource.forEach { item in
@@ -126,14 +219,19 @@ public extension CNLDataProvider {
         }
     }
     
+    /// Default implementation. Does nothing
     public func beforeFetch() {
         
     }
     
+    /// Default implementation. Does nothing
     public func afterFetch() {
         
     }
     
+    /// Default implementation. Fetch model items from the data source from the beginning
+    ///
+    /// - Parameter completed: Completion callback
     public func fetchFromStart(completed: ((_ success: Bool) -> Void)? = nil) {
         beforeFetch()
         dataSource.model.pagingReset()
@@ -152,6 +250,9 @@ public extension CNLDataProvider {
         )
     }
     
+    /// Default implementation. Fetch next frame of model items from the data source
+    ///
+    /// - Parameter completed: Completion closure
     public func fetchNext(completed: ((_ success: Bool) -> Void)?) {
         dataSource.model.fromIndex = dataSource.count - dataSource.model.additionalRecords
         if (dataSource.model.fromIndex != 0) && !dataProviderVariables.isFetching {
@@ -173,6 +274,9 @@ public extension CNLDataProvider {
         }
     }
     
+    /// Default implementation. Refresh all data. Calls frtchFromStart(completion:)
+    ///
+    /// - Parameter showActivity: Show view activity if self is implemented CNLCanShowViewActivity protocol
     public func fullRefresh(showActivity: Bool = true) {
         if let canShowViewActivity = self as? CNLCanShowViewAcvtitity, showActivity {
             canShowViewActivity.startViewActivity(nil, completion: nil)
@@ -186,6 +290,9 @@ public extension CNLDataProvider {
         }
     }
     
+    /// Default implementation. Updates data viewer after fetchFromStart
+    ///
+    /// - Parameter completed: Completion callback
     public func updateDataViewer(completed: ((_ success: Bool) -> Void)? = nil) {
         self.dataViewer.batchUpdates(
             updates: {
@@ -242,6 +349,9 @@ public extension CNLDataProvider {
         )
     }
     
+    /// Default implementation. Updates data viewer after fetchNext
+    ///
+    /// - Parameter completed: Completion callback
     public func updateDataViewerPage(completed: ((_ success: Bool) -> Void)?) {
         let savedSections = self.dataProviderVariables.sectionIndexes
         let savedLoadMore = self.dataProviderVariables.loadMore
@@ -325,12 +435,20 @@ public extension CNLDataProvider {
         )
     }
     
+    /// Default implementation. Initialize data provider with data source and assotiated model type
+    ///
+    /// - Parameters:
+    ///   - dataSource: Data source instance
+    ///   - fetch: Perform initial fetch flag (calls fullRefresh())
     public func initializeWith(dataSource: CNLDataSource<ModelType>, fetch: Bool = true) {
         dataViewer.initializeCells()
         self.dataSource = dataSource
         fullRefresh()
     }
     
+    /// Collect section/items count information for cach purposes
+    ///
+    /// - Returns: Calculated values
     fileprivate func updateCountsCollectItems() -> [Int:[Int]] {
         var res: [Int:[Int]] = [:]
         dataProviderVariables.loadMore.section = 0
@@ -349,35 +467,10 @@ public extension CNLDataProvider {
         return res
     }
     
+    /// Default implementation. Update cached counts for sections, manages visibility flag for artifical "load more" section and item
     public func updateCounts() {
         let totalCount = dataSource.model.totalRecords
         let additionalCount = dataSource.model.additionalRecords
-        #if DEBUG
-            CNLLog("ds.c \(dataSource.count)", level: .debug)
-            CNLLog("ac \(additionalCount)", level: .debug)
-            CNLLog("tc \(totalCount ?? 0)", level: .debug)
-            CNLLog(dataProviderVariables.loadMore.visible, level: .debug)
-        #endif
-        dataProviderVariables.loadMore.visible = dataSource.model.isPagingEnabled && ((totalCount == nil) || ((dataSource.count - additionalCount) != totalCount))
-        
-        var res = updateCountsCollectItems()
-        if dataProviderVariables.loadMore.visible { res[dataProviderVariables.loadMore.section] = [0] }
-        dataProviderVariables.sectionIndexes = res
-    }
-    
-}
-
-extension CNLDataProvider where Self.ModelType: CNLModelMetaArray {
-
-    public func updateCounts() {
-        let totalCount = dataSource.model.totalRecords
-        let additionalCount = dataSource.model.additionalRecords
-        #if DEBUG
-            CNLLog("ds.c \(dataSource.count)", level: .debug)
-            CNLLog("ac \(additionalCount)", level: .debug)
-            CNLLog("tc \(totalCount ?? 0)", level: .debug)
-            CNLLog(dataProviderVariables.loadMore.visible, level: .debug)
-        #endif
         dataProviderVariables.loadMore.visible = dataSource.model.isPagingEnabled && ((totalCount == nil) || ((dataSource.count - additionalCount) != totalCount))
         
         var res = updateCountsCollectItems()

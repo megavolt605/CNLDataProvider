@@ -1,7 +1,0 @@
-# coverage_service: coveralls
-workspace: CNLDataProvider.xcworkspace
-xcodeproj: CNLDataProvider.xcodeproj
-scheme: CNLDataProvider
-ignore:
-  - CNLDataProviderTests/*
-  - Pods/*

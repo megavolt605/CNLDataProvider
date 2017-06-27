@@ -1,167 +1,6 @@
 {
   "warnings": [
     {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLCanShowViewActivity.swift",
-      "line": 11,
-      "symbol": "CNLCanShowViewAcvtitity",
-      "symbol_kind": "source.lang.swift.decl.protocol",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLCanShowViewActivity.swift",
-      "line": 12,
-      "symbol": "CNLCanShowViewAcvtitity.startViewActivity(_:completion:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLCanShowViewActivity.swift",
-      "line": 13,
-      "symbol": "CNLCanShowViewAcvtitity.finishViewActivity()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataProvider.swift",
-      "line": 13,
-      "symbol": "CNLDataProvider",
-      "symbol_kind": "source.lang.swift.decl.protocol",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataProvider.swift",
-      "line": 16,
-      "symbol": "CNLDataProvider.dataSource",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataProvider.swift",
-      "line": 17,
-      "symbol": "CNLDataProvider.dataViewer",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataProvider.swift",
-      "line": 18,
-      "symbol": "CNLDataProvider.dataProviderVariables",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataProvider.swift",
-      "line": 21,
-      "symbol": "CNLDataProvider.contentState",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataProvider.swift",
-      "line": 22,
-      "symbol": "CNLDataProvider.noData",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataProvider.swift",
-      "line": 23,
-      "symbol": "CNLDataProvider.updateContentState()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataProvider.swift",
-      "line": 24,
-      "symbol": "CNLDataProvider.updateCounts()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataProvider.swift",
-      "line": 26,
-      "symbol": "CNLDataProvider.beforeFetch()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataProvider.swift",
-      "line": 27,
-      "symbol": "CNLDataProvider.fetchFromStart(completed:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataProvider.swift",
-      "line": 28,
-      "symbol": "CNLDataProvider.fetchNext(completed:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataProvider.swift",
-      "line": 29,
-      "symbol": "CNLDataProvider.afterFetch()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataProvider.swift",
-      "line": 31,
-      "symbol": "CNLDataProvider.sectionCount",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataProvider.swift",
-      "line": 32,
-      "symbol": "CNLDataProvider.itemCountInSection(section:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataProvider.swift",
-      "line": 34,
-      "symbol": "CNLDataProvider.sectionForItem(item:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataProvider.swift",
-      "line": 35,
-      "symbol": "CNLDataProvider.sectionTextForItem(item:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataProvider.swift",
-      "line": 37,
-      "symbol": "CNLDataProvider.itemAtIndexPath(indexPath:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataProvider.swift",
-      "line": 38,
-      "symbol": "CNLDataProvider.indexPathOfItem(check:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataProvider.swift",
-      "line": 39,
-      "symbol": "CNLDataProvider.indexPathsOfItems(check:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataProvider.swift",
-      "line": 41,
-      "symbol": "CNLDataProvider.initializeWith(dataSource:fetch:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataProviderContentState.swift",
       "line": 11,
       "symbol": "CNLDataProviderContentStateKind",
@@ -486,153 +325,160 @@
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataSource.swift",
       "line": 35,
+      "symbol": "CNLDataSourceModel.defaultPageLimit",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataSource.swift",
+      "line": 37,
       "symbol": "CNLDataSourceModel.pageLimit",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataSource.swift",
-      "line": 36,
+      "line": 38,
       "symbol": "CNLDataSourceModel.isPagingEnabled",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataSource.swift",
-      "line": 38,
+      "line": 40,
       "symbol": "CNLDataSourceModel.reset()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataSource.swift",
-      "line": 42,
+      "line": 44,
       "symbol": "CNLDataSourceModel.pagingReset()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataSource.swift",
-      "line": 49,
+      "line": 51,
       "symbol": "CNLDataSourceModel.fromIndex",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataSource.swift",
-      "line": 62,
+      "line": 64,
       "symbol": "CNLDataSourceModel.totalRecords",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataSource.swift",
-      "line": 75,
+      "line": 77,
       "symbol": "CNLDataSourceModel.additionalRecords",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataSource.swift",
-      "line": 88,
+      "line": 90,
       "symbol": "CNLDataSourceModel.update()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataSource.swift",
-      "line": 92,
+      "line": 94,
       "symbol": "CNLDataSourceModel.requestCompleted()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataSource.swift",
-      "line": 96,
+      "line": 98,
       "symbol": "CNLDataSource",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataSource.swift",
-      "line": 99,
+      "line": 101,
       "symbol": "CNLDataSource.model",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataSource.swift",
-      "line": 103,
+      "line": 105,
       "symbol": "CNLDataSource.reset()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataSource.swift",
-      "line": 107,
+      "line": 109,
       "symbol": "CNLDataSource.init(model:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataSource.swift",
-      "line": 111,
+      "line": 113,
       "symbol": "CNLDataSource.init(model:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataSource.swift",
-      "line": 115,
+      "line": 117,
       "symbol": "CNLDataSource.init()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataSource.swift",
-      "line": 120,
+      "line": 122,
       "symbol": "CNLDataSource.allItems",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataSource.swift",
-      "line": 121,
+      "line": 123,
       "symbol": "CNLDataSource.count",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataSource.swift",
-      "line": 123,
+      "line": 125,
       "symbol": "CNLDataSource.enumerated()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataSource.swift",
-      "line": 127,
+      "line": 129,
       "symbol": "CNLDataSource.forEach(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataSource.swift",
-      "line": 131,
+      "line": 133,
       "symbol": "CNLDataSource.itemAtIndex(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataSource.swift",
-      "line": 135,
+      "line": 137,
       "symbol": "CNLDataSource.replaceList(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataSource.swift",
-      "line": 139,
+      "line": 141,
       "symbol": "CNLDataSource.requestCompleted()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -1556,14 +1402,7 @@
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataViewerActivity.swift",
-      "line": 88,
-      "symbol": "CNLRefreshableScrollView.refreshNotificationIdentifier",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataViewerActivity.swift",
-      "line": 90,
+      "line": 89,
       "symbol": "CNLRefreshableScrollView.initializeRefresher(_:color:activity:beforeRefresh:action:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -1571,20 +1410,34 @@
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataViewerActivity.swift",
       "line": 103,
-      "symbol": "CNLRefreshableScrollView.refreshNotificationIdentifier",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataViewerActivity.swift",
-      "line": 105,
       "symbol": "CNLRefreshableScrollView.refreshControl",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataViewerActivity.swift",
-      "line": 118,
+      "line": 116,
+      "symbol": "CNLRefreshableScrollView.notificationObserver",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataViewerActivity.swift",
+      "line": 129,
+      "symbol": "CNLRefreshableScrollView.registerRefreshNotifications(withName:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataViewerActivity.swift",
+      "line": 135,
+      "symbol": "CNLRefreshableScrollView.removeRefreshNotifications()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLDataViewerActivity.swift",
+      "line": 141,
       "symbol": "CNLRefreshableScrollView.initializeRefresher(_:color:activity:beforeRefresh:action:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -1884,69 +1737,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelArray.swift",
-      "line": 13,
-      "symbol": "kCNLModelDefaultPageLimit",
-      "symbol_kind": "source.lang.swift.decl.var.global",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelArray.swift",
-      "line": 16,
-      "symbol": "CNLModelArray",
-      "symbol_kind": "source.lang.swift.decl.protocol",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelArray.swift",
-      "line": 19,
-      "symbol": "CNLModelArray.createItems(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelArray.swift",
-      "line": 20,
-      "symbol": "CNLModelArray.loadFromArray(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelArray.swift",
-      "line": 21,
-      "symbol": "CNLModelArray.storeToArray()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelArray.swift",
-      "line": 22,
-      "symbol": "CNLModelArray.afterLoad(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelArray.swift",
-      "line": 23,
-      "symbol": "CNLModelArray.rows(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelArray.swift",
-      "line": 24,
-      "symbol": "CNLModelArray.preprocessData(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelArray.swift",
-      "line": 25,
-      "symbol": "CNLModelArray.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelDictionary.swift",
       "line": null,
       "symbol": "CNLModelDictionary",
@@ -2201,111 +1991,111 @@
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelError.swift",
       "line": 13,
-      "symbol": "CNLModelErrorAlertStyle",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelError.swift",
-      "line": 14,
-      "symbol": "CNLModelErrorAlertStyle.error",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelError.swift",
-      "line": 14,
-      "symbol": "CNLModelErrorAlertStyle.info",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelError.swift",
-      "line": 14,
-      "symbol": "CNLModelErrorAlertStyle.warning",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelError.swift",
-      "line": 17,
-      "symbol": "CNLModelErrorAlertStruct",
+      "symbol": "CNLModelErrorAlert",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelError.swift",
-      "line": 18,
-      "symbol": "CNLModelErrorAlertStruct.type",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "line": 15,
+      "symbol": "CNLModelErrorAlert.Style",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelError.swift",
+      "line": 16,
+      "symbol": "CNLModelErrorAlert.Style.error",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelError.swift",
+      "line": 16,
+      "symbol": "CNLModelErrorAlert.Style.info",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelError.swift",
+      "line": 16,
+      "symbol": "CNLModelErrorAlert.Style.warning",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelError.swift",
       "line": 19,
-      "symbol": "CNLModelErrorAlertStruct.title",
+      "symbol": "CNLModelErrorAlert.type",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelError.swift",
       "line": 20,
-      "symbol": "CNLModelErrorAlertStruct.message",
+      "symbol": "CNLModelErrorAlert.title",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelError.swift",
-      "line": 22,
-      "symbol": "CNLModelErrorAlertStruct.init(type:title:message:)",
+      "line": 21,
+      "symbol": "CNLModelErrorAlert.message",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelError.swift",
+      "line": 23,
+      "symbol": "CNLModelErrorAlert.init(type:title:message:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelError.swift",
-      "line": 30,
+      "line": 31,
       "symbol": "CNLModelErrorKind",
       "symbol_kind": "source.lang.swift.decl.protocol",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelError.swift",
-      "line": 31,
+      "line": 32,
       "symbol": "CNLModelErrorKind.identifier",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelError.swift",
-      "line": 34,
+      "line": 35,
       "symbol": "CNLModelError",
       "symbol_kind": "source.lang.swift.decl.protocol",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelError.swift",
-      "line": 35,
+      "line": 36,
       "symbol": "CNLModelError.alertStruct",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelError.swift",
-      "line": 36,
+      "line": 37,
       "symbol": "CNLModelError.json",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelError.swift",
-      "line": 37,
+      "line": 38,
       "symbol": "CNLModelError.kind",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelError.swift",
-      "line": 38,
+      "line": 39,
       "symbol": "CNLModelError.success",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
@@ -2795,182 +2585,84 @@
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelNetwork.swift",
-      "line": 21,
+      "line": 11,
+      "symbol": "CNLNetwork",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelNetwork.swift",
+      "line": 16,
+      "symbol": "CNLNetwork.Download",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelNetwork.swift",
+      "line": 17,
+      "symbol": "CNLNetwork.Download.File",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelNetwork.swift",
+      "line": 23,
+      "symbol": "CNLNetwork.Download.Image",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelNetwork.swift",
+      "line": 29,
       "symbol": "CNLModelNetwork",
       "symbol_kind": "source.lang.swift.decl.protocol",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelNetwork.swift",
-      "line": 22,
+      "line": 30,
       "symbol": "CNLModelNetwork.performRequest(api:success:fail:networkError:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelNetwork.swift",
-      "line": 28,
+      "line": 36,
       "symbol": "CNLModelNetwork.performRequest(api:maxTries:retryDelay:success:fail:networkError:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelNetwork.swift",
-      "line": 36,
+      "line": 44,
       "symbol": "CNLModelNetwork.downloadFileFromURL(_:priority:userData:success:fail:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelNetwork.swift",
-      "line": 43,
+      "line": 51,
       "symbol": "CNLModelNetwork.isReachableOnEthernetOrWiFi",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelNetwork.swift",
-      "line": 48,
+      "line": 56,
       "symbol": "CNLModelNetwork.performRequest(api:maxTries:retryDelay:success:fail:networkError:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelObject.swift",
-      "line": null,
-      "symbol": "CNLModelObject",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelObject.swift",
-      "line": null,
-      "symbol": "CNLModelObject",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelObject.swift",
-      "line": null,
-      "symbol": "CNLModelObject",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelObject.swift",
-      "line": null,
-      "symbol": "CNLModelObject",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelObject.swift",
-      "line": null,
-      "symbol": "CNLModelObjectPrimaryKey",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelObject.swift",
-      "line": 21,
-      "symbol": "CNLModelObject",
-      "symbol_kind": "source.lang.swift.decl.protocol",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelObject.swift",
-      "line": 22,
-      "symbol": "CNLModelObject.createAPI()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelObject.swift",
-      "line": 23,
-      "symbol": "CNLModelObject.okStatus",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelObject.swift",
-      "line": 24,
-      "symbol": "CNLModelObject.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelObject.swift",
-      "line": 27,
-      "symbol": "CNLModelNetworkProvider",
-      "symbol_kind": "source.lang.swift.decl.var.global",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelObject.swift",
-      "line": 31,
-      "symbol": "CNLModelObject.createAPI()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelObject.swift",
-      "line": 35,
-      "symbol": "CNLModelObject.defaultAPIPerform(_:success:fail:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelObject.swift",
-      "line": 46,
-      "symbol": "CNLModelObjectPrimaryKey",
-      "symbol_kind": "source.lang.swift.decl.protocol",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelObject.swift",
-      "line": 48,
-      "symbol": "CNLModelObjectPrimaryKey.primaryKey",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelObject.swift",
-      "line": 49,
-      "symbol": "CNLModelObjectPrimaryKey.init(keyValue:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelObject.swift",
-      "line": 50,
-      "symbol": "CNLModelObjectPrimaryKey.encodedPrimaryKey",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelObject.swift",
-      "line": 54,
-      "symbol": "CNLModelObjectPrimaryKey.encodedPrimaryKey",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelObject.swift",
-      "line": 57,
-      "symbol": "CNLModelObjectEditable",
-      "symbol_kind": "source.lang.swift.decl.protocol",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelObject.swift",
-      "line": 58,
+      "line": 100,
       "symbol": "CNLModelObjectEditable.editing",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/igor/src/ComplexNumbers/CNLDataProvider/CNLDataProvider/CNLModelObject.swift",
-      "line": 59,
+      "line": 101,
       "symbol": "CNLModelObjectEditable.updateList()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

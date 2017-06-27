@@ -32,7 +32,9 @@ fileprivate var pagingArrayAdditionalRecords = "additionalRecords"
 
 public extension CNLDataSourceModel {
     
-    public var pageLimit: Int { return isPagingEnabled ? kCNLModelDefaultPageLimit : -1 }
+    public var defaultPageLimit: Int { return 20 }
+    
+    public var pageLimit: Int { return isPagingEnabled ? defaultPageLimit : -1 }
     public var isPagingEnabled: Bool { return false }
     
     public func reset() {

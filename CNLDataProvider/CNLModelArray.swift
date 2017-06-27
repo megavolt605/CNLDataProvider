@@ -10,18 +10,42 @@ import Foundation
 
 import CNLFoundationTools
 
-public var kCNLModelDefaultPageLimit: Int = 20
-
-// MARK: - CNLModelArray protocol
+/// Array model, class only
+/// Declares basic functions to map, load and store received data
 public protocol CNLModelArray: class, CNLDataSourceModel {
-    //associatedtype ArrayElement: CNLModelDictionary
     
+    /// Maps (deserialize) received dictionary to the model ArrayElement object
+    ///
+    /// - Parameter data: Source data dictionary
     func createItems(_ data: CNLDictionary) -> [ArrayElement]?
+    
+    /// Maps (deserialize) received array to the model ArrayElement item instancies
+    ///
+    /// - Parameter array: Source data array
     func loadFromArray(_ array: CNLArray) -> [ArrayElement]
+    
+    /// Returns mapped (serialized) array
     func storeToArray() -> CNLArray
+    
+    /// Point of making necessary changes after serialize
+    ///
+    /// - Parameter newList: Source array of model items (ArrayEement)
+    /// - Returns: Updated array
     func afterLoad(_ newList: [ArrayElement]) -> [ArrayElement]
+    
+    /// Extract dictionary element to perform desealisation by loadFromArray(_:), createItems(_:), etc.
+    ///
+    /// - Parameter json: Source dictionary
+    /// - Returns: New array
     func rows(_ json: CNLDictionary?) -> CNLArray?
+    
+    /// Preprocess incoming dictionary data
+    ///
+    /// - Parameter data: Source dictionary
+    /// - Returns: Updated dictionary
     func preprocessData(_ data: CNLDictionary?) -> CNLDictionary?
+    
+    /// Default initializer
     init()
 }
 
