@@ -10,19 +10,47 @@ import Foundation
 
 import CNLFoundationTools
 
+/// Data source for data providers
 public protocol CNLDataSourceModel: class {
+
+    /// Type of assotiated model
     associatedtype ArrayElement: CNLModelDictionary
+
+    /// List of cached model items
     var list: [ArrayElement] { get set }
+
+    /// Offset for paging requests
     var fromIndex: Int { get set }
+   
+    /// Total number of records in the remote data source
     var totalRecords: Int? { get set }
+
+    /// Number of additional artifical items
     var additionalRecords: Int { get set }
+
+    /// Paging enabled flag. False by default
     var isPagingEnabled: Bool { get }
+
+    /// Resets pagination
     func pagingReset()
+
+    /// Resets data source
     func reset()
+
+    /// Update data source
     func update()
+    
+    /// Update data source
+    ///
+    /// - Parameters:
+    ///   - success: Callback when operation was successfull
+    ///   - failed: Callback when operation was failed
     func update(success: @escaping CNLModel.Success, failed: @escaping CNLModel.Failed)
+
+    /// Data request completed
     func requestCompleted()
     
+    /// Default initializer
     init()
 }
 
