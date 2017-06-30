@@ -136,6 +136,30 @@ public extension CNLModelObject where Self: CNLModelArray {
     
 }
 
-public protocol CNLModelArrayKeyStored: CNLModelArray, CNLModelObjectPrimaryKey {
+public extension CNLModelArray where ArrayElement: CNLModelObjectPrimaryKey {
+    
+    public func item(withPrimaryKey primaryKey: ArrayElement.KeyType) -> ArrayElement? {
+        return list.lookup { $0.primaryKey == primaryKey }
+    }
+    
+    public func index(ofItem primaryKey: ArrayElement.KeyType) -> Int? {
+        return list.index { $0.primaryKey == primaryKey }
+    }
+    
+    public func remove(withPrimaryKey primaryKey: ArrayElement.KeyType) {
+        if let index = index(ofItem: primaryKey) {
+            list.remove(at: index)
+        }
+    }
+    
+    @discardableResult
+    public func replace(arrayElement: ArrayElement) -> Bool {
+        if let index = index(ofItem: arrayElement.primaryKey) {
+            list[index] = arrayElement
+            return true
+        }
+        list.append(arrayElement)
+        return false
+    }
     
 }
