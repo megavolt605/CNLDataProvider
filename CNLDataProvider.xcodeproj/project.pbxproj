@@ -16,7 +16,6 @@
 		789E68D51E0BFB2E003F3F83 /* CNLModelNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E68D41E0BFB2E003F3F83 /* CNLModelNetwork.swift */; };
 		789E68DB1E0D3DA1003F3F83 /* CNLModelArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E68DA1E0D3DA1003F3F83 /* CNLModelArray.swift */; };
 		789E68DD1E0D3DE3003F3F83 /* CNLModelDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E68DC1E0D3DE3003F3F83 /* CNLModelDictionary.swift */; };
-		789E68DF1E0D5F2E003F3F83 /* CNLModelDictionaryArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E68DE1E0D5F2E003F3F83 /* CNLModelDictionaryArray.swift */; };
 		789E68E11E0D60BC003F3F83 /* CNLModelMetaArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E68E01E0D60BC003F3F83 /* CNLModelMetaArray.swift */; };
 		789E68E51E0D74B7003F3F83 /* CNLDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E68E41E0D74B7003F3F83 /* CNLDataProvider.swift */; };
 		789E68E71E0D7579003F3F83 /* CNLDataProviderVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E68E61E0D7579003F3F83 /* CNLDataProviderVariables.swift */; };
@@ -122,7 +121,6 @@
 		789E68D41E0BFB2E003F3F83 /* CNLModelNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLModelNetwork.swift; sourceTree = "<group>"; };
 		789E68DA1E0D3DA1003F3F83 /* CNLModelArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLModelArray.swift; sourceTree = "<group>"; };
 		789E68DC1E0D3DE3003F3F83 /* CNLModelDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLModelDictionary.swift; sourceTree = "<group>"; };
-		789E68DE1E0D5F2E003F3F83 /* CNLModelDictionaryArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLModelDictionaryArray.swift; sourceTree = "<group>"; };
 		789E68E01E0D60BC003F3F83 /* CNLModelMetaArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLModelMetaArray.swift; sourceTree = "<group>"; };
 		789E68E41E0D74B7003F3F83 /* CNLDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLDataProvider.swift; sourceTree = "<group>"; };
 		789E68E61E0D7579003F3F83 /* CNLDataProviderVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLDataProviderVariables.swift; sourceTree = "<group>"; };
@@ -356,7 +354,6 @@
 				789E68CE1E0BFA64003F3F83 /* CNLModelObject.swift */,
 				789E68DA1E0D3DA1003F3F83 /* CNLModelArray.swift */,
 				789E68DC1E0D3DE3003F3F83 /* CNLModelDictionary.swift */,
-				789E68DE1E0D5F2E003F3F83 /* CNLModelDictionaryArray.swift */,
 				789E68E01E0D60BC003F3F83 /* CNLModelMetaArray.swift */,
 				78F6EAE81E686AEC00228789 /* CNLModelIncrementalArray.swift */,
 				783FE1A31EA7787E00478924 /* CNLModelIncrementalTokenizedArray.swift */,
@@ -557,7 +554,6 @@
 				789E68E91E0D75A3003F3F83 /* CNLDataSource.swift in Sources */,
 				789E68E51E0D74B7003F3F83 /* CNLDataProvider.swift in Sources */,
 				789E68F71E0D9062003F3F83 /* CNLDataViewer+UICollectionView.swift in Sources */,
-				789E68DF1E0D5F2E003F3F83 /* CNLModelDictionaryArray.swift in Sources */,
 				789E68F51E0D82A1003F3F83 /* CNLDataViewerActivity.swift in Sources */,
 				789E68EB1E0D75D7003F3F83 /* CNLDataViewer.swift in Sources */,
 				789E68EF1E0D7696003F3F83 /* CNLDataProviderContentState.swift in Sources */,

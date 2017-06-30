@@ -10,7 +10,7 @@ import Foundation
 
 import CNLFoundationTools
 
-/// Array model, class only
+/// Base array model, class only
 /// Declares basic functions to map, load and store received data
 public protocol CNLModelArray: class, CNLDataSourceModel {
     

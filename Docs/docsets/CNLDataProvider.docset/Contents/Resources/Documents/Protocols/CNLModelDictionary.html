@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           CNLDataProvider Docs
         </a>
-         (21% documented)
+         (24% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -307,7 +307,13 @@
         <section class="section">
           <div class="section-content">
             <h1>CNLModelDictionary</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">CNLModelDictionary</span></code></pre>
+
+                </div>
+              </div>
+            <p>Base dictionary model</p>
 
           </div>
         </section>
@@ -329,8 +335,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Default initializer</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="nf">init</span><span class="p">()</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -351,13 +365,23 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Initializer with values from the dictionary
+Calls loadFromDictionary(_:) by default</p>
 
                       </div>
                       <h4>Default Implementation</h4>
                       <div class="default_impl abstract">
-                        <p>Undocumented</p>
+                        <p>Default implementation. Initializer with values from the dictionary
+Calls loadFromDictionary(_:) by default</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="nf">init</span><span class="p">?(</span><span class="nv">dictionary</span><span class="p">:</span> <span class="kt">CNLDictionary</span><span class="p">?)</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -378,13 +402,40 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Loads (deserialize) values from the dictionary</p>
 
                       </div>
                       <h4>Default Implementation</h4>
                       <div class="default_impl abstract">
-                        <p>Undocumented</p>
+                        <p>Default implementation. Stub: does nothing.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">loadFromDictionary</span><span class="p">(</span><span class="n">_</span> <span class="nv">dictionary</span><span class="p">:</span> <span class="kt">CNLDictionary</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dictionary</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Source dictionary</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -405,13 +456,25 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Stores (serialize) values to the dictionary</p>
 
                       </div>
                       <h4>Default Implementation</h4>
                       <div class="default_impl abstract">
-                        <p>Undocumented</p>
+                        <p>Default implementation. Stub: returns empty dictionary</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">storeToDictionary</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">CNLDictionary</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Result dictionart</p>
                       </div>
                     </section>
                   </div>
@@ -432,13 +495,21 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Updates model values. By default, calls updateDictionary(success:failed:) with empty closures.</p>
 
                       </div>
                       <h4>Default Implementation</h4>
                       <div class="default_impl abstract">
-                        <p>Undocumented</p>
+                        <p>Default implementation. Calls updateDictionary(success:failed:) with empty closures.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">updateDictionary</span><span class="p">()</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -459,13 +530,60 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Updates model values
+By default, creates API struct instance returned by createAPI() function,
+perform network request by CNLModel.networkProvider?.performRequest function.
+When successed, try to deserialize values with loadFromDictionary(_:) function and invokes success callback.
+Calls failed callback if any error occured during request</p>
 
                       </div>
                       <h4>Default Implementation</h4>
                       <div class="default_impl abstract">
-                        <p>Undocumented</p>
+                        <p>Default implementation. Updates model values
+Creates API struct instance returned by createAPI() function,
+perform network request by CNLModel.networkProvider?.performRequest function.
+When successed, try to deserialize values with loadFromDictionary(_:) function and invokes success callback.
+Calls failed callback if any error occured during request</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">updateDictionary</span><span class="p">(</span><span class="nv">success</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Classes/CNLModel.html">CNLModel</a></span><span class="o">.</span><span class="kt">Success</span><span class="p">,</span> <span class="nv">failed</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Classes/CNLModel.html">CNLModel</a></span><span class="o">.</span><span class="kt">Failed</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>success</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Callback when operation was successfull</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>failed</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Callback when operation was failed</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -478,7 +596,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://github.com/megavolt605/CNLDataProvider" target="_blank" rel="external">Complex Numbers</a>. All rights reserved. (Last updated: 2017-06-28)</p>
+      <p>&copy; 2017 <a class="link" href="https://github.com/megavolt605/CNLDataProvider" target="_blank" rel="external">Complex Numbers</a>. All rights reserved. (Last updated: 2017-06-30)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

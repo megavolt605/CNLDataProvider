@@ -463,7 +463,7 @@ public extension CNLDataProvider {
         return res
     }
     
-    /// Default implementation. 
+    /// Default implementation.
     /// Update cached counts for sections, manages visibility flag for artifical "load more" section and item
     public func updateCounts() {
         let totalCount = dataSource.model.totalRecords
