@@ -29,6 +29,7 @@ public struct CNLDataProviderVariables<T: CNLDataSourceModel> {
         return nil
     }
     
+    /// Default initializer
     public init() { }
     
 }

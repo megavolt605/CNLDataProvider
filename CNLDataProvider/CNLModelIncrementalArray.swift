@@ -23,17 +23,41 @@ public protocol CNLModelIncrementalArray: class, CNLDataSourceModel {
 
     typealias CNLModelIncrementalArrayCompletion = (_ model: CNLModelObject, _ status: CNLModel.Error, _ created: [ArrayElement], _ modified: [ArrayElement], _ deleted: [ArrayElement.KeyType]) -> Void
     
+    /// List of ArrayElement instances
     var list: [ArrayElement] { get set }
     
     var lastTimestamp: Date? { get set }
     var statesLastTimestamp: Date? { get set }
     
+    /// Update data source
+    ///
+    /// - Parameters:
+    ///   - success: Callback when operation was successfull
+    ///   - failed: Callback when operation was failed
     func update(success: @escaping CNLModelIncrementalArrayCompletion, failed: @escaping CNLModel.Failed)
     
+    /// Resets model
     func reset()
+    
+    /// Maps (deserialize) received dictionary to the model ArrayElement object
+    ///
+    /// - Parameter data: Source data dictionary
+    /// - Returns: Array if ArrayElement instancies
     func createItems(_ data: CNLDictionary) -> [ArrayElement]?
+    
+    /// Loads model from the dictionary
+    ///
+    /// - Parameter dictionary: Source dictionary
     func loadFromDictionary(_ data: CNLDictionary) -> [ArrayElement]
+    
+    /// Stores model to the dictionary
+    ///
+    /// - Returns: Result dictionary
     func storeToDictionary() -> CNLDictionary
+    
+    /// Point of making necessary changes after serialize
+    ///
+    /// - Returns: Updated array
     func afterLoad()
     func preprocessData(_ data: CNLDictionary?) -> CNLDictionary?
     func indexOf(item: ArrayElement) -> Int?
@@ -102,6 +126,9 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
         return data
     }
 
+    /// Loads model from the dictionary
+    ///
+    /// - Parameter dictionary: Source dictionary
     public func loadFromDictionary(_ data: CNLDictionary) -> [ArrayElement] {
         lastTimestamp = data.date(CNLModelIncrementalArrayKeys.timestamp, lastTimestamp)
         statesLastTimestamp = data.date(CNLModelIncrementalArrayKeys.statesTimestamp, statesLastTimestamp)
@@ -111,6 +138,9 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
         return []
     }
 
+    /// Stores model to the dictionary. Default implementation
+    ///
+    /// - Returns: Result dictionary
     public func storeToDictionary() -> CNLDictionary {
         let items = list.map { $0.storeToDictionary() }
         var result: CNLDictionary = [CNLModelIncrementalArrayKeys.items: items]
@@ -123,6 +153,11 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
         return self.list.index { return $0.primaryKey == item.primaryKey }
     }
 
+    /// Update data source. Default implementation
+    ///
+    /// - Parameters:
+    ///   - success: Callback when operation was successfull
+    ///   - failed: Callback when operation was failed
     public func update(success: @escaping CNLModel.Success, failed: @escaping CNLModel.Failed) {
         update(
             success: { model, error, _, _, _ in success(model, error) },
@@ -130,6 +165,11 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
         )
     }
     
+    /// Update data source
+    ///
+    /// - Parameters:
+    ///   - success: Callback when operation was successfull
+    ///   - failed: Callback when operation was failed
     public func update(success: @escaping CNLModelIncrementalArrayCompletion, failed: @escaping CNLModel.Failed) {
         if let localAPI = createAPI() {
             CNLModel.networkProvider?.performRequest(
@@ -218,6 +258,9 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
         }
     }
     
+    /// Point of making necessary changes after serialize. Default implementation. Stub, does nothong
+    ///
+    /// - Returns: Updated array
     public func afterLoad() { }
     
     public func defaultLoadFrom(_ array: CNLArray) -> [ArrayElement] {

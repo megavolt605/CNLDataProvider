@@ -15,10 +15,16 @@ public protocol CNLModelMetaArrayItem: CNLModelArray {
 }
 
 public protocol CNLModelMetaArray: class, CNLModelObject, CNLModelArray {
+    
     associatedtype MetaArrayItem: CNLModelMetaArrayItem
+    
     associatedtype ArrayElement = MetaArrayItem.ArrayElement
+
+    /// List of MetaArrayItem.ArrayElement instances
     var list: [MetaArrayItem.ArrayElement] { get set }
+    
     var metaInfos: [MetaArrayItem] { get set }
+    
     var ignoreFails: Bool { get }
 }
 
@@ -57,6 +63,11 @@ public extension CNLModelMetaArray {
         }
     }
     
+    /// Update data source. Default implementation
+    ///
+    /// - Parameters:
+    ///   - success: Callback when operation was successfull
+    ///   - failed: Callback when operation was failed
     public func update(success: @escaping CNLModel.Success, failed: @escaping CNLModel.Failed) {
         updateMetaArray(success: success, failed: failed)
     }

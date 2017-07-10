@@ -17,11 +17,13 @@ public protocol CNLModelArray: class, CNLDataSourceModel {
     /// Maps (deserialize) received dictionary to the model ArrayElement object
     ///
     /// - Parameter data: Source data dictionary
+    /// - Returns: Array if ArrayElement instancies
     func createItems(_ data: CNLDictionary) -> [ArrayElement]?
     
     /// Maps (deserialize) received array to the model ArrayElement item instancies
     ///
     /// - Parameter array: Source data array
+    /// - Returns: Array of ArrayElement instances
     func loadFromArray(_ array: CNLArray) -> [ArrayElement]
     
     /// Returns mapped (serialized) array
@@ -29,7 +31,7 @@ public protocol CNLModelArray: class, CNLDataSourceModel {
     
     /// Point of making necessary changes after serialize
     ///
-    /// - Parameter newList: Source array of model items (ArrayEement)
+    /// - Parameter newList: Source array of model items (ArrayElement)
     /// - Returns: Updated array
     func afterLoad(_ newList: [ArrayElement]) -> [ArrayElement]
     
@@ -51,6 +53,10 @@ public protocol CNLModelArray: class, CNLDataSourceModel {
 
 public extension CNLModelObject where Self: CNLModelArray {
     
+    /// Maps (deserialize) received dictionary to the model ArrayElement object
+    ///
+    /// - Parameter data: Source data dictionary
+    /// - Returns: Array if ArrayElement instancies
     public func createItems(_ data: CNLDictionary) -> [ArrayElement]? {
         if let item = ArrayElement(dictionary: data) {
             return [item]
@@ -58,10 +64,16 @@ public extension CNLModelObject where Self: CNLModelArray {
         return nil
     }
     
+    /// Maps (deserialize) received array to the model ArrayElement item instancies
+    /// Default implementation
+    ///
+    /// - Parameter array: Source data array
+    /// - Returns: Array of ArrayElement instances
     public func loadFromArray(_ array: CNLArray) -> [ArrayElement] {
         return defaultLoadFrom(array)
     }
     
+    /// Returns mapped (serialized) array
     public func afterLoad(_ newList: [ArrayElement]) -> [ArrayElement] { return newList }
     
     public func rows(_ json: CNLDictionary?) -> CNLArray? {
@@ -72,11 +84,16 @@ public extension CNLModelObject where Self: CNLModelArray {
         return data
     }
     
+    /// Returns mapped (serialized) array
     public func storeToArray() -> CNLArray {
         let captureList = list
         return captureList.map { $0.storeToDictionary() }
     }
     
+    /// Loads model from the array
+    ///
+    /// - Parameter dictionary: source array
+    /// - Returns: Array of ArrayElement instances
     public static func loadFromArray(_ array: CNLArray?) -> Self? {
         guard let array = array else { return nil }
         let result = Self()
@@ -84,6 +101,11 @@ public extension CNLModelObject where Self: CNLModelArray {
         return result
     }
     
+    /// Update data source. Default implementation
+    ///
+    /// - Parameters:
+    ///   - success: Callback when operation was successfull
+    ///   - failed: Callback when operation was failed
     public func update(success: @escaping CNLModel.Success, failed: @escaping CNLModel.Failed) {
         if let localAPI = createAPI() {
             CNLModel.networkProvider?.performRequest(

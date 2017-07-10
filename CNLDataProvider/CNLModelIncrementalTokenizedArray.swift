@@ -17,10 +17,23 @@ public protocol CNLModelIncrementalTokenizedArray: CNLModelIncrementalArray {
     
     var tokens: [String] { get set }
     func reset()
+
+    /// Maps (deserialize) received dictionary to the model ArrayElement object
+    ///
+    /// - Parameters:
+    ///   - data: Source data dictionary
+    ///   - token: Token of the data
+    /// - Returns: Array if ArrayElement instancies
     func createItems(_ data: CNLDictionary, withToken token: CNLModelObjectToken) -> [ArrayElement]?
     
-    //static func loadFromDictionary(_ data: CNLDictionary?) -> [CNLModelObjectToken: ArrayElement]?
+    // MARK: CNLModelDictionary protocol
+    /// Loads model from the dictionary
+    ///
+    /// - Parameter dictionary: Source dictionary
     func loadFromDictionary(_ data: CNLDictionary) -> [ArrayElement]
+    /// Stores model to the dictionary
+    ///
+    /// - Returns: Result dictionary
     func storeToDictionary() -> CNLDictionary
     
     // states
@@ -38,6 +51,12 @@ public extension CNLModelObject where Self: CNLModelIncrementalTokenizedArray, S
         list = []
     }
     
+    /// Maps (deserialize) received dictionary to the model ArrayElement object
+    ///
+    /// - Parameters:
+    ///   - data: Source data dictionary
+    ///   - token: Token of the data
+    /// - Returns: Array if ArrayElement instancies
     public func createItems(_ data: CNLDictionary, withToken token: CNLModelObjectToken) -> [ArrayElement]? {
         if let item = ArrayElement(dictionary: data) {
             item.token = token
@@ -83,12 +102,18 @@ public extension CNLModelObject where Self: CNLModelIncrementalTokenizedArray, S
         return result
     }
     
+    /// Loads model from the dictionary
+    ///
+    /// - Parameter dictionary: Source dictionary
     public func loadFromDictionary(_ data: CNLDictionary) -> [ArrayElement] {
         lastTimestamp = data.date(CNLModelIncrementalArrayKeys.timestamp, lastTimestamp)
         statesLastTimestamp = data.date(CNLModelIncrementalArrayKeys.statesTimestamp, statesLastTimestamp)
         return defaultLoadFrom(data)
     }
     
+    /// Stores model to the dictionary. Default implementation
+    ///
+    /// - Returns: Result dictionary
     public func storeToDictionary() -> CNLDictionary {
         var result: CNLDictionary = [:]
         tokens.forEach { token in

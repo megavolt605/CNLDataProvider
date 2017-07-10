@@ -150,7 +150,7 @@ public extension CNLDataProvider {
     /// - Returns: Model item
     public func itemAtIndexPath(indexPath: IndexPath) -> ModelType.ArrayElement? {
         if let index = dataProviderVariables.dataSourceIndexForIndexPath(indexPath) {
-            return dataSource.itemAtIndex(index)
+            return dataSource.item(at: index)
         }
         return nil
     }

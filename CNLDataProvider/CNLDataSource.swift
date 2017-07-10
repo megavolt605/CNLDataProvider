@@ -124,56 +124,84 @@ public extension CNLDataSourceModel {
 }
 
 open class CNLDataSource<ModelType: CNLDataSourceModel> {
+
+    /// Array element type
     public typealias ArrayElement = ModelType.ArrayElement
     
     open var model: ModelType
     
+    /// List of ArrayElement (aka ModelType.ArrayElement) instances
     fileprivate var list: [ArrayElement]  = [] // should not be used directly
     
+    /// Resets datasource
     open func reset() {
         list = []
     }
     
+    /// Default initializer
+    ///
+    /// - Parameter model: Model instance
     public init(model: ModelType) {
         self.model = model
     }
     
+    /// Default initializer
+    ///
+    /// - Parameter model: Model type
     public init(model: ModelType.Type) {
         self.model = model.init()
     }
     
+    /// Default generic initializer
     public init() {
         self.model = ModelType()
     }
     
-    // for public use
+    /// List of ArrayElement (aka ModelType.ArrayElements) instances. Can be overriden
     open var allItems: [ArrayElement] { return list }
+
+    /// Count of items in the datasource
     open var count: Int { return list.count }
     
+    /// Returns enumerated sequence of datasource items
+    ///
+    /// - Returns: <#return value description#>
     open func enumerated() -> EnumeratedSequence<[ArrayElement]> {
         return list.enumerated()
     }
     
+    /// Iterates through datasource items
+    ///
+    /// - Parameter iterator: Iterator callback
     open func forEach(_ iterator: (ArrayElement) -> Void) {
         list.forEach(iterator)
     }
     
-    open func itemAtIndex(_ index: Int) -> ArrayElement {
+    /// Returns item by it index
+    ///
+    /// - Parameter index: Source index
+    /// - Returns: Result item
+    open func item(at index: Int) -> ArrayElement {
         return list[index]
     }
     
+    /// Replace internal list to a new one
+    ///
+    /// - Parameter newList: New list
     open func replaceList(_ newList: [ArrayElement]) {
         list = newList
     }
     
+    /// Called when model completed processing data
     open func requestCompleted() {
         list.append(contentsOf: model.list)
     }
     
-    var isPagingEnabled: Bool {
-        return model.isPagingEnabled
-    }
-    
+    /// Updates datasource using assotiated model instance
+    ///
+    /// - Parameters:
+    ///   - success: CNLModel.Success callback when operation was successfull
+    ///   - fail: CNLModel.Failed callback when operation was failed
     func update(success: @escaping CNLModel.Success, failed: @escaping CNLModel.Failed) {
         model.update(success: success, failed: failed)
     }
