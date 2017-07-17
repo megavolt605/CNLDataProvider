@@ -42,7 +42,7 @@ public protocol CNLModelIncrementalArray: class, CNLDataSourceModel {
     /// Maps (deserialize) received dictionary to the model ArrayElement object
     ///
     /// - Parameter data: Source data dictionary
-    /// - Returns: Array if ArrayElement instancies
+    /// - Returns: Array if ArrayElement instances
     func createItems(_ data: CNLDictionary) -> [ArrayElement]?
     
     /// Loads model from the dictionary

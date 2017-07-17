@@ -23,7 +23,7 @@ public protocol CNLModelIncrementalTokenizedArray: CNLModelIncrementalArray {
     /// - Parameters:
     ///   - data: Source data dictionary
     ///   - token: Token of the data
-    /// - Returns: Array if ArrayElement instancies
+    /// - Returns: Array if ArrayElement instances
     func createItems(_ data: CNLDictionary, withToken token: CNLModelObjectToken) -> [ArrayElement]?
     
     // MARK: CNLModelDictionary protocol
@@ -56,7 +56,7 @@ public extension CNLModelObject where Self: CNLModelIncrementalTokenizedArray, S
     /// - Parameters:
     ///   - data: Source data dictionary
     ///   - token: Token of the data
-    /// - Returns: Array if ArrayElement instancies
+    /// - Returns: Array if ArrayElement instances
     public func createItems(_ data: CNLDictionary, withToken token: CNLModelObjectToken) -> [ArrayElement]? {
         if let item = ArrayElement(dictionary: data) {
             item.token = token

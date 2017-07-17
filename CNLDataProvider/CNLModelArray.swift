@@ -17,10 +17,10 @@ public protocol CNLModelArray: class, CNLDataSourceModel {
     /// Maps (deserialize) received dictionary to the model ArrayElement object
     ///
     /// - Parameter data: Source data dictionary
-    /// - Returns: Array if ArrayElement instancies
+    /// - Returns: Array if ArrayElement instances
     func createItems(_ data: CNLDictionary) -> [ArrayElement]?
     
-    /// Maps (deserialize) received array to the model ArrayElement item instancies
+    /// Maps (deserialize) received array to the model ArrayElement item instances
     ///
     /// - Parameter array: Source data array
     /// - Returns: Array of ArrayElement instances
@@ -56,7 +56,7 @@ public extension CNLModelObject where Self: CNLModelArray {
     /// Maps (deserialize) received dictionary to the model ArrayElement object
     ///
     /// - Parameter data: Source data dictionary
-    /// - Returns: Array if ArrayElement instancies
+    /// - Returns: Array if ArrayElement instances
     public func createItems(_ data: CNLDictionary) -> [ArrayElement]? {
         if let item = ArrayElement(dictionary: data) {
             return [item]
@@ -64,7 +64,7 @@ public extension CNLModelObject where Self: CNLModelArray {
         return nil
     }
     
-    /// Maps (deserialize) received array to the model ArrayElement item instancies
+    /// Maps (deserialize) received array to the model ArrayElement item instances
     /// Default implementation
     ///
     /// - Parameter array: Source data array
