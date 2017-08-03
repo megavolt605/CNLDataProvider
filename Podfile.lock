@@ -1,16 +1,32 @@
 PODS:
-  - CNLFoundationTools (0.0.14)
-  - CNLUIKitTools (0.0.15):
+  - CNLFoundationTools (0.0.15)
+  - CNLUIKitTools (0.0.17):
     - CNLFoundationTools
 
 DEPENDENCIES:
-  - CNLFoundationTools
-  - CNLUIKitTools
+  - CNLFoundationTools (from `git@github.com:megavolt605/CNLFoundationTools.git`, branch `swift4`)
+  - CNLUIKitTools (from `git@github.com:megavolt605/CNLUIKitTools.git`, branch `swift4`)
+
+EXTERNAL SOURCES:
+  CNLFoundationTools:
+    :branch: swift4
+    :git: git@github.com:megavolt605/CNLFoundationTools.git
+  CNLUIKitTools:
+    :branch: swift4
+    :git: git@github.com:megavolt605/CNLUIKitTools.git
+
+CHECKOUT OPTIONS:
+  CNLFoundationTools:
+    :commit: db2d9e3803303dd00a599a471406459df182d354
+    :git: git@github.com:megavolt605/CNLFoundationTools.git
+  CNLUIKitTools:
+    :commit: 6361e1e10c5959d318e432e2047e2f2cf2c63fb7
+    :git: git@github.com:megavolt605/CNLUIKitTools.git
 
 SPEC CHECKSUMS:
-  CNLFoundationTools: b693808ccdf02633e326c7fd6f547f5ced36ec6b
-  CNLUIKitTools: 8db982586bbad936b6e331bc0b45b5892f0bfc62
+  CNLFoundationTools: 03ccf6e13a5fdba3a64671b09b2d2770183425e4
+  CNLUIKitTools: e94a8ae52f86d5f2a6d4642eea1f7a26a684b73c
 
-PODFILE CHECKSUM: 9d435d28574cef7019c1c4612af0359f0e574240
+PODFILE CHECKSUM: 686ab2407ecf898631a9d5f408d63f8af2d526da
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.0.beta.3

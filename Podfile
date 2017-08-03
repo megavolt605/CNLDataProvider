@@ -6,6 +6,6 @@ target 'CNLDataProvider' do
   use_frameworks!
 
   # Pods for CNLDataProvider
-  pod 'CNLFoundationTools'
-  pod 'CNLUIKitTools'
+  pod 'CNLFoundationTools', :git => 'git@github.com:megavolt605/CNLFoundationTools.git', :branch => 'swift4'
+  pod 'CNLUIKitTools', :git => 'git@github.com:megavolt605/CNLUIKitTools.git', :branch => 'swift4'
 end
