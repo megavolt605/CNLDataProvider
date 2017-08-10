@@ -29,7 +29,7 @@ public protocol CNLDataSourceModel: class {
     var additionalRecords: Int { get set }
 
     /// Paging enabled flag. False by default
-    var isPagingEnabled: Bool { get }
+    var isPagingEnabled: Bool { get set }
 
     /// Resets pagination
     func pagingReset()
@@ -54,6 +54,8 @@ public protocol CNLDataSourceModel: class {
     init()
 }
 
+fileprivate var pagingArrayIsPagingEnabled = "isPagingEnabled"
+fileprivate var pagingArrayPageLimit = "pageLimit"
 fileprivate var pagingArrayFromIndex = "fromIndex"
 fileprivate var pagingArrayTotalRecords = "totalRecords"
 fileprivate var pagingArrayAdditionalRecords = "additionalRecords"
@@ -62,8 +64,32 @@ public extension CNLDataSourceModel {
     
     public var defaultPageLimit: Int { return 20 }
     
-    public var pageLimit: Int { return isPagingEnabled ? defaultPageLimit : -1 }
-    public var isPagingEnabled: Bool { return false }
+    public final var pageLimit: Int {
+        get {
+            if let value = (objc_getAssociatedObject(self, &pagingArrayPageLimit) as? CNLAssociated<Int>)?.closure {
+                return value
+            } else {
+                return isPagingEnabled ? defaultPageLimit : -1
+            }
+        }
+        set {
+            objc_setAssociatedObject(self, &pagingArrayPageLimit, CNLAssociated<Int>(closure: newValue), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+        }
+    }
+
+    public final var isPagingEnabled: Bool {
+        get {
+            if let value = (objc_getAssociatedObject(self, &pagingArrayIsPagingEnabled) as? CNLAssociated<Bool>)?.closure {
+                return value
+            } else {
+                return false
+            }
+        }
+        set {
+            objc_setAssociatedObject(self, &pagingArrayIsPagingEnabled, CNLAssociated<Bool>(closure: newValue), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+        }
+    }
+    
     
     public func reset() {
         list = []
