@@ -14,10 +14,6 @@ extension UICollectionView: CNLDataViewer {
         return parentViewController
     }
     
-    public var loadMoreCellType: AnyClass {
-        return CNLCollectionViewLoadMoreCell.self
-    }
-    
     public subscript (indexPath: IndexPath) -> CNLDataViewerCell {
         let identifier = cellType?(indexPath)?.cellIdentifier ?? "Cell"
         return dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! CNLDataViewerCell // swiftlint:disable:this force_cast
@@ -41,7 +37,9 @@ extension UICollectionView: CNLDataViewer {
     }
     
     public func initializeCells() {
-        register(loadMoreCellType, forCellWithReuseIdentifier: "Load More Cell")
+        if let loadMoreeCellDataSource = self as? CNLDataViewerLoadMore {
+            register(loadMoreeCellDataSource.loadMoreCellType, forCellWithReuseIdentifier: "Load More Cell")
+        }
         //register(CNLCollectionViewLoadMoreCell.self, forCellWithReuseIdentifier: "Load More Cell")
     }
     
@@ -118,7 +116,7 @@ extension UICollectionView: CNLDataViewer {
         cellIdentifier: String?,
         indexPath: IndexPath,
         context: CNLModelObject?
-        ) -> AnyObject where T.ModelType : CNLDataSourceModel, T.ModelType.ArrayElement : CNLModelObject {
+        ) -> AnyObject where T.ModelType.ArrayElement : CNLModelObject {
         
         if dataProvider.dataProviderVariables.isLoadMoreIndexPath(indexPath) {
             let cell = loadMoreCell(indexPath)
@@ -179,7 +177,7 @@ open class CNLCollectionViewLoadMoreCell: UICollectionViewCell, CNLDataViewerLoa
     open func setupCell<T: CNLDataViewer>(_ dataViewer: T, indexPath: IndexPath) where T : UIView {
         contentView.backgroundColor = UIColor.clear
         activity = createActivity()
-        if let activity = activity as? UIView {
+        if let activity = activity?.view {
             contentView.addSubview(activity)
         }
     }

@@ -71,8 +71,6 @@ public protocol CNLDataViewer: class {
     var cellType: CNLDataViewerCellTypeFunc? { get set }
     var headerType: CNLDataViewerHeaderTypeFunc? { get set }
     
-    var loadMoreCellType: AnyClass { get }
-    
     subscript (indexPath: IndexPath) -> CNLDataViewerCell { get }
     subscript (cellIdentifier: String?, indexPath: IndexPath) -> CNLDataViewerCell { get }
     func initializeCells()
@@ -81,9 +79,9 @@ public protocol CNLDataViewer: class {
     func batchUpdates(_ updates: @escaping () -> Void)
     func batchUpdates(updates: @escaping () -> Void, completion: @escaping (_ isCompleted: Bool) -> Void)
     func insertSections(_ indexes: IndexSet)
-    func insertItemsAtIndexPaths(_ indexes: [IndexPath])
+    func insertItems(at indexes: [IndexPath])
     func deleteSections(_ indexes: IndexSet)
-    func deleteItemsAtIndexPaths(_ indexes: [IndexPath])
+    func deleteItems(at indexes: [IndexPath])
     
     func reloadSections(_ sections: IndexSet, withRowAnimation animation: CNLDataViewerCellAnimation)
     func reloadItemsAtIndexPaths(_ indexes: [IndexPath], withAnimation animation: CNLDataViewerCellAnimation)
@@ -102,10 +100,14 @@ public protocol CNLDataViewer: class {
         cellIdentifier: String?,
         indexPath: IndexPath,
         context: CNLModelObject?
-        ) -> AnyObject where T.ModelType: CNLDataSourceModel, T.ModelType.ArrayElement: CNLModelObject
+        ) -> AnyObject where T.ModelType.ArrayElement: CNLModelObject
     
     // delegate
     func notifyDelegateDidSelectItemAtIndexPath(_ indexPath: IndexPath)
+}
+
+public protocol CNLDataViewerLoadMore {
+    var loadMoreCellType: AnyClass { get }
 }
 
 fileprivate var cellTypeFunc = "cellTypeFunc"

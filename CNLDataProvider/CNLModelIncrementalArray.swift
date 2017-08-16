@@ -18,8 +18,7 @@ public protocol CNLModelIncrementalArrayElement: CNLModelObjectPrimaryKey {
     var states: CNLModelIncrementalArrayElementStates { get set }
 }
 
-public protocol CNLModelIncrementalArray: class, CNLDataSourceModel {
-    associatedtype ArrayElement: CNLModelIncrementalArrayElement, CNLModelDictionary
+public protocol CNLModelIncrementalArray: class, CNLDataSourceModel where ArrayElement: CNLModelIncrementalArrayElement {
 
     typealias CNLModelIncrementalArrayCompletion = (_ model: CNLModelObject, _ status: CNLModel.Error, _ created: [ArrayElement], _ modified: [ArrayElement], _ deleted: [ArrayElement.KeyType]) -> Void
     
@@ -87,9 +86,7 @@ internal struct CNLModelIncrementalArrayKeys {
 
 public extension CNLModelObject where Self: CNLModelIncrementalArray {
     
-    public var isPagingEnabled: Bool { return false }
-
-    public final var lastTimestamp: Date? {
+    public var lastTimestamp: Date? {
         get {
             if let value = (objc_getAssociatedObject(self, &incrementalArrayLastTimestampKey) as? CNLAssociated<Date?>)?.closure {
                 return value
@@ -102,7 +99,7 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
         }
     }
 
-    public final var statesLastTimestamp: Date? {
+    public var statesLastTimestamp: Date? {
         get {
             if let value = (objc_getAssociatedObject(self, &incrementalArrayStatesLastTimestampKey) as? CNLAssociated<Date?>)?.closure {
                 return value

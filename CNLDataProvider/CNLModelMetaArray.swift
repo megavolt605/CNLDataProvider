@@ -33,7 +33,7 @@ fileprivate var pagingArrayFromIndex = "fromIndex"
 
 public extension CNLModelMetaArray {
 
-    public final var ignoreFails: Bool {
+    public var ignoreFails: Bool {
         get {
             if let value = (objc_getAssociatedObject(self, &ignoreFailsKey) as? CNLAssociated<Bool>)?.closure {
                 return value
@@ -46,7 +46,7 @@ public extension CNLModelMetaArray {
         }
     }
 
-    public final var fromIndex: Int {
+    public var fromIndex: Int {
         get {
             if let value = (objc_getAssociatedObject(self, &pagingArrayFromIndex) as? CNLAssociated<Int>)?.closure {
                 return value

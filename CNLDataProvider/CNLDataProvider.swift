@@ -314,7 +314,7 @@ public extension CNLDataProvider {
                         CNLLog("Delete Rows\n\(info)", level: .debug)
                     }
                 #endif
-                self.dataViewer.deleteItemsAtIndexPaths(savedSectionRowIndexes)
+                self.dataViewer.deleteItems(at: savedSectionRowIndexes)
                 
                 self.updateCounts()
                 
@@ -335,7 +335,7 @@ public extension CNLDataProvider {
                         CNLLog("Insert Rows\n\(info)", level: .debug)
                     }
                 #endif
-                self.dataViewer.insertItemsAtIndexPaths(self.sectionRowIndexes())
+                self.dataViewer.insertItems(at: self.sectionRowIndexes())
                 self.dataViewer.reloadData()
             },
             completion: { _ in
@@ -398,7 +398,7 @@ public extension CNLDataProvider {
                     let loadMoreSectionEmpty = self.dataProviderVariables.sectionIndexes[savedLoadMore.section]?.count == 0
                     if loadMoreSectionExists || loadMoreSectionEmpty {
                         let indexPath = self.dataViewer.createIndexPath(item: 0, section: savedLoadMore.section)
-                        self.dataViewer.deleteItemsAtIndexPaths([indexPath])
+                        self.dataViewer.deleteItems(at: [indexPath])
                         self.dataViewer.deleteSections(IndexSet([savedLoadMore.section]))
                     }
                 }
@@ -421,7 +421,7 @@ public extension CNLDataProvider {
                         CNLLog("Insert Rows\n\(info)", level: .debug)
                     }
                 #endif
-                self.dataViewer.insertItemsAtIndexPaths(newRowIndexes)
+                self.dataViewer.insertItems(at: newRowIndexes)
             },
             completion: { _ in
                 UIView.setAnimationsEnabled(true)

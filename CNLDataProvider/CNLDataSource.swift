@@ -64,20 +64,20 @@ public extension CNLDataSourceModel {
     
     public var defaultPageLimit: Int { return 20 }
     
-    public final var pageLimit: Int {
+    public var pageLimit: Int? {
         get {
-            if let value = (objc_getAssociatedObject(self, &pagingArrayPageLimit) as? CNLAssociated<Int>)?.closure {
+            if let value = (objc_getAssociatedObject(self, &pagingArrayPageLimit) as? CNLAssociated<Int?>)?.closure {
                 return value
             } else {
-                return isPagingEnabled ? defaultPageLimit : -1
+                return isPagingEnabled ? defaultPageLimit : nil
             }
         }
         set {
-            objc_setAssociatedObject(self, &pagingArrayPageLimit, CNLAssociated<Int>(closure: newValue), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+            objc_setAssociatedObject(self, &pagingArrayPageLimit, CNLAssociated<Int?>(closure: newValue), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
         }
     }
 
-    public final var isPagingEnabled: Bool {
+    public var isPagingEnabled: Bool {
         get {
             if let value = (objc_getAssociatedObject(self, &pagingArrayIsPagingEnabled) as? CNLAssociated<Bool>)?.closure {
                 return value
@@ -102,7 +102,7 @@ public extension CNLDataSourceModel {
         additionalRecords = 0
     }
     
-    public final var fromIndex: Int {
+    public var fromIndex: Int {
         get {
             if let value = (objc_getAssociatedObject(self, &pagingArrayFromIndex) as? CNLAssociated<Int>)?.closure {
                 return value
@@ -115,7 +115,7 @@ public extension CNLDataSourceModel {
         }
     }
     
-    public final var totalRecords: Int? {
+    public var totalRecords: Int? {
         get {
             if let value = (objc_getAssociatedObject(self, &pagingArrayTotalRecords) as? CNLAssociated<Int?>)?.closure {
                 return value
@@ -128,7 +128,7 @@ public extension CNLDataSourceModel {
         }
     }
     
-    public final var additionalRecords: Int {
+    public var additionalRecords: Int {
         get {
             if let value = (objc_getAssociatedObject(self, &pagingArrayAdditionalRecords) as? CNLAssociated<Int>)?.closure {
                 return value
