@@ -71,8 +71,6 @@ public protocol CNLDataViewer: class {
     var cellType: CNLDataViewerCellTypeFunc? { get set }
     var headerType: CNLDataViewerHeaderTypeFunc? { get set }
     
-    var loadMoreCellType: AnyClass { get }
-    
     subscript (indexPath: IndexPath) -> CNLDataViewerCell { get }
     subscript (cellIdentifier: String?, indexPath: IndexPath) -> CNLDataViewerCell { get }
     func initializeCells()
@@ -106,6 +104,10 @@ public protocol CNLDataViewer: class {
     
     // delegate
     func notifyDelegateDidSelectItemAtIndexPath(_ indexPath: IndexPath)
+}
+
+public protocol CNLDataViewerLoadMore {
+    var loadMoreCellType: AnyClass { get }
 }
 
 fileprivate var cellTypeFunc = "cellTypeFunc"

@@ -86,8 +86,11 @@ internal struct CNLModelIncrementalArrayKeys {
 
 public extension CNLModelObject where Self: CNLModelIncrementalArray {
     
+<<<<<<< HEAD
     public var isPagingEnabled: Bool { return false }
 
+=======
+>>>>>>> master
     public var lastTimestamp: Date? {
         get {
             if let value = (objc_getAssociatedObject(self, &incrementalArrayLastTimestampKey) as? CNLAssociated<Date?>)?.closure {

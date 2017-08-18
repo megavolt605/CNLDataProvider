@@ -16,10 +16,6 @@ extension UITableView: CNLDataViewer {
         return parentViewController
     }
     
-    public var loadMoreCellType: AnyClass {
-        return CNLTableViewLoadMoreCell.self
-    }
-    
     public subscript (indexPath: IndexPath) -> CNLDataViewerCell {
         let identifier = cellType?(indexPath)?.cellIdentifier ?? "Cell"
         return dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! CNLDataViewerCell // swiftlint:disable:this force_cast
@@ -35,7 +31,9 @@ extension UITableView: CNLDataViewer {
     }
     
     public func initializeCells() {
-        register(loadMoreCellType, forCellReuseIdentifier: "Load More Cell")
+        if let loadMoreeCellDataSource = self as? CNLDataViewerLoadMore {
+            register(loadMoreeCellDataSource.loadMoreCellType, forCellReuseIdentifier: "Load More Cell")
+        }
     }
     
     public func batchUpdates(_ updates: @escaping () -> Void) {
@@ -204,7 +202,7 @@ open class CNLTableViewLoadMoreCell: UITableViewCell, CNLDataViewerLoadMoreCell 
     open func setupCell<T: CNLDataViewer>(_ dataViewer: T, indexPath: IndexPath) where T : UIView {
         contentView.backgroundColor = UIColor.clear
         activity = createActivity()
-        if let activity = activity as? UIView {
+        if let activity = activity?.view {
             let centerX = NSLayoutConstraint(item: activity, attribute: .centerX, relatedBy: .equal, toItem: contentView, attribute: NSLayoutAttribute.centerX, multiplier: 1.0, constant: 0.0)
             let height = NSLayoutConstraint(item: activity, attribute: .height, relatedBy: .equal, toItem: contentView, attribute: .height, multiplier: 1.0, constant: -verticalInset)
             let proportion = NSLayoutConstraint(item: activity, attribute: .height, relatedBy: .equal, toItem: activity, attribute: .width, multiplier: 1.0, constant: 0.0)
