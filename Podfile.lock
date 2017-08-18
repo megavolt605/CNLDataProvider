@@ -1,5 +1,5 @@
 PODS:
-  - CNLFoundationTools (0.0.15)
+  - CNLFoundationTools (0.0.17)
   - CNLUIKitTools (0.0.17):
     - CNLFoundationTools
 
@@ -17,16 +17,16 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   CNLFoundationTools:
-    :commit: db2d9e3803303dd00a599a471406459df182d354
+    :commit: 5ba84cb46353d7ed7945579aa37ec3b62d72f22c
     :git: git@github.com:megavolt605/CNLFoundationTools.git
   CNLUIKitTools:
-    :commit: 6361e1e10c5959d318e432e2047e2f2cf2c63fb7
+    :commit: ba531de42c0673d1de266fa07efd3f6966121c03
     :git: git@github.com:megavolt605/CNLUIKitTools.git
 
 SPEC CHECKSUMS:
-  CNLFoundationTools: 03ccf6e13a5fdba3a64671b09b2d2770183425e4
-  CNLUIKitTools: e94a8ae52f86d5f2a6d4642eea1f7a26a684b73c
+  CNLFoundationTools: 57f1bab81f666f8f46f2cc1c38aa7f6bee70e053
+  CNLUIKitTools: d9436fd56802fe1ec01d7280fc6675a5bf9f761a
 
 PODFILE CHECKSUM: 686ab2407ecf898631a9d5f408d63f8af2d526da
 
-COCOAPODS: 1.3.0.beta.3
+COCOAPODS: 1.3.1

@@ -90,7 +90,6 @@ public extension CNLDataSourceModel {
         }
     }
     
-    
     public func reset() {
         list = []
     }
