@@ -12,7 +12,9 @@ import CNLFoundationTools
 
 public typealias CNLModelObjectToken = String
 
-public protocol CNLModelIncrementalTokenizedArray: CNLModelIncrementalArray where ArrayElement: CNLModelObjectTokenized {
+public protocol CNLModelIncrementalTokenizedArray: CNLModelIncrementalArray {
+    
+    associatedtype ArrayElement: CNLModelObjectTokenized // TODO: move to where
     
     var tokens: [String] { get set }
     func reset()

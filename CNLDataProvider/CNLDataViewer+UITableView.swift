@@ -144,7 +144,7 @@ extension UITableView: CNLDataViewer {
             let cell = loadMoreCell(indexPath)
             cell.setupCell(self, indexPath: indexPath)
             if  dataProvider.dataSource.model.isPagingEnabled {
-                dataProvider.fetchNext(completed: nil)
+                dataProvider.fetchNext(nil)
             }
             return cell as! UITableViewCell // swiftlint:disable:this force_cast
         } else {

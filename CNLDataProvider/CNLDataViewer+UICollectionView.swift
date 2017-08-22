@@ -123,7 +123,7 @@ extension UICollectionView: CNLDataViewer {
             cell.setupCell(self, indexPath: indexPath)
             let model = dataProvider.dataSource.model
             if  model.isPagingEnabled {
-                dataProvider.fetchNext(completed: nil)
+                dataProvider.fetchNext(nil)
             }
             return cell as! UICollectionViewCell // swiftlint:disable:this force_cast
         } else {

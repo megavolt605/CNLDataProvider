@@ -42,12 +42,12 @@ public protocol CNLDataProvider: class {
     /// Performs fetch new model objects from beginning
     ///
     /// - Parameter completed: Completion closure
-    func fetchFromStart(completed: ((_ success: Bool) -> Void)?)
+    func fetchFromStart(_ completed: ((_ success: Bool) -> Void)?)
 
     /// Performs fetch next frame of model objects
     ///
     /// - Parameter completed: Completion closure
-    func fetchNext(completed: ((_ success: Bool) -> Void)?)
+    func fetchNext(_ completed: ((_ success: Bool) -> Void)?)
 
     /// Called after fetch is completed
     func afterFetch()
@@ -225,12 +225,12 @@ public extension CNLDataProvider {
     /// Default implementation. Does nothing
     public func afterFetch() { }
     
-    public typealias SSS = (_ success: Bool) -> Void
+    public typealias CompletedCallback = (_ success: Bool) -> Void
     
     /// Default implementation. Fetch model items from the data source from the beginning
     ///
     /// - Parameter completed: Completion callback
-    public func fetchFromStart(completed: SSS?) {
+    public func fetchFromStart(_ completed: CompletedCallback?) {
         beforeFetch()
         dataSource.model.pagingReset()
         dataSource.update(
@@ -251,7 +251,7 @@ public extension CNLDataProvider {
     /// Default implementation. Fetch next frame of model items from the data source
     ///
     /// - Parameter completed: Completion closure
-    public func fetchNext(completed: ((_ success: Bool) -> Void)?) {
+    public func fetchNext(_ completed: CompletedCallback?) {
         dataSource.model.fromIndex = dataSource.count - dataSource.model.additionalRecords
         if (dataSource.model.fromIndex != 0) && !dataProviderVariables.isFetching {
             dataProviderVariables.isFetching = true
