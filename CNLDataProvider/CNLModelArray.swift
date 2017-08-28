@@ -118,7 +118,7 @@ public extension CNLModelObject where Self: CNLModelArray {
                         self.list = self.loadFromArray([])
                     }
                     #if DEBUG
-                        CNLLog("Model count: \(self.list.count)", level: .debug)
+                        cnlLog(.ModelCount, .debug, "\(self.list.count)")
                     #endif
                     if let value: Int = data?.value("total") {
                         self.totalRecords = value

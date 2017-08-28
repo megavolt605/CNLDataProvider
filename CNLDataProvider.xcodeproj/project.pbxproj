@@ -29,6 +29,7 @@
 		789E68F71E0D9062003F3F83 /* CNLDataViewer+UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E68F61E0D9062003F3F83 /* CNLDataViewer+UICollectionView.swift */; };
 		789E68FA1E0DB532003F3F83 /* CNLDataProviderImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 789E68F91E0DB532003F3F83 /* CNLDataProviderImages.xcassets */; };
 		789E68FC1E0DC206003F3F83 /* CNLDataProviderEditable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E68FB1E0DC206003F3F83 /* CNLDataProviderEditable.swift */; };
+		78D3D1D11F544EF2005F4182 /* LogMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D3D1D01F544EF2005F4182 /* LogMessages.swift */; };
 		78F6EAE91E686AEC00228789 /* CNLModelIncrementalArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F6EAE81E686AEC00228789 /* CNLModelIncrementalArray.swift */; };
 		F291DFC45DC030D1D67E59B2 /* Pods_CNLDataProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 439100B3E1608225C7CDEFED /* Pods_CNLDataProvider.framework */; };
 /* End PBXBuildFile section */
@@ -134,6 +135,7 @@
 		789E68F61E0D9062003F3F83 /* CNLDataViewer+UICollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CNLDataViewer+UICollectionView.swift"; sourceTree = "<group>"; };
 		789E68F91E0DB532003F3F83 /* CNLDataProviderImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CNLDataProviderImages.xcassets; sourceTree = "<group>"; };
 		789E68FB1E0DC206003F3F83 /* CNLDataProviderEditable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLDataProviderEditable.swift; sourceTree = "<group>"; };
+		78D3D1D01F544EF2005F4182 /* LogMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMessages.swift; sourceTree = "<group>"; };
 		78F6EAE81E686AEC00228789 /* CNLModelIncrementalArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNLModelIncrementalArray.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -341,6 +343,7 @@
 		789E68CC1E0BF429003F3F83 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				78D3D1D01F544EF2005F4182 /* LogMessages.swift */,
 				789E68E21E0D742F003F3F83 /* Model */,
 				789E68E31E0D7435003F3F83 /* Data Provider */,
 				789E68F81E0DB50D003F3F83 /* Resources */,
@@ -552,6 +555,7 @@
 				789E68CF1E0BFA64003F3F83 /* CNLModelObject.swift in Sources */,
 				7853C3AB1E143B8B00373F00 /* CNLModelLoadable.swift in Sources */,
 				789E68E71E0D7579003F3F83 /* CNLDataProviderVariables.swift in Sources */,
+				78D3D1D11F544EF2005F4182 /* LogMessages.swift in Sources */,
 				789E68DD1E0D3DE3003F3F83 /* CNLModelDictionary.swift in Sources */,
 				78F6EAE91E686AEC00228789 /* CNLModelIncrementalArray.swift in Sources */,
 				789E68E91E0D75A3003F3F83 /* CNLDataSource.swift in Sources */,

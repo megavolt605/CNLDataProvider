@@ -94,19 +94,20 @@ public extension CNLModelImageLoadable {
                 if let data = fileData, let img = UIImage(data: data) {
                     #if DEBUG
                         let stop = Date().timeIntervalSince(start)
-                        CNLLog(
-                            "\(url!.absoluteString) loaded, network time: \(floor(networkStop * 1000.0 * 1000.0) / 1000.0), " +
-                            "total time: \(floor(stop * 1000.0 * 1000.0) / 1000.0) size: \(img.size.width) x \(img.size.height) \(data.count) ",
-                            level: .debug
+                        cnlLog(
+                            .ImageDownloadedSuccess,
+                            .debug,
+                            url!.absoluteString,
+                            "\(floor(networkStop * 1000.0 * 1000.0) / 1000.0)",
+                            "\(floor(stop * 1000.0 * 1000.0) / 1000.0)",
+                            "\(img.size.width)", "\(img.size.height)",
+                            "\(data.count)"
                         )
                     #endif
                     success(url, img, data, userData)
                 } else {
                     #if DEBUG
-                        CNLLog("\(url!.absoluteString) loading error", level: .error)
-                        if let data = fileData, let dataString = NSString(data: data, encoding: String.Encoding.utf16.rawValue) {
-                            CNLLog("Received data:\n\(dataString)", level: .error)
-                        }
+                        cnlLog(.ImageDownloadingError, .error, url!.absoluteString)
                     #endif
                     fail(url, nil, userData)
                 }

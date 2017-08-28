@@ -182,7 +182,7 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
                     if let data = self.preprocessData(apiObject.answerJSON) {
                         if let created = self.createdItems(data) {
                             #if DEBUG
-                                CNLLog("Model new items: \(created.count)", level: .debug)
+                                cnlLog(.ModelNewItems, .debug, "\(created.count)")
                             #endif
                             
                             self.list += created
@@ -190,7 +190,7 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
                         }
                         if let modified = self.modifiedItems(data) {
                             #if DEBUG
-                                CNLLog("Model changed items: \(modified.count)", level: .debug)
+                                cnlLog(.ModelChangedItems, .debug, "\(modified.count)")
                             #endif
                             
                             modified.forEach { modifiedItem in
@@ -207,7 +207,7 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
                         }
                         if let deleted = self.deletedItems(data) {
                             #if DEBUG
-                                CNLLog("Model removed items: \(deleted.count)", level: .debug)
+                                cnlLog(.ModelRemovedItems, .debug, "\(deleted.count)")
                             #endif
                             deletedItems = deleted
                             self.list = self.list.filter { item in !deleted.contains(item.primaryKey) }
@@ -224,7 +224,7 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
                         success: { model, status in
                             self.afterLoad()
                             #if DEBUG
-                                CNLLog("Model count: \(self.list.count)", level: .debug)
+                                cnlLog(.ModelCount, .debug, "\(self.list.count)")
                             #endif
                             success(self, status, createdItems, modifiedItems, deletedItems)
                         },

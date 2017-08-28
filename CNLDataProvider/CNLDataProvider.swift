@@ -304,7 +304,7 @@ public extension CNLDataProvider {
                         let info = savedSectionIndexes
                             .map { return $0.toString }
                             .joined(separator: ",")
-                        CNLLog("Delete Section\n\(info)", level: .debug)
+                        cnlLog(.ModelDeleteSections, .debug, info)
                     }
                 #endif
                 self.dataViewer.deleteSections(savedSectionIndexes as IndexSet)
@@ -313,7 +313,7 @@ public extension CNLDataProvider {
                         let info = savedSectionRowIndexes
                             .map { return "\($0.section) - \($0.row)" }
                             .joined(separator: ",")
-                        CNLLog("Delete Rows\n\(info)", level: .debug)
+                        cnlLog(.ModelDeleteRows, .debug, info)
                     }
                 #endif
                 self.dataViewer.deleteItems(at: savedSectionRowIndexes)
@@ -325,7 +325,7 @@ public extension CNLDataProvider {
                         let info = self.sectionIndexes()
                             .map { return $0.toString }
                             .joined(separator: ",")
-                        CNLLog("Insert Section\n\(info)", level: .debug)
+                        cnlLog(.ModelInsertSections, .debug, info)
                     }
                 #endif
                 self.dataViewer.insertSections(self.sectionIndexes())
@@ -334,7 +334,7 @@ public extension CNLDataProvider {
                         let info = self.sectionRowIndexes()
                             .map { return "\($0.section) - \($0.row)" }
                             .joined(separator: ",")
-                        CNLLog("Insert Rows\n\(info)", level: .debug)
+                        cnlLog(.ModelInsertRows, .debug, info)
                     }
                 #endif
                 self.dataViewer.insertItems(at: self.sectionRowIndexes())
@@ -384,11 +384,11 @@ public extension CNLDataProvider {
                 let info1 = newSectionIndexes
                     .map { return $0.toString }
                     .joined(separator: ",")
-                CNLLog("PInsert Section\n\(info1)", level: .debug)
+                cnlLog(.ModelInsertSections, .debug, info1)
                 let info2 = newRowIndexes
                     .map { return "\($0.section) - \($0.row)" }
                     .joined(separator: ",")
-                CNLLog("PInsert Rows\n\(info2)", level: .debug)
+                cnlLog(.ModelInsertRows, .debug, info2)
             }
         #endif
         
@@ -409,7 +409,7 @@ public extension CNLDataProvider {
                         let info = newSectionIndexes
                             .map { $0.toString }
                             .joined(separator: ",")
-                        CNLLog("Insert Section\n\(info)", level: .debug)
+                        cnlLog(.ModelInsertSections, .debug, info)
                     }
                 #endif
                 
@@ -420,7 +420,7 @@ public extension CNLDataProvider {
                         let info = newRowIndexes
                             .map { return "\($0.section) - \($0.row), " }
                             .joined(separator: ",")
-                        CNLLog("Insert Rows\n\(info)", level: .debug)
+                        cnlLog(.ModelInsertRows, .debug, info)
                     }
                 #endif
                 self.dataViewer.insertItems(at: newRowIndexes)
