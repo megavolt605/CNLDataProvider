@@ -12,7 +12,7 @@ import CNLFoundationTools
 
 /// Base array model, class only
 /// Declares basic functions to map, load and store received data
-public protocol CNLModelArray: class, CNLDataSourceModel {
+public protocol CNLModelArray: CNLDataSourceModel {
     
     /// Maps (deserialize) received dictionary to the model ArrayElement object
     ///

@@ -14,7 +14,7 @@ public protocol CNLModelMetaArrayItem: CNLModelArray {
     
 }
 
-public protocol CNLModelMetaArray: class, CNLModelObject, CNLModelArray {
+public protocol CNLModelMetaArray: CNLModelObject, CNLModelArray {
     
     associatedtype MetaArrayItem: CNLModelMetaArrayItem
     

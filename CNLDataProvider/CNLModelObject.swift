@@ -73,7 +73,7 @@ public extension CNLModelObject {
 }
 
 /// Model with primary (uniquie) key
-public protocol CNLModelObjectPrimaryKey: class, CNLModelObject {
+public protocol CNLModelObjectPrimaryKey: CNLModelObject {
     /// Primary key type
     associatedtype KeyType: CNLDictionaryValue
     

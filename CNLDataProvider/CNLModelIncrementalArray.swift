@@ -18,7 +18,7 @@ public protocol CNLModelIncrementalArrayElement: CNLModelObjectPrimaryKey {
     var states: CNLModelIncrementalArrayElementStates { get set }
 }
 
-public protocol CNLModelIncrementalArray: class, CNLDataSourceModel where ArrayElement: CNLModelIncrementalArrayElement {
+public protocol CNLModelIncrementalArray: CNLDataSourceModel where ArrayElement: CNLModelIncrementalArrayElement {
     
     typealias CNLModelIncrementalArrayCompletion = (_ model: CNLModelObject, _ status: CNLModel.Error, _ created: [ArrayElement], _ modified: [ArrayElement], _ deleted: [ArrayElement.KeyType]) -> Void
     
