@@ -28,8 +28,8 @@ public protocol CNLModelMetaArray: CNLModelObject, CNLModelArray {
     var ignoreFails: Bool { get }
 }
 
-fileprivate var ignoreFailsKey = "ignoreFails"
-fileprivate var pagingArrayFromIndex = "fromIndex"
+private var ignoreFailsKey = "ignoreFails"
+private var pagingArrayFromIndex = "fromIndex"
 
 public extension CNLModelMetaArray {
 

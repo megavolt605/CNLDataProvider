@@ -9,7 +9,7 @@
 import Foundation
 
 public typealias CNLDataProviderVariablesLoadMore = (section: Int, visible: Bool)
-public typealias CNLDataProviderSectionIndexes = [Int:[Int]]
+public typealias CNLDataProviderSectionIndexes = [Int: [Int]]
 
 public struct CNLDataProviderVariables<T: CNLDataSourceModel> {
     public typealias ModelType = T

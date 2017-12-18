@@ -110,8 +110,8 @@ public protocol CNLDataViewerLoadMore {
     var loadMoreCellType: AnyClass { get }
 }
 
-fileprivate var cellTypeFunc = "cellTypeFunc"
-fileprivate var headerTypeFunc = "headerTypeFunc"
+private var cellTypeFunc = "cellTypeFunc"
+private var headerTypeFunc = "headerTypeFunc"
 
 extension CNLDataViewer {
     

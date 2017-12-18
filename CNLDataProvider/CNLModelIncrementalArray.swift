@@ -72,8 +72,8 @@ public protocol CNLModelIncrementalArray: CNLDataSourceModel where ArrayElement:
     func deletedItems(_ data: CNLDictionary?) -> [ArrayElement.KeyType]?
 }
 
-fileprivate var incrementalArrayLastTimestampKey: String = "incrementalArrayLastTimestampKey"
-fileprivate var incrementalArrayStatesLastTimestampKey: String = "incrementalArrayStatesLastTimestampKey"
+private var incrementalArrayLastTimestampKey: String = "incrementalArrayLastTimestampKey"
+private var incrementalArrayStatesLastTimestampKey: String = "incrementalArrayStatesLastTimestampKey"
 
 internal struct CNLModelIncrementalArrayKeys {
     static let statesTimestamp = "states_timestamp"

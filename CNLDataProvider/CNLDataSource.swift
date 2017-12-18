@@ -54,11 +54,11 @@ public protocol CNLDataSourceModel: class {
     init()
 }
 
-fileprivate var pagingArrayIsPagingEnabled = "isPagingEnabled"
-fileprivate var pagingArrayPageLimit = "pageLimit"
-fileprivate var pagingArrayFromIndex = "fromIndex"
-fileprivate var pagingArrayTotalRecords = "totalRecords"
-fileprivate var pagingArrayAdditionalRecords = "additionalRecords"
+private var pagingArrayIsPagingEnabled = "isPagingEnabled"
+private var pagingArrayPageLimit = "pageLimit"
+private var pagingArrayFromIndex = "fromIndex"
+private var pagingArrayTotalRecords = "totalRecords"
+private var pagingArrayAdditionalRecords = "additionalRecords"
 
 public extension CNLDataSourceModel {
     

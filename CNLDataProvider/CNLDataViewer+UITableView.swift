@@ -138,7 +138,7 @@ extension UITableView: CNLDataViewer {
         cellIdentifier: String?,
         indexPath: IndexPath,
         context: CNLModelObject?
-        ) -> AnyObject where T.ModelType.ArrayElement : CNLModelObject {
+        ) -> AnyObject where T.ModelType.ArrayElement: CNLModelObject {
         
         if dataProvider.dataProviderVariables.isLoadMoreIndexPath(indexPath) {
             let cell = loadMoreCell(indexPath)
@@ -199,7 +199,7 @@ open class CNLTableViewLoadMoreCell: UITableViewCell, CNLDataViewerLoadMoreCell 
     open var createActivity: () -> CNLDataViewerActivity? = { return nil }
     open var verticalInset: CGFloat = 0.0
     
-    open func setupCell<T: CNLDataViewer>(_ dataViewer: T, indexPath: IndexPath) where T : UIView {
+    open func setupCell<T: CNLDataViewer>(_ dataViewer: T, indexPath: IndexPath) where T: UIView {
         contentView.backgroundColor = UIColor.clear
         activity = createActivity()
         if let activity = activity?.view {

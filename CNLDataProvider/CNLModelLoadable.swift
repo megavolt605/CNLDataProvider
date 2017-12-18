@@ -11,7 +11,7 @@ import CoreTelephony
 
 import CNLFoundationTools
 
-fileprivate var cancelLoadingTaskCallbacksFunc = "cancelLoadingTaskCallbacksFunc"
+private var cancelLoadingTaskCallbacksFunc = "cancelLoadingTaskCallbacksFunc"
 
 public protocol CNLModelDataLoadable: class {
     func loadData(_ url: URL?, priority: Float?, userData: Any?, success: @escaping CNLNetwork.Download.File.Success, fail: @escaping CNLNetwork.Download.File.Failed)

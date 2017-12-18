@@ -95,8 +95,8 @@ public protocol CNLRefreshableScrollView: UIScrollViewDelegate {
         ) where T: CNLDataViewerRefreshControlProtocol
 }
 
-fileprivate var refreshControlVar = "refreshControlVar"
-fileprivate var notificationObserverVar = "notificationObserver"
+private var refreshControlVar = "refreshControlVar"
+private var notificationObserverVar = "notificationObserver"
 
 extension CNLRefreshableScrollView where Self: CNLDataProvider {
     
