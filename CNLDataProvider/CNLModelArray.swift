@@ -46,7 +46,12 @@ public protocol CNLModelArray: CNLDataSourceModel {
     /// - Parameter data: Source dictionary
     /// - Returns: Updated dictionary
     func preprocessData(_ data: CNLDictionary?) -> CNLDictionary?
-    
+
+    /// Returns total item count
+    ///
+    /// - Parameter data: Source dicitonary
+    func totalItems(_ data: CNLDictionary?) -> Int?
+
     /// Default initializer
     init()
 }
@@ -84,6 +89,10 @@ public extension CNLModelObject where Self: CNLModelArray {
         return data
     }
     
+    func totalItems(_ data: CNLDictionary?) -> Int? {
+        return data?.value("total")
+    }
+
     /// Returns mapped (serialized) array
     public func storeToArray() -> CNLArray {
         let captureList = list
@@ -120,7 +129,7 @@ public extension CNLModelObject where Self: CNLModelArray {
                     #if DEBUG
                         cnlLog(.ModelCount, .debug, "\(self.list.count)")
                     #endif
-                    if let value: Int = data?.value("total") {
+                    if let value: Int = self.totalItems(data) {
                         self.totalRecords = value
                     } else {
                         self.totalRecords = self.list.count
