@@ -145,6 +145,7 @@ public extension CNLModelObject where Self: CNLModelArray {
             )
         } else {
             list = loadFromArray([])
+            self.totalRecords = 0
             success(self, okStatus) //(kind: CNLErrorKind.Ok, success: true))
         }
     }
