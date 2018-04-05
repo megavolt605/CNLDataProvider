@@ -2,7 +2,7 @@
 Model basic and data providers for UITableView and UICollectionView
 
 <img src="https://img.shields.io/badge/platform-iOS-blue.svg?style=flat" alt="Platform iOS" />
-<a href="https://cocoapods.org/pods/CNLDataProvider"><img src="https://img.shields.io/badge/pod-0.0.15-blue.svg" alt="CocoaPods compatible" /></a>
+<a href="https://cocoapods.org/pods/CNLDataProvider"><img src="https://img.shields.io/badge/pod-0.0.16-blue.svg" alt="CocoaPods compatible" /></a>
 
 ## Installation
 
