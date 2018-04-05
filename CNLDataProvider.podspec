@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "CNLDataProvider"
-  s.version      = "0.0.14"
+  s.version      = "0.0.15"
   s.summary      = "Basic model and data providers."
   s.description  = <<-DESC
 Basic model and data providers for UITableView and UICollectionView
@@ -16,6 +16,6 @@ s.homepage     = "https://github.com/megavolt605/#{s.name}"
   s.framework  = "Foundation", "UIKit", "CoreLocation"
   s.dependency "CNLFoundationTools" # , "~> 1.4"
   s.dependency "CNLUIKitTools" # , "~> 1.4"
-  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.0' }
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.1' }
 end
 
