@@ -447,8 +447,8 @@ public extension CNLDataProvider {
     /// Collect section/items count information for cache purposes
     ///
     /// - Returns: Calculated values
-    fileprivate func updateCountsCollectItems() -> [Int:[Int]] {
-        var res: [Int:[Int]] = [:]
+    fileprivate func updateCountsCollectItems() -> [Int: [Int]] {
+        var res: [Int: [Int]] = [:]
         dataProviderVariables.loadMore.section = 0
         for (index, item) in dataSource.allItems.enumerated() {
             let section = sectionForItem(item: item)

@@ -1,6 +1,6 @@
 PODS:
   - CNLFoundationTools (0.0.21)
-  - CNLUIKitTools (0.0.20):
+  - CNLUIKitTools (0.0.21):
     - CNLFoundationTools
 
 DEPENDENCIES:
@@ -9,8 +9,8 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   CNLFoundationTools: 9bfb1312923db4983b4a923beb01e6b28e9e4b90
-  CNLUIKitTools: 054d8a7fcba89fbf31055bb06dc3e1518f6beabf
+  CNLUIKitTools: 606bac33f8a682a2ac922dc02e45578d58bd23df
 
 PODFILE CHECKSUM: 18c8592b01c1a6a9d2effcdef07aede7ed2d1a47
 
-COCOAPODS: 1.4.0.beta.1
+COCOAPODS: 1.4.0

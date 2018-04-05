@@ -219,14 +219,14 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
                     }
 
                     self.updateStates(
-                        success: { model, status in
+                        success: { _, status in
                             self.afterLoad()
                             #if DEBUG
                                 cnlLog(.ModelCount, .debug, "\(self.list.count)")
                             #endif
                             success(self, status, createdItems, modifiedItems, deletedItems)
                         },
-                        failed: { apiObject, error in failed(self, error) }
+                        failed: { _, error in failed(self, error) }
                     )
                 },
                 fail: { apiObject in failed(self, apiObject.errorStatus) },

@@ -163,10 +163,10 @@ public extension CNLModelResizableImageLoadable {
             newURL,
             priority: priority,
             userData: userData,
-            success: { newURL, image, imageData, userData in
+            success: { _, image, imageData, userData in
                 success(url, image, imageData, userData)
             },
-            fail: { newURL, error, userData in
+            fail: { _, error, userData in
                 fail(url, error, userData)
             }
         )

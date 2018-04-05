@@ -71,10 +71,18 @@ public extension CNLModelObject where Self: CNLModelIncrementalTokenizedArray {
     }
 
     public func defaultLoadFrom(_ data: CNLDictionary) -> [ArrayElement] {
+        #if swift(>=4.1)
+        let items: [[ArrayElement]] = tokens
+            .compactMap { itemData in
+                guard let itemsData = data[itemData] as? CNLArray else { return nil }
+                return defaultLoadFrom(itemsData, withToken: itemData)
+        }
+        #else
         let items: [[ArrayElement]] = tokens.flatMap {
             guard let itemsData = data[$0] as? CNLArray else { return nil }
             return defaultLoadFrom(itemsData, withToken: $0)
         }
+        #endif
         let result = items.flatMap { return $0 }
         return result
     }
@@ -94,9 +102,17 @@ public extension CNLModelObject where Self: CNLModelIncrementalTokenizedArray {
     
     public func deletedItems(_ data: CNLDictionary?) -> [ArrayElement.KeyType]? {
         guard let idsData = data?[CNLModelIncrementalArrayKeys.deleted] as? CNLDictionary else { return nil }
-        let ids: [[ArrayElement.KeyType]] = tokens.flatMap { token in
-            return idsData[token] as? [ArrayElement.KeyType]
-        }
+        #if swift(>=4.1)
+        let ids: [[ArrayElement.KeyType]] = tokens
+            .compactMap { token in
+                return idsData[token] as? [ArrayElement.KeyType]
+            }
+        #else
+        let ids: [[ArrayElement.KeyType]] = tokens
+            .flatMap { token in
+                return idsData[token] as? [ArrayElement.KeyType]
+            }
+        #endif
         let result = ids.flatMap { return $0 }
         return result
     }
