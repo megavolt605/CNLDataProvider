@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "CNLDataProvider"
-  s.version      = "0.0.17"
+  s.version      = "0.0.18"
   s.summary      = "Basic model and data providers."
   s.description  = <<-DESC
 Basic model and data providers for UITableView and UICollectionView

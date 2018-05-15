@@ -33,7 +33,7 @@ public protocol CNLModelIncrementalArray: CNLDataSourceModel where ArrayElement:
     /// - Parameters:
     ///   - success: Callback when operation was successfull
     ///   - failed: Callback when operation was failed
-    func update(success: @escaping CNLModelIncrementalArrayCompletion, failed: @escaping CNLModel.Failed)
+    func incrementalUpdate(success: @escaping CNLModelIncrementalArrayCompletion, failed: @escaping CNLModel.Failed)
     
     /// Resets model
     func reset()
@@ -85,7 +85,7 @@ internal struct CNLModelIncrementalArrayKeys {
 }
 
 public extension CNLModelObject where Self: CNLModelIncrementalArray {
-    
+
     public var lastTimestamp: Date? {
         get {
             if let value = (objc_getAssociatedObject(self, &incrementalArrayLastTimestampKey) as? CNLAssociated<Date?>)?.closure {
@@ -118,7 +118,7 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
         }
         return nil
     }
-    
+
     public func preprocessData(_ data: CNLDictionary?) -> CNLDictionary? {
         return data
     }
@@ -156,18 +156,18 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
     ///   - success: Callback when operation was successfull
     ///   - failed: Callback when operation was failed
     public func update(success: @escaping CNLModel.Success, failed: @escaping CNLModel.Failed) {
-        update(
+        incrementalUpdate(
             success: { model, error, _, _, _ in success(model, error) },
             failed: failed
         )
     }
-    
+
     /// Update data source
     ///
     /// - Parameters:
     ///   - success: Callback when operation was successfull
     ///   - failed: Callback when operation was failed
-    public func update(success: @escaping CNLModelIncrementalArrayCompletion, failed: @escaping CNLModel.Failed) {
+    public func incrementalUpdate(success: @escaping CNLModelIncrementalArrayCompletion, failed: @escaping CNLModel.Failed) {
         if let localAPI = createAPI() {
             CNLModel.networkProvider?.performRequest(
                 api: localAPI,
@@ -254,7 +254,7 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
             success(self, okStatus) //(kind: CNLErrorKind.Ok, success: true))
         }
     }
-    
+
     /// Point of making necessary changes after serialize. Default implementation. Stub, does nothong
     ///
     /// - Returns: Updated array
@@ -288,5 +288,5 @@ public extension CNLModelObject where Self: CNLModelIncrementalArray {
         self.init()
         list = loadFromDictionary(data)
     }
-    
+
 }
